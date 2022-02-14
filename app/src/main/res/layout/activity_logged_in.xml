@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loggedInActivity">
+
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hi"
+        android:gravity="center"
+        android:textSize="70sp"
+        android:id="@+id/two"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hi"
+        android:gravity="center"
+        android:layout_below="@+id/two"
+        android:textSize="50sp"
+        android:id="@+id/three"
+        android:layout_marginTop="35dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hi"
+        android:layout_below="@+id/three"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:id="@+id/four"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hi"
+        android:layout_below="@+id/four"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:id="@+id/five"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign out"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/logoutBtn" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Meeting"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/addMeeting"
+        android:layout_above="@id/logoutBtn"/>
+
+
+</RelativeLayout>
