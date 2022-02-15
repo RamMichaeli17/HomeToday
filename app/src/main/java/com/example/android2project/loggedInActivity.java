@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.example.android2project.activities.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,8 +30,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import java.util.UUID;
 
 public class loggedInActivity extends AppCompatActivity {
 
@@ -151,7 +149,7 @@ public class loggedInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(loggedInActivity.this,"Successfully signed out",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(loggedInActivity.this,MainActivity.class));
+                startActivity(new Intent(loggedInActivity.this, MainActivity.class));
             }
         });
     }

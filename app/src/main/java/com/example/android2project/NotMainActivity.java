@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class NotMainActivity extends AppCompatActivity {
 
     private TextView register;
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.not_activity_main);
 
 
         register = findViewById(R.id.registerBtn);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(MainActivity.this, RegisterUser.class));
+                startActivity(new Intent(NotMainActivity.this, RegisterUser.class));
             }
         });
 
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            startActivity(new Intent(MainActivity.this, loggedInActivity.class));
+                            startActivity(new Intent(NotMainActivity.this, loggedInActivity.class));
                         }else{
-                            Toast.makeText(MainActivity.this,"Failed to login",Toast.LENGTH_LONG).show();
+                            Toast.makeText(NotMainActivity.this,"Failed to login",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

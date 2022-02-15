@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android2project.activities.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -106,7 +107,7 @@ public class RegisterUser extends AppCompatActivity {
                                             {
                                                 Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG).show();
                                                 progressBar.setVisibility(View.GONE);
-                                                startActivity(new Intent(RegisterUser.this,MainActivity.class));
+                                                startActivity(new Intent(RegisterUser.this, MainActivity.class));
 
                                             }
                                             else
