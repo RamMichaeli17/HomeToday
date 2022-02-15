@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2Project">
-        <activity android:name=".AddMeeting"></activity>
+        <activity
+            android:name=".AllMeetings"
+            android:exported="false" />
+        <activity android:name=".AddMeeting" />
         <activity android:name=".loggedInActivity" />
         <activity android:name=".RegisterUser" />
         <activity

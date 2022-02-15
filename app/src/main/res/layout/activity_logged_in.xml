@@ -8,14 +8,13 @@
 
 
     <TextView
-        android:layout_marginTop="60dp"
+        android:id="@+id/two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hi"
+        android:layout_marginTop="60dp"
         android:gravity="center"
-        android:textSize="70sp"
-        android:id="@+id/two"
-        />
+        android:text="Hi"
+        android:textSize="70sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,25 +35,25 @@
         android:id="@+id/four"
         android:layout_marginTop="20dp"
         />
+
     <TextView
+        android:id="@+id/five"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hi"
         android:layout_below="@+id/four"
-        android:gravity="center"
-        android:textSize="50sp"
-        android:id="@+id/five"
         android:layout_marginTop="20dp"
-        />
+        android:gravity="center"
+        android:text="Hi"
+        android:textSize="30sp" />
 
     <Button
+        android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign out"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:id="@+id/logoutBtn" />
+        android:text="Sign out" />
 
 
     <Button
@@ -62,9 +61,43 @@
         android:layout_height="wrap_content"
         android:text="Add Meeting"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/addMeeting"
-        android:layout_above="@id/logoutBtn"/>
+        android:layout_above="@id/logoutBtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile picture"
+        android:layout_above="@id/pictureIV"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pictureIV"
+        android:layout_width="280dp"
+        android:layout_height="300dp"
+        android:layout_above="@id/addMeeting"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/pictureBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/logoutBtn"
+        android:text="Profile Picture" />
+
+    <Button
+        android:id="@+id/allMeetings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/logoutBtn"
+        android:layout_alignParentEnd="true"
+        android:text="All meetings" />
+
 
 
 </RelativeLayout>
