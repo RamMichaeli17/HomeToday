@@ -9,21 +9,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2Project">
+
+
+<!--        Ram Additions-->
         <activity
-            android:name=".AllMeetings"
-            android:exported="false" />
-        <activity android:name=".AddMeeting" />
-        <activity android:name=".loggedInActivity" />
-        <activity android:name=".RegisterUser" />
+            android:name=".activities.SingUpActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".activities.SignInActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
+        </activity>
+
+<!--        <activity-->
+<!--            android:name=".AllMeetings"-->
+<!--            android:exported="false" />-->
+<!--        <activity android:name=".AddMeeting" />-->
+<!--        <activity android:name=".loggedInActivity" />-->
+<!--        <activity android:name=".RegisterUser" />-->
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>
