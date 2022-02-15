@@ -13,6 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        //Ram Additions
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -54,4 +57,13 @@ dependencies {
 
     //Rounded ImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-firestore:24.0.1'
+
+    //MultiDex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
 }
