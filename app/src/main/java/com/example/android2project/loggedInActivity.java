@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,12 +14,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +53,18 @@ public class loggedInActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     Uri imageUri;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount()>0)
+            getSupportFragmentManager().popBackStack();
+        else
+            super.onBackPressed();
+    }
 
     Button logoutBtn,addMeetingBtn,pictureBtn,allMeetingsBtn;
     ImageView pictureIV;
@@ -50,9 +73,41 @@ public class loggedInActivity extends AppCompatActivity {
 
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            drawerLayout.openDrawer(Gravity.LEFT);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+
+        tabLayout=findViewById(R.id.tabLayout);
+        viewPager=findViewById(R.id.viewPager);
+
+        tabLayout.setupWithViewPager(viewPager);
+        VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        vpAdapter.addFragment(new fragment1(),"MAIN");
+        vpAdapter.addFragment(new fragment2(),"CHAT");
+        vpAdapter.addFragment(new fragment3(),"SOMETHING");
+        viewPager.setAdapter(vpAdapter);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView=findViewById(R.id.navigation_view);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Android Project");
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar= getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+
 
         user=FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
@@ -64,7 +119,30 @@ public class loggedInActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
 
-        pictureBtn.setOnClickListener(new View.OnClickListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getTitle().equals("Log out"))
+                    logoutBtn.performClick();
+                else if(item.getTitle().equals("My Profile"))
+                {
+
+                    startActivity(new Intent(loggedInActivity.this,MyProfile.class));
+//                    FragmentManager fragmentManager = getSupportFragmentManager();
+//                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+//                    transaction.add(R.id.drawer_layout,new profileFragment(),"profile_fragment");
+//                    transaction.addToBackStack(null);
+//                    transaction.commit();
+                }
+                item.setChecked(true);
+                drawerLayout.closeDrawers();
+                Toast.makeText(loggedInActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+
+/*        pictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -199,5 +277,6 @@ public class loggedInActivity extends AppCompatActivity {
                                             pd.setMessage("Just a moment...");
                                         }
                     });
-        }
+        }*/
+    }
 }

@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2Project">
         <activity
-            android:name=".AllMeetings"
+            android:name=".MyProfile"
             android:exported="false" />
-        <activity android:name=".AddMeeting" />
         <activity android:name=".loggedInActivity" />
         <activity android:name=".RegisterUser" />
         <activity

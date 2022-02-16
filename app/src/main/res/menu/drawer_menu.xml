@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/profile"
+            android:checked="true"
+            android:icon="@drawable/ic_baseline_profile"
+            android:title="Main"/>
+        <item
+            android:id="@+id/example1"
+            android:icon="@drawable/ic_baseline_kitesurfing_24"
+            android:title="My Profile"
+            />
+        <item
+            android:id="@+id/example2"
+            android:icon="@drawable/ic_baseline_downhill_skiing_24"
+            android:title="Another Example"
+            />
+
+    </group>
+
+    <item android:title="Sub menu">
+        <menu>
+
+            <item android:title="Log out"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:id="@+id/logoutINHAMBURGER"/>
+
+        </menu>
+
+
+    </item>
+
+</menu>

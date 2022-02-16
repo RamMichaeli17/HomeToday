@@ -1,9 +1,11 @@
 package com.example.android2project;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
         Meeting meeting = list.get(position);
         holder.date.setText(meeting.getDate());
         holder.game.setText(meeting.getGame());
+        holder.image.setImageResource(R.drawable.ic_baseline_person_24);
     }
 
     @Override
@@ -43,12 +46,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView date,game;
+        ImageView image;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.dateTV);
             game = itemView.findViewById(R.id.gameTV);
+            image = itemView.findViewById(R.id.imageIV);
         }
     }
 }
