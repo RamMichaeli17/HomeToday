@@ -1,5 +1,7 @@
 package com.example.android2project.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,8 +9,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.android2project.R;
 import com.example.android2project.databinding.ActivityMainBinding;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListeners() {
         binding.imageSignOut.setOnClickListener(v-> signOut());
+        binding.fabNewChat.setOnClickListener(v->{
+            startActivity(new Intent(getApplicationContext(),UsersActivity.class));
+        });
     }
 
     private void loadUserDetails() {
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         preferenceManager.getString(Constants.KEY_USER_ID)
                 );
         documentReference.update(Constants.KEY_FCM_TOKEN, token)
-                .addOnSuccessListener(unused -> showToast("Token updated successfully"))
+//                .addOnSuccessListener(unused -> showToast("Token updated successfully"))
                 .addOnFailureListener(e -> showToast("Unable to update token"));
     }
 
