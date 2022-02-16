@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     private void setListeners() {
         binding.imageSignOut.setOnClickListener(v-> signOut());
         binding.fabNewChat.setOnClickListener(v->{
-            startActivity(new Intent(getApplicationContext(), com.example.android2project.activities.UsersActivity.class));
+            startActivity(new Intent(getApplicationContext(),UsersActivity.class));
         });
     }
 
@@ -139,6 +139,7 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     }
 
     private void updateToken (String token) {
+        preferenceManager.putString(Constants.KEY_FCM_TOKEN,token);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference =
                 database.collection(Constants.KEY_COLLECTION_USERS).document(
