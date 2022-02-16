@@ -1,5 +1,6 @@
 package com.example.android2project.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android2project.adapters.UserAdapter;
 import com.example.android2project.databinding.ActivityUsersBinding;
+import com.example.android2project.listeners.UserListener;
 import com.example.android2project.models.User;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
@@ -16,7 +18,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity {
+public class UsersActivity extends AppCompatActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
@@ -59,7 +61,7 @@ public class UsersActivity extends AppCompatActivity {
                             users.add(user);
                         }
                         if(users.size()>0) {
-                            UserAdapter userAdapter = new UserAdapter(users);
+                            UserAdapter userAdapter = new UserAdapter(users, this);
                             binding.usersRecyclerView.setAdapter(userAdapter);
                             binding.usersRecyclerView.setVisibility(View.VISIBLE);
                         } else {
@@ -82,5 +84,13 @@ public class UsersActivity extends AppCompatActivity {
         } else {
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public void onUserClicked(User user) {
+        Intent intent = new Intent(getApplicationContext(), com.example.android2project.activities.ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER,user);
+        startActivity(intent);
+        finish();
     }
 }
