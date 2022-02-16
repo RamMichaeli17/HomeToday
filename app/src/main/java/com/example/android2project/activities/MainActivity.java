@@ -8,8 +8,6 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.android2project.adapters.RecentConversationsAdapter;
 import com.example.android2project.databinding.ActivityMainBinding;
 import com.example.android2project.listeners.ConversionListener;
@@ -30,7 +28,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ConversionListener {
+public class MainActivity extends BaseActivity implements ConversionListener {
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
     private void setListeners() {
         binding.imageSignOut.setOnClickListener(v-> signOut());
         binding.fabNewChat.setOnClickListener(v->{
-            startActivity(new Intent(getApplicationContext(),UsersActivity.class));
+            startActivity(new Intent(getApplicationContext(), com.example.android2project.activities.UsersActivity.class));
         });
     }
 
