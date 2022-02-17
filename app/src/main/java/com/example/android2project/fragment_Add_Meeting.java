@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,17 +36,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class fragment_Add_Meeting extends Fragment {
 
-    EditText meetingGameET,meetingDateET;
+    TextInputEditText cityET,priceET,roomsET;
     Button submitMeeting,addImage,goBackBtn;
     int counter=0;
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
-    String game,date;
+    int price,rooms;
+    String city,username;
     Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -68,8 +72,9 @@ public class fragment_Add_Meeting extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_add_meeting,container,false);
 
-        meetingDateET = rootView.findViewById(R.id.meetingDateET);
-        meetingGameET = rootView.findViewById(R.id.meetingGameET);
+        cityET = rootView.findViewById(R.id.cityET);
+        priceET = rootView.findViewById(R.id.askingPriceET);
+        roomsET=rootView.findViewById(R.id.roomsET);
         submitMeeting = rootView.findViewById(R.id.submitMeeting);
         addImage=rootView.findViewById(R.id.addImage);
         goBackBtn=rootView.findViewById(R.id.goBackBtn);
@@ -98,8 +103,9 @@ public class fragment_Add_Meeting extends Fragment {
             @Override
             public void onClick(View view) {
 
-                game = meetingGameET.getText().toString().trim();
-                date = meetingDateET.getText().toString().trim();
+                city = cityET.getText().toString().trim();
+                price= Integer.parseInt(priceET.getText().toString());
+                rooms= Integer.parseInt(roomsET.getText().toString());
 
 
                 reference= FirebaseDatabase.getInstance().getReference("Users");
@@ -117,6 +123,7 @@ public class fragment_Add_Meeting extends Fragment {
                         {
                             counter = userProfile.jobsCounter+1;
                             reference.child(userID +"/jobsCounter").setValue(counter);
+                            username=userProfile.fullName;
                         }
                         uploadPicture();
                         addMeeting();
@@ -164,13 +171,13 @@ public class fragment_Add_Meeting extends Fragment {
 
     public void addMeeting()
     {
-        Meeting meeting = new Meeting(game,date);
+        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms);
 
-        FirebaseDatabase.getInstance().getReference("Meetings")
-                .child(userID).child(("Meeting"+counter)).setValue(meeting).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseDatabase.getInstance().getReference("House Offers")
+                .child(userID).child(("Offer "+counter)).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getActivity(),"Meeting #"+counter+" has been created!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Offer #"+counter+" for "+username+" has been created!",Toast.LENGTH_LONG).show();
 
                 getActivity().getSupportFragmentManager().beginTransaction().remove(fragment_Add_Meeting.this).commit();
 
@@ -191,7 +198,7 @@ public class fragment_Add_Meeting extends Fragment {
 
     private void uploadPicture()
     {
-        StorageReference fileRef = storageReference.child("Meeting Pictures/"+user.getEmail()+"/Meeting"+counter);
+        StorageReference fileRef = storageReference.child("House Pictures/"+user.getEmail()+"/House "+counter);
 
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

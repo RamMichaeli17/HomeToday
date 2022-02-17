@@ -16,13 +16,13 @@
         android:layout_centerHorizontal="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/meetingGameET"
+            android:id="@+id/cityET"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@android:color/transparent"
-            android:hint="Which game?" />
+            android:hint="Which city?" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,26 +36,46 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="At what date?"
+            android:hint="Asking price"
             android:inputType="date"
             android:background="@android:color/transparent"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:id="@+id/meetingDateET"
+            android:id="@+id/askingPriceET"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/inputlayout2"
+        android:id="@+id/inputlayout3"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="How many rooms?"
+            android:inputType="date"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:id="@+id/roomsET"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
+        android:id="@+id/addImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add image"
-        android:layout_below="@id/inputlayout2"
+        android:layout_below="@id/inputlayout3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:id="@+id/addImage"
-        />
+        android:text="Add image"
+        android:textAllCaps="false"/>
 
     <Button
         android:id="@+id/submitMeeting"

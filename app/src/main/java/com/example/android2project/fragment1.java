@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,15 +23,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class fragment1 extends Fragment {
 
     RecyclerView recyclerView;
     DatabaseReference database;
-    Adapter myAdapter;
-    ArrayList<Meeting> list;
+    List<Apartment> list;
     FloatingActionButton fab;
     TabLayout tabLayout;
+
+
+
+    // YUL
+
+    ApartmentAdapter adapter;
+    List<Apartment> apartments;
+    // RecyclerView recyclerView;
+    //Button favouriteHomePageBt= findViewById(R.id.fav_tv);
+    //Boolean favVisibleFlag = false;
+
+
+
+    //
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -50,10 +63,13 @@ public class fragment1 extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_fragment1,container,false);
 
+
+        database = FirebaseDatabase.getInstance().getReference("House Offers");
+/*
         recyclerView=rootView.findViewById(R.id.recyclerViewMeetings);
-        database = FirebaseDatabase.getInstance().getReference("Meetings");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+*/
         fab=rootView.findViewById(R.id.floatingActionButton);
 
 
@@ -67,36 +83,49 @@ public class fragment1 extends Fragment {
 
             }
         });
+        apartments = new ArrayList<>();
+        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment1, "Yossi Cohen", "Ashdod", "03/02/2020",1500000,5));
+        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment2, "Shlomi Barel", "Tel Aviv","02/02/2022",2200000,4));
+        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment3, "Yonit Levi", "Bat Yam","15/08/2021",1800000,5));
+        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment4, "Matan Adler", "Eilat","29/10/2019",3200000,6));
+
+        recyclerView = rootView.findViewById(R.id.recyclerViewMeetings);
+        adapter = new ApartmentAdapter(getActivity(), apartments);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+        adapter.setListener(new ApartmentAdapter.ApartmentListener() {
+            @Override
+            public void onApartmentClicked(int position, View view) {
+
+                Apartment mission = apartments.get(position);
+                adapter.notifyItemChanged(position);
+            }
+        });
 
         list = new ArrayList<>();
-        myAdapter = new Adapter(rootView.getContext(),list);
-        recyclerView.setAdapter(myAdapter);
-
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
+                list=apartments;
                 for(DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
                     for(DataSnapshot dataSnapshot2 : dataSnapshot.getChildren())
                     {
-                        Meeting meeting = dataSnapshot2.getValue(Meeting.class);
-                        list.add(meeting);
+                        Apartment apartment = dataSnapshot2.getValue(Apartment.class);
+                        list.add(apartment);
                     }
                 }
-                myAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
-
-
-
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
 
         return rootView;
 

@@ -1,7 +1,6 @@
 package com.example.android2project;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
+public class deleteAdapter extends RecyclerView.Adapter<deleteAdapter.MyViewHolder>{
 
     Context context;
     ArrayList<Meeting> list;
 
-    public Adapter(Context context, ArrayList<Meeting> list) {
+    public deleteAdapter(Context context, ArrayList<Meeting> list) {
         this.context = context;
         this.list = list;
     }
@@ -26,7 +25,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.meeting,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.deletethis_gal_meeting,parent,false);
         return new MyViewHolder(v);
     }
 
