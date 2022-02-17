@@ -13,4 +13,10 @@
     <string name="select_user">Select User</string>
     <string name="type_a_message">Type a message</string>
     <string name="online">Online</string>
+    <string name="name_wrong">Invalid name</string>
+    <string name="email_wrong">Invalid email</string>
+    <string name="password_wrong">Invalid password</string>
+    <string name="confirm_password_wrong">Invalid confirmed password</string>
+    <string name="not_match_password_and_confirm_password_wrong">Password must match confirm password</string>
+    <string name="longer_than_6_chars">Enter a password longer than 6 characters</string>
 </resources>

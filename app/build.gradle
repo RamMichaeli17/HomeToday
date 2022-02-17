@@ -53,7 +53,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     
-    // Scalable Size Unit
+    //Scalable Size Unit
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
@@ -68,7 +68,10 @@ dependencies {
     //MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    // RetroFit
+    //RetroFit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
+    //AwesomeValidation
+    implementation 'com.basgeekball:awesome-validation:4.3'
 }
