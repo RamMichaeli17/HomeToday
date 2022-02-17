@@ -6,12 +6,17 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android2project.ShouldBeDeleted2;
 import com.example.android2project.databinding.ActivitySignInBinding;
 import com.example.android2project.loggedInActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,13 +27,13 @@ public class SignInActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
 
 
-//    FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(getApplicationContext());
-//        mAuth=FirebaseAuth.getInstance();
+        mAuth=FirebaseAuth.getInstance();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
             Intent intent = new Intent(getApplicationContext(), loggedInActivity.class);
             startActivity(intent);
@@ -65,10 +70,10 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_USER_ID,documentSnapshot.getId());
                         preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
                         preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+                        preferenceManager.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
+                        preferenceManager.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
 
-                        Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        signInRealTimeDataBase();
 
                     }else {
                         loading(false);
@@ -124,9 +129,17 @@ public class SignInActivity extends AppCompatActivity {
 //    }
 
 
-    // TODO: 02/17/22 should do sign in to real time database 
-//    private void signInRealTimeDataBase() {
-//        mAuth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(),binding.inputPassword.getText().toString());
-//
-//    }
+    private void signInRealTimeDataBase() {
+        mAuth.signInWithEmailAndPassword(preferenceManager.getString(Constants.KEY_EMAIL),preferenceManager.getString(Constants.KEY_PASSWORD)).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 }

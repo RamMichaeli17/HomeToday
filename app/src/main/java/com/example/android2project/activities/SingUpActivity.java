@@ -64,7 +64,6 @@ public class SingUpActivity extends AppCompatActivity {
 
             if (isValidSignUpDetails()) {
                 createUserRealTimeDatabase();
-                signUp();
             }
         });
         binding.layoutImage.setOnClickListener(v -> {
@@ -89,17 +88,15 @@ public class SingUpActivity extends AppCompatActivity {
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    System.out.println("I'm here");
                     loading(false);
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
-                    Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    signInRealTimeDataBase();
                 })
                 .addOnFailureListener(exception -> {
+                    System.out.println("Check failure");
                     loading(false);
                     showToast(exception.getMessage());
                 });
@@ -180,8 +177,24 @@ public class SingUpActivity extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user);
+                            signUp();
                         }
                     }
                 });
+    }
+
+
+    private void signInRealTimeDataBase() {
+        mAuth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(),binding.inputPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }
