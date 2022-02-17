@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="#fafafa">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp">
+
+            <ImageView
+                android:id="@+id/viewing_apartment_pic"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/apartment2" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageBack"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/background_icon_viewing_apartment"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:tint="@color/white"/>
+
+            <TextView
+                android:id="@+id/viewing_apartment_price"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@+id/viewing_apartment_pic"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/felix007"
+                android:paddingEnd="10dp"
+                android:text="1,000,000 ₪"
+                android:textSize="35sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/viewing_apartment_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewing_apartment_price"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/felix007"
+                android:text="Agas 3"
+                android:textColor="#B6B6B6"
+                android:textSize="25sp"
+                android:textStyle="bold|italic" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                android:layout_height="90dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="355dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/viewing_apartment_rooms_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:textColor="#E8B34A"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rooms"
+                        android:textSize="20sp"
+                        android:textColor="#7A7A7A"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/felix007"/>
+
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/viewing_apartment_floor_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:textStyle="bold"
+                            android:paddingTop="10dp"
+                            android:textColor="#E8B34A"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/felix007"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Floor"
+                            android:textSize="20sp"
+                            android:textColor="#7A7A7A"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/felix007"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/viewing_apartment_meter_TV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="160"
+                            android:textStyle="bold"
+                            android:paddingTop="10dp"
+                            android:textColor="#E8B34A"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/felix007"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="square meter"
+                            android:textSize="20sp"
+                            android:textColor="#7A7A7A"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/felix007"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:id="@+id/viewing_apartment_linear_layout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Entering date"
+                    android:layout_marginTop="2dp"
+                    android:textStyle="bold"
+                    android:textColor="#BCBABA"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/felix007"/>
+
+                <TextView
+                    android:id="@+id/viewing_apartment_entering_date_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:text="24/10/2022"
+                    android:inputType="date"
+                    android:layout_marginTop="2dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/felix007"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Total building floors"
+                    android:textColor="#BCBABA"
+                    android:layout_marginTop="2dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/felix007"/>
+
+                <TextView
+                    android:id="@+id/viewing_apartment_floors_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:text="15"
+                    android:inputType="number"
+                    android:textSize="18sp"
+                    android:layout_marginTop="2dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/felix007"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Parkings"
+                    android:textColor="#BCBABA"
+                    android:layout_marginTop="2dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/felix007"/>
+
+                <TextView
+                    android:id="@+id/viewing_apartment_parkingTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="2dp"
+                    android:inputType="number"
+                    android:fontFamily="@font/felix007"
+                    android:text="0"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facilities:"
+                    android:paddingStart="15dp"
+                    android:textStyle="bold"
+                    android:paddingTop="10dp"
+                    android:textColor="#E8B34A"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/felix007" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="40dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_ac_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Air conditioner" />
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_elevator_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Elevator" />
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_storeroom_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Storeroom" />
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_balcony_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Balcony" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_mamad_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Residential secure space (Mamad)" />
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_kk_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Kosher kitchen" />
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_renovated_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Renovated" />
+
+                        <CheckBox
+                            android:id="@+id/viewing_apartment_furniture_CB"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:text="Furnished" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/viewing_apartment_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:padding="15dp"
+                android:text="Chat with seller"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/felix007"
+                android:background="@drawable/edit_profile_log_out_buttons" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
