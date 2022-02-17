@@ -135,7 +135,7 @@ public class SingUpActivity extends AppCompatActivity {
 
     //maybe we'll use awesome validation
     private boolean isValidSignUpDetails() {
-        if (encodedImage == null) {
+        if(encodedImage== null) {
             showToast("Select profile image");
             return false;
         } else if (binding.inputName.getText().toString().trim().isEmpty()) {
@@ -149,6 +149,12 @@ public class SingUpActivity extends AppCompatActivity {
             return false;
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
             showToast("Enter password");
+            return false;
+        } else if (binding.inputConfirmPassword.getText().toString().trim().isEmpty()) {
+            showToast("Confirm your password");
+            return false;
+        } else if(!binding.inputPassword.getText().toString().equals(binding.inputConfirmPassword.getText().toString())) {
+            showToast("Password & confirm password must be same");
             return false;
         } else
             return true;
