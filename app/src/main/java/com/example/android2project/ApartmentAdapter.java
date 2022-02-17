@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,6 +59,14 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 @Override
                 public void onClick(View view) {
                     listener.onApartmentClicked(getAdapterPosition(),view);
+                }
+            });
+
+            // TODO: 02/17/22 go to chat 
+            chatTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println("HEEEEEEELLLLLLLLOOOOOOOOO RRRRRAAAAAMMMMMM");
                 }
             });
         }
