@@ -6,9 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class ShouldBeDeleted2 extends AppCompatActivity {
 
     private TextView register;
 
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(MainActivity.this, RegisterUser.class));
+                startActivity(new Intent(ShouldBeDeleted2.this, ShouldBeDeleted.class));
             }
         });*/
 
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            startActivity(new Intent(MainActivity.this, loggedInActivity.class));
+                            startActivity(new Intent(ShouldBeDeleted2.this, loggedInActivity.class));
                         }
                     }
                 });

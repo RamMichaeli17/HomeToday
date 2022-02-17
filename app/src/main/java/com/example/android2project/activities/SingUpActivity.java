@@ -9,8 +9,6 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -18,7 +16,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android2project.RegisterUser;
 import com.example.android2project.User;
 import com.example.android2project.databinding.ActivitySingUpBinding;
 import com.example.android2project.loggedInActivity;
@@ -43,7 +40,7 @@ public class SingUpActivity extends AppCompatActivity {
     private String encodedImage;
 
     private FirebaseAuth mAuth;
-    String fullname, age, email, password;
+    String fullName, age, email, password;
     //Button registerUser;
 
     @Override
@@ -52,11 +49,7 @@ public class SingUpActivity extends AppCompatActivity {
         binding = ActivitySingUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
-
         mAuth = FirebaseAuth.getInstance();
-
-        System.out.println(" ZE PO email= "+email+"\npassword= "+password);
-
         setListeners();
     }
 
@@ -64,13 +57,13 @@ public class SingUpActivity extends AppCompatActivity {
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
         binding.buttonSignUp.setOnClickListener(v -> {
 
-            fullname = binding.inputName.getText().toString().trim();
+            fullName = binding.inputName.getText().toString().trim();
             age = "Default";
             email = binding.inputEmail.getText().toString().trim();
             password = binding.inputPassword.getText().toString().trim();
 
             if (isValidSignUpDetails()) {
-                galCreateUser();
+                createUserRealTimeDatabase();
                 signUp();
             }
         });
@@ -96,14 +89,15 @@ public class SingUpActivity extends AppCompatActivity {
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
+                    System.out.println("I'm here");
                     loading(false);
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
-//                    Intent intent = new Intent(getApplicationContext(),Ram_MainActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 })
                 .addOnFailureListener(exception -> {
                     loading(false);
@@ -173,16 +167,15 @@ public class SingUpActivity extends AppCompatActivity {
         }
     }
 
-    private void galCreateUser()
+    private void createUserRealTimeDatabase()
     {
-        System.out.println(" ZE SHAM email= "+email+"\npassword= "+password);
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            User user = new User(fullname,age,email,0);
+                            User user = new User(fullName,age,email,0);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

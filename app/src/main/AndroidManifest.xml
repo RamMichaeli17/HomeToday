@@ -38,7 +38,7 @@
         </activity>
 
 <!--        <activity-->
-<!--            android:name=".activities.MainActivity"-->
+<!--            android:name=".activities.ShouldBeDeleted2"-->
 <!--            android:exported="false">-->
 
 <!--        </activity> -->
@@ -49,10 +49,10 @@
             android:name=".MyProfile"
             android:exported="false" />
         <activity android:name=".loggedInActivity" />
-        <activity android:name=".RegisterUser" />
+<!--        <activity android:name=".ShouldBeDeleted" />-->
 
 <!--        <activity
-            android:name=".MainActivity"
+            android:name=".ShouldBeDeleted2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

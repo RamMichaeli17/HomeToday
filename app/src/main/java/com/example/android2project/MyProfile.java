@@ -4,7 +4,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,7 +21,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -102,7 +100,7 @@ public class MyProfile extends AppCompatActivity {
                 if (item.getTitle().equals("Log out")) {
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(MyProfile.this, "Successfully signed out", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MyProfile.this, MainActivity.class));
+                    startActivity(new Intent(MyProfile.this, ShouldBeDeleted2.class));
                 }
                 else if(item.getTitle().equals("Main"))
                 {

@@ -21,14 +21,15 @@ public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     private PreferenceManager preferenceManager;
 
+
+//    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(getApplicationContext());
+//        mAuth=FirebaseAuth.getInstance();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
-            FirebaseAuth mAuth=FirebaseAuth.getInstance();
-
-            mAuth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(),binding.inputPassword.getText().toString());
             Intent intent = new Intent(getApplicationContext(), loggedInActivity.class);
             startActivity(intent);
             finish();
@@ -65,9 +66,9 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
                         preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
 
-//                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
 
                     }else {
                         loading(false);
@@ -119,6 +120,13 @@ public class SignInActivity extends AppCompatActivity {
 //                .addOnFailureListener(exception -> {
 //                    Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
 //                });
+//
+//    }
+
+
+    // TODO: 02/17/22 should do sign in to real time database 
+//    private void signInRealTimeDataBase() {
+//        mAuth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(),binding.inputPassword.getText().toString());
 //
 //    }
 }

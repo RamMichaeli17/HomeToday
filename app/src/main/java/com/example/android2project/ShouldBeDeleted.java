@@ -6,8 +6,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterUser extends AppCompatActivity {
+public class ShouldBeDeleted extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     EditText fullnameET,ageET,emailET,passwordET;
@@ -96,7 +94,7 @@ public class RegisterUser extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful())
                                             {
-                                                startActivity(new Intent(RegisterUser.this,loggedInActivity.class));
+                                                startActivity(new Intent(ShouldBeDeleted.this,loggedInActivity.class));
                                             }
                                         }
                                     });

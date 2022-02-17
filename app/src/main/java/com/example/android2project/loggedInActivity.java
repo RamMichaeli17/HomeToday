@@ -229,7 +229,7 @@ public class loggedInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(loggedInActivity.this,"Successfully signed out",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(loggedInActivity.this,MainActivity.class));
+                startActivity(new Intent(loggedInActivity.this,ShouldBeDeleted2.class));
             }
         });
     }
