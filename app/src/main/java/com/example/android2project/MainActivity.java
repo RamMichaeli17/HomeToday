@@ -26,32 +26,31 @@ public class MainActivity extends AppCompatActivity {
     Button signIn;
 
     FirebaseAuth mAuth;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_in);
 
 
-        register = findViewById(R.id.registerBtn);
+        register = findViewById(R.id.textCreateNewAccount);
 
-        signIn = findViewById(R.id.loginBtn);
-        emailET = findViewById(R.id.emailET);
-        passwordET = findViewById(R.id.passwordET);
+        signIn = findViewById(R.id.buttonSignIn);
+        emailET = findViewById(R.id.inputEmail);
+        passwordET = findViewById(R.id.inputPassword);
 
-        progressBar = findViewById(R.id.progressBar);
+
 
 
         mAuth=FirebaseAuth.getInstance();
 
-        register.setOnClickListener(new View.OnClickListener() {
+      /*  register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 startActivity(new Intent(MainActivity.this, RegisterUser.class));
             }
-        });
+        });*/
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     passwordET.requestFocus();
                     return;
                 }
-                if(password.length()<6)
-                {
-                    passwordET.setError("Password length must be atleast 6");
-                    passwordET.requestFocus();
-                    return;
-                }
 
-                progressBar.setVisibility(View.VISIBLE);
 
                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -94,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             startActivity(new Intent(MainActivity.this, loggedInActivity.class));
-                        }else{
-                            Toast.makeText(MainActivity.this,"Failed to login",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

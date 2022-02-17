@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/drawable/background_chat_input.xml" value="0.1" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/drawable/cardview_cell.xml" value="0.169" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/drawable/circle.xml" value="0.18" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1665" />
@@ -16,11 +17,15 @@
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/YUL_MainActivity.xml" value="0.1" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_add_meeting.xml" value="0.22" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_all_meetings.xml" value="0.21979166666666666" />
-        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_logged_in.xml" value="0.17" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_logged_in.xml" value="0.21" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_my_profile.xml" value="0.33" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_new.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_register_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_sign_in.xml" value="0.17" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_sing_up.xml" value="0.25" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/activity_users.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/deletethis_gal_meeting.xml" value="0.303125" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/fragment__add__meeting.xml" value="0.1697061803444782" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/fragment_add_meeting.xml" value="0.24094202898550723" />
@@ -29,11 +34,13 @@
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/fragment_fragment3.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/fragment_profile.xml" value="0.18" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/header_layout.xml" value="0.1" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/item_container_user.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/job_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/job_layout.xml" value="0.33" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/meeting.xml" value="0.22" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/meeting_yul.xml" value="0.33" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/profileTESTTTTTTT.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/layout/ram_activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Gal/AndroidStudioProjects/Android2Projectv2/app/src/main/res/menu/drawer_menu.xml" value="0.23255813953488372" />
       </map>
     </option>

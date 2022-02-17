@@ -22,33 +22,35 @@ public class RegisterUser extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     EditText fullnameET,ageET,emailET,passwordET;
-    ProgressBar progressBar;
     Button registerUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_user);
+        setContentView(R.layout.activity_sing_up);
+
+        System.out.println(" QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ ");
 
         mAuth = FirebaseAuth.getInstance();
 
-        registerUser = findViewById(R.id.registerBtn);
+        registerUser = findViewById(R.id.buttonSignUp);
 
-        fullnameET = findViewById(R.id.fullNameET);
-        ageET=findViewById(R.id.ageET);
-        emailET=findViewById(R.id.emailET);
-        passwordET=findViewById(R.id.passwordET);
-
-        progressBar=findViewById(R.id.progressBar);
+        fullnameET = findViewById(R.id.inputName);
+        //ageET=findViewById(R.id.ageET);
+        emailET=findViewById(R.id.inputEmail);
+        passwordET=findViewById(R.id.inputPassword);
 
         registerUser.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String email = emailET.getText().toString().trim();
                 String password = passwordET.getText().toString().trim();
                 String fullname = fullnameET.getText().toString().trim();
-                String age = ageET.getText().toString().trim();
+
+                // TODO: 17/02/2022
+                String age = "NAME";
 
                 if(fullname.isEmpty())
                 {
@@ -82,14 +84,7 @@ public class RegisterUser extends AppCompatActivity {
                     return;
                 }
 
-                if(password.length()<6)
-                {
-                    passwordET.setError("Password length must be atleast 6 characters");
-                    passwordET.requestFocus();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
+                System.out.println(" EMAIL = "+email+"\nPASSWORD ="+password);
                 mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -104,23 +99,10 @@ public class RegisterUser extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful())
                                             {
-                                                Toast.makeText(RegisterUser.this,"User has been registered successfully!",Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.GONE);
-                                                startActivity(new Intent(RegisterUser.this,MainActivity.class));
-
-                                            }
-                                            else
-                                            {
-                                                Toast.makeText(RegisterUser.this,"Failed to register",Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.GONE);
+                                                startActivity(new Intent(RegisterUser.this,loggedInActivity.class));
                                             }
                                         }
                                     });
-                                }
-                                else
-                                {
-                                    Toast.makeText(RegisterUser.this,"Failed to register",Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.GONE);
                                 }
                             }
                         });
