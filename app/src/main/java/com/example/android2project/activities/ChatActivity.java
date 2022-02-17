@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import com.example.android2project.adapters.ChatAdapter;
 import com.example.android2project.databinding.ActivityChatBinding;
 import com.example.android2project.models.ChatMessage;
-import com.example.android2project.models.User;
+import com.example.android2project.models.chatUser;
 import com.example.android2project.network.ApiClient;
 import com.example.android2project.network.ApiService;
 import com.example.android2project.utilities.Constants;
@@ -45,7 +45,7 @@ import retrofit2.Response;
 public class ChatActivity extends BaseActivity {
 
     private ActivityChatBinding binding;
-    private User receiverUser;
+    private chatUser receiverChatUser;
     private List<ChatMessage> chatMessages;
     private ChatAdapter chatAdapter;
     private PreferenceManager preferenceManager;
@@ -70,7 +70,7 @@ public class ChatActivity extends BaseActivity {
         chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(
                 chatMessages,
-                getBitmapFromEncodedString(receiverUser.image),
+                getBitmapFromEncodedString(receiverChatUser.image),
                 preferenceManager.getString(Constants.KEY_USER_ID)
         );
         binding.chatRecyclerView.setAdapter(chatAdapter);
@@ -80,7 +80,7 @@ public class ChatActivity extends BaseActivity {
     private void sendMessage() {
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
-        message.put(Constants.KEY_RECEIVER_ID,receiverUser.id);
+        message.put(Constants.KEY_RECEIVER_ID, receiverChatUser.id);
         message.put(Constants.KEY_MESSAGE,binding.inputMessage.getText().toString());
         message.put(Constants.KEY_TIMESTAMP,new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
@@ -91,9 +91,9 @@ public class ChatActivity extends BaseActivity {
             conversion.put(Constants.KEY_SENDER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
             conversion.put(Constants.KEY_SENDER_NAME,preferenceManager.getString(Constants.KEY_NAME));
             conversion.put(Constants.KEY_SENDER_IMAGE,preferenceManager.getString(Constants.KEY_IMAGE));
-            conversion.put(Constants.KEY_RECEIVER_ID,receiverUser.id);
-            conversion.put(Constants.KEY_RECEIVER_NAME,receiverUser.name);
-            conversion.put(Constants.KEY_RECEIVER_IMAGE,receiverUser.image);
+            conversion.put(Constants.KEY_RECEIVER_ID, receiverChatUser.id);
+            conversion.put(Constants.KEY_RECEIVER_NAME, receiverChatUser.name);
+            conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverChatUser.image);
             conversion.put(Constants.KEY_LAST_MESSAGE,binding.inputMessage.getText().toString());
             conversion.put(Constants.KEY_TIMESTAMP,new Date());
             addConversion(conversion);
@@ -101,7 +101,7 @@ public class ChatActivity extends BaseActivity {
         if(!isReceiverAvailable) {
             try {
                 JSONArray tokens = new JSONArray();
-                tokens.put(receiverUser.token);
+                tokens.put(receiverChatUser.token);
 
                 JSONObject data = new JSONObject();
                 data.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
@@ -161,7 +161,7 @@ public class ChatActivity extends BaseActivity {
 
     private void listenAvailabilityOfReceiver() {
         database.collection(Constants.KEY_COLLECTION_USERS).document(
-                receiverUser.id
+                receiverChatUser.id
         ).addSnapshotListener(ChatActivity.this,(value, error) -> {
             if(error != null) {
                 return;
@@ -173,10 +173,10 @@ public class ChatActivity extends BaseActivity {
                     ).intValue();
                     isReceiverAvailable = availability == 1;
                 }
-                receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
-                if(receiverUser.image == null) {
-                    receiverUser.image = value.getString(Constants.KEY_IMAGE);
-                    chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverUser.image));
+                receiverChatUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+                if(receiverChatUser.image == null) {
+                    receiverChatUser.image = value.getString(Constants.KEY_IMAGE);
+                    chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverChatUser.image));
                     chatAdapter.notifyItemRangeChanged(0, chatMessages.size());
                 }
             }
@@ -191,10 +191,10 @@ public class ChatActivity extends BaseActivity {
     private void listenMessages() {
         database.collection(Constants.KEY_COLLECTION_CHAT)
                 .whereEqualTo(Constants.KEY_SENDER_ID,preferenceManager.getString(Constants.KEY_USER_ID))
-                .whereEqualTo(Constants.KEY_RECEIVER_ID,receiverUser.id)
+                .whereEqualTo(Constants.KEY_RECEIVER_ID, receiverChatUser.id)
                 .addSnapshotListener(eventListener);
         database.collection(Constants.KEY_COLLECTION_CHAT)
-                .whereEqualTo(Constants.KEY_SENDER_ID,receiverUser.id)
+                .whereEqualTo(Constants.KEY_SENDER_ID, receiverChatUser.id)
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .addSnapshotListener(eventListener);
     }
@@ -249,8 +249,8 @@ public class ChatActivity extends BaseActivity {
 
 
     private void loadReceiverDetails() {
-        receiverUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
-        binding.textName.setText(receiverUser.name);
+        receiverChatUser = (chatUser) getIntent().getSerializableExtra(Constants.KEY_USER);
+        binding.textName.setText(receiverChatUser.name);
     }
 
     private void setListeners() {
@@ -281,10 +281,10 @@ public class ChatActivity extends BaseActivity {
         if(chatMessages.size() != 0) {
             checkForConversionRemotely(
                     preferenceManager.getString(Constants.KEY_USER_ID),
-                    receiverUser.id
+                    receiverChatUser.id
             );
             checkForConversionRemotely(
-                    receiverUser.id,
+                    receiverChatUser.id,
                     preferenceManager.getString(Constants.KEY_USER_ID)
             );
         }

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android2project.databinding.ItemContainerRecentConversionBinding;
 import com.example.android2project.listeners.ConversionListener;
 import com.example.android2project.models.ChatMessage;
-import com.example.android2project.models.User;
+import com.example.android2project.models.chatUser;
 
 import java.util.List;
 
@@ -64,11 +64,11 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
             binding.textName.setText(chatMessage.conversionName);
             binding.textRecentMessage.setText(chatMessage.message);
             binding.getRoot().setOnClickListener(v-> {
-                User user = new User();
-                user.id = chatMessage.conversionId;
-                user.name = chatMessage.conversionName;
-                user.image = chatMessage.conversionImage;
-                conversionListener.onConversionClicked(user);
+                chatUser chatUser = new chatUser();
+                chatUser.id = chatMessage.conversionId;
+                chatUser.name = chatMessage.conversionName;
+                chatUser.image = chatMessage.conversionImage;
+                conversionListener.onConversionClicked(chatUser);
             });
         }
 

@@ -1,48 +1,40 @@
 package com.example.android2project;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.android2project.activities.SignInActivity;
+import com.example.android2project.utilities.Constants;
+import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
-import java.util.UUID;
+import java.util.HashMap;
 
 public class loggedInActivity extends AppCompatActivity {
 
@@ -57,6 +49,8 @@ public class loggedInActivity extends AppCompatActivity {
     NavigationView navigationView;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    private PreferenceManager preferenceManager;
 
     @Override
     public void onBackPressed() {
@@ -85,6 +79,9 @@ public class loggedInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
+
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        getToken();
 
         tabLayout=findViewById(R.id.tabLayout);
         viewPager=findViewById(R.id.viewPager);
@@ -122,8 +119,9 @@ public class loggedInActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getTitle().equals("Log out"))
-                    logoutBtn.performClick();
+                if (item.getTitle().equals("Log out")) {
+                    firebaseSignOut();
+                }
                 else if(item.getTitle().equals("My Profile"))
                 {
 
@@ -136,7 +134,6 @@ public class loggedInActivity extends AppCompatActivity {
                 }
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
-                Toast.makeText(loggedInActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -279,4 +276,44 @@ public class loggedInActivity extends AppCompatActivity {
                     });
         }*/
     }
+    private void showToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void firebaseSignOut() {
+        showToast("Signing out...");
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_USERS).document(
+                        preferenceManager.getString(Constants.KEY_USER_ID)
+                );
+        HashMap<String, Object> updates = new HashMap<>();
+        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+        documentReference.update(updates)
+                .addOnSuccessListener(unused -> {
+                    preferenceManager.clear();
+                    Toast.makeText(loggedInActivity.this,"Successfully signed out",Toast.LENGTH_LONG).show();
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(loggedInActivity.this, SignInActivity.class));
+                })
+                .addOnFailureListener(e -> showToast("Unable to sign out"));
+    }
+
+
+    private void getToken() {
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateToken);
+    }
+
+    private void updateToken (String token) {
+        preferenceManager.putString(Constants.KEY_FCM_TOKEN,token);
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_USERS).document(
+                        preferenceManager.getString(Constants.KEY_USER_ID)
+                );
+        documentReference.update(Constants.KEY_FCM_TOKEN, token)
+//                .addOnSuccessListener(unused -> showToast("Token updated successfully"))
+                .addOnFailureListener(e -> showToast("Unable to update token"));
+    }
+
 }

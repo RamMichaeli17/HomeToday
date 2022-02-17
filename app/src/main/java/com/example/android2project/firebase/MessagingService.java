@@ -12,7 +12,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.android2project.R;
 import com.example.android2project.activities.ChatActivity;
-import com.example.android2project.models.User;
+import com.example.android2project.models.chatUser;
 import com.example.android2project.utilities.Constants;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -31,22 +31,22 @@ public class MessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 //        Log.d("FCM","Message: "+ remoteMessage.getNotification().getBody());
-        User user = new User();
-        user.id = remoteMessage.getData().get(Constants.KEY_USER_ID);
-        user.name = remoteMessage.getData().get(Constants.KEY_NAME);
-        user.token = remoteMessage.getData().get(Constants.KEY_FCM_TOKEN);
+        chatUser chatUser = new chatUser();
+        chatUser.id = remoteMessage.getData().get(Constants.KEY_USER_ID);
+        chatUser.name = remoteMessage.getData().get(Constants.KEY_NAME);
+        chatUser.token = remoteMessage.getData().get(Constants.KEY_FCM_TOKEN);
 
         int notificationId = new Random().nextInt();
         String channelId = "chat_message";
 
         Intent intent = new Intent(this, ChatActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra(Constants.KEY_USER,user);
+        intent.putExtra(Constants.KEY_USER, chatUser);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,channelId);
         builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setContentTitle(user.name);
+        builder.setContentTitle(chatUser.name);
         builder.setContentText(remoteMessage.getData().get(Constants.KEY_MESSAGE));
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(
                 remoteMessage.getData().get(Constants.KEY_MESSAGE)

@@ -1,3 +1,4 @@
+/*
 package com.example.android2project.activities;
 
 import android.content.Intent;
@@ -7,7 +8,7 @@ import android.view.View;
 import com.example.android2project.adapters.UserAdapter;
 import com.example.android2project.databinding.ActivityUsersBinding;
 import com.example.android2project.listeners.UserListener;
-import com.example.android2project.models.User;
+import com.example.android2project.models.chatUser;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,21 +47,21 @@ public class UsersActivity extends BaseActivity implements UserListener {
                     loading(false);
                     String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
                     if(task.isSuccessful() && task.getResult()!= null) {
-                        List<User> users = new ArrayList<>();
+                        List<chatUser> chatUsers = new ArrayList<>();
                         for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                             if(currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue;
                             }
-                            User user = new User();
-                            user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
-                            user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
-                            user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
-                            user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                            user.id = queryDocumentSnapshot.getId();
-                            users.add(user);
+                            chatUser chatUser = new chatUser();
+                            chatUser.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
+                            chatUser.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+                            chatUser.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
+                            chatUser.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
+                            chatUser.id = queryDocumentSnapshot.getId();
+                            chatUsers.add(chatUser);
                         }
-                        if(users.size()>0) {
-                            UserAdapter userAdapter = new UserAdapter(users, this);
+                        if(chatUsers.size()>0) {
+                            UserAdapter userAdapter = new UserAdapter(chatUsers, this);
                             binding.usersRecyclerView.setAdapter(userAdapter);
                             binding.usersRecyclerView.setVisibility(View.VISIBLE);
                         } else {
@@ -86,10 +87,10 @@ public class UsersActivity extends BaseActivity implements UserListener {
     }
 
     @Override
-    public void onUserClicked(User user) {
+    public void onUserClicked(chatUser chatUser) {
         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-        intent.putExtra(Constants.KEY_USER,user);
+        intent.putExtra(Constants.KEY_USER, chatUser);
         startActivity(intent);
         finish();
     }
-}
+}*/

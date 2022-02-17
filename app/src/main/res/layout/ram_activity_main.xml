@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/primary"
-    tools:context=".activities.Ram_MainActivity">
+    tools:context=".">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageProfile"

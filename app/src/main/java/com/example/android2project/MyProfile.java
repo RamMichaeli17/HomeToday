@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android2project.activities.SignInActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -100,7 +101,7 @@ public class MyProfile extends AppCompatActivity {
                 if (item.getTitle().equals("Log out")) {
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(MyProfile.this, "Successfully signed out", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MyProfile.this, ShouldBeDeleted2.class));
+                    startActivity(new Intent(MyProfile.this, SignInActivity.class));
                 }
                 else if(item.getTitle().equals("Main"))
                 {

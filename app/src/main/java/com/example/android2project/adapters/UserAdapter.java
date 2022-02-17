@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android2project.databinding.ItemContainerUserBinding;
 import com.example.android2project.listeners.UserListener;
-import com.example.android2project.models.User;
+import com.example.android2project.models.chatUser;
 
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    private final List<User> users;
+    private final List<chatUser> chatUsers;
     private final UserListener userListener;
 
-    public UserAdapter(List<User> users,UserListener userListener) {
-        this.users = users;
+    public UserAdapter(List<chatUser> chatUsers, UserListener userListener) {
+        this.chatUsers = chatUsers;
         this.userListener = userListener;
     }
 
@@ -38,13 +38,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        holder.setUserData(users.get(position));
+        holder.setUserData(chatUsers.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return chatUsers.size();
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {
@@ -56,11 +56,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             binding = itemContainerUserBinding;
         }
 
-        void setUserData(User user) {
-            binding.textName.setText(user.name);
-            binding.textEmail.setText(user.email);
-            binding.imageProfile.setImageBitmap(getUserImage(user.image));
-            binding.getRoot().setOnClickListener(v-> userListener.onUserClicked(user));
+        void setUserData(chatUser chatUser) {
+            binding.textName.setText(chatUser.name);
+            binding.textEmail.setText(chatUser.email);
+            binding.imageProfile.setImageBitmap(getUserImage(chatUser.image));
+            binding.getRoot().setOnClickListener(v-> userListener.onUserClicked(chatUser));
 
         }
     }

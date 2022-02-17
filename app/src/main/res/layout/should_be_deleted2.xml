@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordET"
         android:layout_marginTop="25dp"
-        android:text="Register user"
+        android:text="Register chatUser"
         android:layout_marginHorizontal="40dp"
         android:id="@+id/registerBtn"/>
 

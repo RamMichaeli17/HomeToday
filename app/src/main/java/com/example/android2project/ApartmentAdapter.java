@@ -1,6 +1,7 @@
 package com.example.android2project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.example.android2project.activities.ChatActivity;
+import com.example.android2project.listeners.UserListener;
+import com.example.android2project.models.chatUser;
+import com.example.android2project.utilities.Constants;
 
 import java.util.List;
 
@@ -20,11 +25,15 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
     Context context;
     private List<Apartment> apartments;
+    private final List<chatUser> chatUsers;
+    private final UserListener userListener;
     RequestManager glide;
 
-    public ApartmentAdapter(Context context, List<Apartment> apartments) {
+    public ApartmentAdapter(Context context, List<Apartment> apartments, List<chatUser> chatUsers,UserListener userListener) {
         this.apartments=apartments;
         glide= Glide.with(context);
+        this.userListener=userListener;
+        this.chatUsers = chatUsers;
     }
     interface ApartmentListener {
         void onApartmentClicked(int position, View view);
@@ -62,13 +71,13 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 }
             });
 
-            // TODO: 02/17/22 go to chat 
-            chatTv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    System.out.println("HEEEEEEELLLLLLLLOOOOOOOOO RRRRRAAAAAMMMMMM");
-                }
-            });
+//            // TODO: 02/17/22 go to chat
+//            chatTv.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                }
+//            });
         }
     }
 
@@ -88,6 +97,19 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
 
+        holder.chatTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    userListener.onUserClicked(chatUsers.get(position));
+                }catch (Exception E)
+                {
+                    Toast.makeText(view.getContext(), "This is your offer", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
 
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
        // holder.chatTv.setText(apartment.getName());
