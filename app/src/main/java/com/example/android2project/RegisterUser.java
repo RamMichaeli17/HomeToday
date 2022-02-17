@@ -30,8 +30,6 @@ public class RegisterUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
 
-        System.out.println(" QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ ");
-
         mAuth = FirebaseAuth.getInstance();
 
         registerUser = findViewById(R.id.buttonSignUp);
@@ -84,7 +82,6 @@ public class RegisterUser extends AppCompatActivity {
                     return;
                 }
 
-                System.out.println(" EMAIL = "+email+"\nPASSWORD ="+password);
                 mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
