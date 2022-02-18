@@ -1,9 +1,13 @@
 package com.example.android2project;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,8 +15,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +41,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class MyProfile extends AppCompatActivity {
+public class MyProfile extends Fragment {
 
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -43,10 +49,10 @@ public class MyProfile extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     Uri imageUri;
-    ImageView profileImage;
+    ImageView profileImage,backBtn;
     TextView nameTV,emailTV,ageTV;
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
+
 
     @Override
     public boolean onOptionsItemSelected(@androidx.annotation.NonNull MenuItem item) {
@@ -57,19 +63,26 @@ public class MyProfile extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+    public View onCreateView(@androidx.annotation.NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        user= FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
+        View rootView = inflater.inflate(R.layout.activity_my_profile,container,false);
 
-        profileImage=findViewById(R.id.profilePictureIV);
+        profileImage=rootView.findViewById(R.id.profilePictureIV);
+        nameTV=rootView.findViewById(R.id.profileFullNameTV);
+        emailTV=rootView.findViewById(R.id.profileEmailTV);
+        ageTV=rootView.findViewById(R.id.profileAgeTV);
+        backBtn=rootView.findViewById(R.id.profileBackBtn);
 
-        storage = FirebaseStorage.getInstance();
-        storageReference=storage.getReference();
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((loggedInActivity)getActivity()).galNavigation();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(MyProfile.this).commit();
+
+            }
+        });
 
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,51 +94,25 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView=findViewById(R.id.navigation_view);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Android Project");
-        setSupportActionBar(toolbar);
+        return rootView;
+    }
 
-        ActionBar actionBar= getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        navigationView.getMenu().getItem(1).setChecked(true);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@androidx.annotation.NonNull MenuItem item) {
-                if (item.getTitle().equals("Log out")) {
-                    FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(MyProfile.this, "Successfully signed out", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MyProfile.this, SignInActivity.class));
-                }
-                else if(item.getTitle().equals("Main"))
-                {
-
-                    startActivity(new Intent(MyProfile.this,loggedInActivity.class));
-//                    FragmentManager fragmentManager = getSupportFragmentManager();
-//                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                    transaction.add(R.id.drawer_layout,new profileFragment(),"profile_fragment");
-//                    transaction.addToBackStack(null);
-//                    transaction.commit();
-                }
-                else if(item.getTitle().equals("Another Example"))
-                    Toast.makeText(MyProfile.this, item+"", Toast.LENGTH_LONG).show();
-
-                drawerLayout.closeDrawers();
-                return true;
-            }
-        });
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        reference= FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
 
 
 
-        nameTV=findViewById(R.id.profileFullNameTV);
-        emailTV=findViewById(R.id.profileEmailTV);
-        ageTV=findViewById(R.id.profileAgeTV);
+        storage = FirebaseStorage.getInstance();
+        storageReference=storage.getReference();
+
 
 
         // Load user profile image
@@ -142,7 +129,7 @@ public class MyProfile extends AppCompatActivity {
         profileRef.getDownloadUrl().addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                profileImage.setImageDrawable(getDrawable(R.drawable.ic_baseline_person_24));
+                profileImage.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_person_24));
             }
         });
 
@@ -171,15 +158,15 @@ public class MyProfile extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MyProfile.this,"Something went wrong",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Something went wrong",Toast.LENGTH_LONG).show();
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == 1 && resultCode == -1 && data != null && data.getData() != null) {
             imageUri = data.getData();
             uploadPicture();
         }
@@ -187,7 +174,7 @@ public class MyProfile extends AppCompatActivity {
 
     private void uploadPicture()
     {
-        final ProgressDialog pd = new ProgressDialog(this);
+        final ProgressDialog pd = new ProgressDialog(getActivity());
         pd.setTitle("uploading Image...");
         pd.show();
 
@@ -197,7 +184,7 @@ public class MyProfile extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 pd.dismiss();
-                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
 
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -211,7 +198,7 @@ public class MyProfile extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Failed To Upload", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Failed To Upload", Toast.LENGTH_LONG).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override

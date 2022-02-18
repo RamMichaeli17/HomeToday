@@ -15,10 +15,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.android2project.activities.Ram_MainActivity;
 import com.example.android2project.activities.SignInActivity;
+import com.example.android2project.activities.SingUpActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
@@ -46,7 +50,7 @@ public class loggedInActivity extends AppCompatActivity {
     private StorageReference storageReference;
     Uri imageUri;
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
+    public NavigationView navigationView;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -89,7 +93,7 @@ public class loggedInActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new fragment1(),"MAIN");
-        vpAdapter.addFragment(new fragment2(),"CHAT");
+        vpAdapter.addFragment(new Ram_MainActivity(),"CHAT");
         vpAdapter.addFragment(new fragment3(),"SOMETHING");
         viewPager.setAdapter(vpAdapter);
 
@@ -125,12 +129,23 @@ public class loggedInActivity extends AppCompatActivity {
                 else if(item.getTitle().equals("My Profile"))
                 {
 
-                    startActivity(new Intent(loggedInActivity.this,MyProfile.class));
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.testFrameLayout,new MyProfile());
+                    fragmentTransaction.commit();
+               //     startActivity(new Intent(loggedInActivity.this, Ram_MainActivity.class));
+             //       startActivity(new Intent(loggedInActivity.this,MyProfile.class));
 //                    FragmentManager fragmentManager = getSupportFragmentManager();
 //                    FragmentTransaction transaction = fragmentManager.beginTransaction();
 //                    transaction.add(R.id.drawer_layout,new profileFragment(),"profile_fragment");
 //                    transaction.addToBackStack(null);
 //                    transaction.commit();
+                }
+                else if(item.getTitle().equals("Main"))
+                {
+                    startActivity(new Intent(loggedInActivity.this,loggedInActivity.class));
+
                 }
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -276,8 +291,12 @@ public class loggedInActivity extends AppCompatActivity {
                     });
         }*/
     }
-    private void showToast(String message) {
+    public void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void galNavigation() {
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     private void firebaseSignOut() {

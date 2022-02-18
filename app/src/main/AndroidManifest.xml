@@ -11,15 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2Project">
-
-
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
-        <activity
-            android:name=".activities.UsersActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.SingUpActivity"
             android:exported="false"
@@ -45,9 +41,6 @@
 
 
 
-        <activity
-            android:name=".MyProfile"
-            android:exported="false" />
         <activity android:name=".loggedInActivity" />
 <!--        <activity android:name=".ShouldBeDeleted" />-->
 
