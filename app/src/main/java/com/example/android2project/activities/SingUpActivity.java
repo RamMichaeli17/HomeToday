@@ -16,6 +16,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.android2project.R;
 import com.example.android2project.User;
 import com.example.android2project.databinding.ActivitySingUpBinding;
 import com.example.android2project.loggedInActivity;
@@ -41,6 +45,8 @@ public class SingUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     String fullName, age, email, password;
+
+    AwesomeValidation awesomeValidation;
     //Button registerUser;
 
     @Override
@@ -135,23 +141,36 @@ public class SingUpActivity extends AppCompatActivity {
 
     //maybe we'll use awesome validation
     private boolean isValidSignUpDetails() {
-        if (encodedImage == null) {
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation.addValidation(this,R.id.inputName, RegexTemplate.NOT_EMPTY,R.string.name_wrong);
+        awesomeValidation.addValidation(this,R.id.inputEmail, Patterns.EMAIL_ADDRESS,R.string.email_wrong);
+        awesomeValidation.addValidation(this,R.id.inputPassword,RegexTemplate.NOT_EMPTY,R.string.password_wrong);
+        awesomeValidation.addValidation(this,R.id.inputConfirmPassword,RegexTemplate.NOT_EMPTY,R.string.confirm_password_wrong);
+        String regexPassword = ".{6,}";
+        awesomeValidation.addValidation(this, R.id.inputPassword, regexPassword, R.string.longer_than_6_chars);
+        awesomeValidation.addValidation(this, R.id.inputPassword, R.id.inputConfirmPassword, R.string.not_match_password_and_confirm_password_wrong);
+        if(encodedImage== null) {
             showToast("Select profile image");
             return false;
-        } else if (binding.inputName.getText().toString().trim().isEmpty()) {
-            showToast("Enter name");
-            return false;
-        } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
-            showToast("Enter email");
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-            showToast("Enter valid email");
-            return false;
-        } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
-            showToast("Enter password");
+        }  else if(!awesomeValidation.validate()){
             return false;
         } else
             return true;
+//        else if (binding.inputName.getText().toString().trim().isEmpty()) {
+//            showToast("Enter name");
+//            return false;
+//        } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
+//            showToast("Enter email");
+//            return false;
+//        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
+//            showToast("Enter valid email");
+//            return false;
+//        } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
+//            showToast("Enter password");
+//            return false;
+//        } else if (binding.inputConfirmPassword.getText().toString().trim().isEmpty()) {
+//            showToast("Confirm your password");
+//            return false;
     }
 
     private void loading(Boolean isLoading) {
@@ -173,7 +192,6 @@ public class SingUpActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             User user = new User(fullName,age,email,0);
-
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user);
