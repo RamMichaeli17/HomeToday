@@ -185,16 +185,21 @@
                     android:elevation="10dp"
                     app:cardCornerRadius="20dp">
 
-                    <ImageView
-                        android:id="@+id/apartment_pic"
+                    <com.denzcoskun.imageslider.ImageSlider
+                        android:id="@+id/apartment_pic_slider"
                         android:layout_width="300dp"
                         android:layout_height="150dp"
                         android:layout_below="@+id/mission_tv"
                         android:layout_centerVertical="true"
+                        app:iss_auto_cycle="true"
+                        app:iss_delay="0"
+                        app:iss_period="3000"
+                        app:iss_placeholder="@color/black"
+                        app:iss_error_image="@color/purple_200"
+                        app:iss_corner_radius="20"
 
                         android:background="@drawable/round_corners"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/apartment1" />
+                        android:scaleType="centerCrop" />
 
                 </androidx.cardview.widget.CardView>
 

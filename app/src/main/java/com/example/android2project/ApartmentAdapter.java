@@ -2,8 +2,6 @@ package com.example.android2project;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.example.android2project.activities.ChatActivity;
-import com.example.android2project.activities.SignInActivity;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.android2project.listeners.UserListener;
 import com.example.android2project.models.chatUser;
-import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.ApartmentViewHolder> {
@@ -64,7 +60,8 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     public class ApartmentViewHolder extends RecyclerView.ViewHolder {
 
         TextView apartmentNameTv, sellerNameTv, publishDateTv, favTv, chatTv,priceTV,roomsTV;
-        ImageView apartmentPic, profilePic;
+        ImageView profilePic;
+        ImageSlider imageSlider;
 
         public ApartmentViewHolder(View itemView) {
             super(itemView);
@@ -76,8 +73,8 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             priceTV=itemView.findViewById(R.id.priceTV);
             roomsTV=itemView.findViewById(R.id.roomsTV);
 
+            imageSlider=itemView.findViewById(R.id.apartment_pic_slider);
 
-            apartmentPic =itemView.findViewById(R.id.apartment_pic);
             profilePic =itemView.findViewById(R.id.profile_pic);
 
 
@@ -88,13 +85,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 }
             });
 
-//            // TODO: 02/17/22 go to chat
-//            chatTv.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                }
-//            });
         }
     }
 
@@ -113,6 +103,19 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         holder.apartmentNameTv.setText(apartment.getApartmentName());
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
+        holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
+
+        List<SlideModel> slideModels=new ArrayList<>();
+
+        slideModels.add(new SlideModel(R.drawable.apartment1, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.apartment2, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.apartment3, ScaleTypes.FIT));
+        slideModels.add(new SlideModel(R.drawable.apartment4, ScaleTypes.FIT));
+        slideModels.add(new SlideModel("https://firebasestorage.googleapis.com/v0/b/fir-gry-3f7dd.appspot.com/o/Profile%20pictures%2Fdavid%40gmail.com?alt=media&token=01bd1a53-f56a-4e18-bc98-9d7ca1d7cefe", ScaleTypes.FIT));;
+
+        holder.imageSlider.setImageList(slideModels,ScaleTypes.FIT);
+
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -151,17 +154,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             }
         });
 
-        holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
-       // holder.chatTv.setText(apartment.getName());
+
 
         glide.load(apartment.getProfilePic()).into(holder.profilePic);
 
-        if(apartment.getPostPic()==0){
-            holder.apartmentPic.setVisibility(View.GONE);
-        }else{
-            holder.apartmentPic.setVisibility(View.VISIBLE);
-            glide.load(apartment.getPostPic()).into(holder.apartmentPic);
-        }
 
     }
 
