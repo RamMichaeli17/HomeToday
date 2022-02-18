@@ -1,4 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#fafafa">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="405dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="@drawable/gradient_profile_background"
+            android:orientation="vertical">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/profilePictureIV"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/apartment1"
+                app:riv_oval="true" />
+
+            <TextView
+                android:id="@+id/profileFullNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/felix007"
+                android:text="Israel Israeli"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="275dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Favourites"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:textColor="#E8B34A"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chats"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:textColor="#E8B34A"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Favourites"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="17"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:textColor="#E8B34A"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/felix007"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="40dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_baseline_emoji_emotions_24"/>
+
+            <TextView
+                android:id="@+id/profileAgeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="24"
+                android:inputType="number"
+                android:layout_marginTop="2dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/felix007"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="40dp"
+            android:layout_marginTop="25dp">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_baseline_orange_location_on_24"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Ashdod"
+                android:textSize="18sp"
+                android:layout_marginTop="2dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/felix007"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="40dp"
+            android:layout_marginTop="25dp">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_baseline_email_24"/>
+            <TextView
+                android:id="@+id/profileEmailTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/felix007"
+                android:text="israel_israeli@gmail.com"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textAllCaps="false"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/white"
+            android:shadowColor="#E8B32D"
+            android:shadowRadius="10"
+            android:textStyle="bold|italic"
+            android:textSize="20sp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/felix007"
+            android:background="@drawable/edit_profile_log_out_buttons"
+            android:padding="5dp"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:layout_marginBottom="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:shadowColor="#E8B32D"
+            android:textStyle="bold|italic"
+            android:shadowRadius="10"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/felix007"
+            android:textSize="20sp"
+            android:background="@drawable/edit_profile_log_out_buttons"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+</LinearLayout>
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
 
 <androidx.drawerlayout.widget.DrawerLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -104,4 +359,4 @@
         app:headerLayout="@layout/header_layout"
         app:menu="@menu/drawer_menu"/>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>-->
