@@ -154,11 +154,7 @@ public class Ram_MainActivity extends Fragment implements ConversionListener {
            }
            System.out.println("77777777777777777777777");
            //MMMMYYYYY ADDDIIITIIIIOONNNN
-           try{
-               Collections.sort(conversations, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
-           }
-           catch (Exception e) {
-           }
+           Collections.sort(conversations, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
            System.out.println("77777777");
            conversationsAdapter.notifyDataSetChanged();
            recyclerView.smoothScrollToPosition(0);
