@@ -1,7 +1,10 @@
 package com.example.android2project;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,9 +39,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class fragment_Add_Meeting extends Fragment {
 
@@ -53,6 +59,7 @@ public class fragment_Add_Meeting extends Fragment {
     Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    List<Uri> listImageUri;
 
 
 
@@ -64,6 +71,7 @@ public class fragment_Add_Meeting extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        listImageUri=new ArrayList<>();
     }
 
     @Nullable
@@ -92,9 +100,10 @@ public class fragment_Add_Meeting extends Fragment {
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
+
                 startActivityForResult(intent, 1);
             }
         });
@@ -171,7 +180,7 @@ public class fragment_Add_Meeting extends Fragment {
 
     public void addMeeting()
     {
-        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail());
+        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail(),counter,listImageUri.size());
 
         FirebaseDatabase.getInstance().getReference("House Offers")
                 .child(userID).child(("Offer "+counter)).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -191,26 +200,37 @@ public class fragment_Add_Meeting extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == -1 && data != null && data.getData() != null) {
-            imageUri = data.getData();
+        if (requestCode == 1 && resultCode == -1) {
+            ClipData clipData = data.getClipData();
+            if (clipData!= null)
+            {
+                for (int i=0;i<clipData.getItemCount();i++)
+                {
+                    listImageUri.add(clipData.getItemAt(i).getUri());
+                }
+            }
+            else {
+                listImageUri.add(data.getData());
+            }
         }
+
     }
 
-    private void uploadPicture()
-    {
-        StorageReference fileRef = storageReference.child("House Pictures/"+user.getEmail()+"/House "+counter);
-
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getActivity(), "Failed To Upload image", Toast.LENGTH_LONG).show();
-                    }
-                });
+    private void uploadPicture() {
+        for (int i = 0; i < listImageUri.size(); i++) {
+            StorageReference fileRef = storageReference.child("House Pictures/" + user.getEmail() + "/House " + counter+"/Picture "+i);
+            fileRef.putFile(listImageUri.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(getActivity(), "Failed To Upload image", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }
     }
 }
 

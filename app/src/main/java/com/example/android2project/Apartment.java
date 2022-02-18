@@ -1,7 +1,7 @@
 package com.example.android2project;
 
 public class Apartment {
-    private int profilePic, postPic,price,rooms;
+    private int profilePic, postPic,price,rooms,offerCounter,numOfPictures;
     private String sellerName, apartmentName, date,sellerEmail;
 
 
@@ -10,25 +10,34 @@ public class Apartment {
 
     }
 
-    public Apartment(int profilePic, int postPic, String sellerName, String apartmentName, String date, int price, int rooms) {
-        this.profilePic = profilePic;
-        this.postPic = postPic;
-        this.sellerName = sellerName;
-        this.apartmentName = apartmentName;
-        this.date = date;
-        this.price = price;
-        this.rooms=rooms;
+//    public Apartment(int profilePic, int postPic, String sellerName, String apartmentName, String date, int price, int rooms) {
+//        this.profilePic = profilePic;
+//        this.postPic = postPic;
+//        this.sellerName = sellerName;
+//        this.apartmentName = apartmentName;
+//        this.date = date;
+//        this.price = price;
+//        this.rooms=rooms;
+//    }
 
+
+    public int getNumOfPictures() {
+        return numOfPictures;
     }
 
+    public void setNumOfPictures(int numOfPictures) {
+        this.numOfPictures = numOfPictures;
+    }
 
-    public Apartment(String sellerName, String apartmentName, String date, int price, int rooms, String sellerEmail) {
+    public Apartment(String sellerName, String apartmentName, String date, int price, int rooms, String sellerEmail, int offerCounter, int numOfPictures) {
         this.sellerName = sellerName;
         this.apartmentName = apartmentName;
         this.date = date;
         this.price = price;
         this.rooms=rooms;
         this.sellerEmail=sellerEmail;
+        this.offerCounter=offerCounter;
+        this.numOfPictures=numOfPictures;
     }
 
     public String getSellerName() {
@@ -95,6 +104,14 @@ public class Apartment {
 
     public void setSellerEmail(String sellerEmail) {
         this.sellerEmail = sellerEmail;
+    }
+
+    public int getOfferCounter() {
+        return offerCounter;
+    }
+
+    public void setOfferCounter(int offerCounter) {
+        this.offerCounter = offerCounter;
     }
 
 
