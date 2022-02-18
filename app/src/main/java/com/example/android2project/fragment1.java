@@ -112,8 +112,8 @@ public class fragment1 extends Fragment implements UserListener {
             @Override
             public void onApartmentClicked(int position, View view) {
 
-                Apartment mission = apartments.get(position);
-                adapter.notifyItemChanged(position);
+              //  Apartment mission = apartments.get(position);
+             //   adapter.notifyItemChanged(position);
             }
         });
 

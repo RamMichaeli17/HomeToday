@@ -44,7 +44,6 @@
                 android:layout_height="170dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@drawable/apartment1"
                 app:riv_oval="true" />
 
             <TextView

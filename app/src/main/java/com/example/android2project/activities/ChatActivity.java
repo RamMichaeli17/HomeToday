@@ -143,14 +143,14 @@ public class ChatActivity extends BaseActivity {
                             JSONArray results = responseJson.getJSONArray("results");
                             if(responseJson.getInt("failure") == 1) {
                                 JSONObject error = (JSONObject) results.get(0);
-                                showToast(error.getString("error"));
+                                //showToast(error.getString("error"));
                                 return;
                             }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    showToast("Notification sent successfully");
+                   // showToast("Notification sent successfully");
                 }else {
                     showToast("Error: " + response.code());
                 }
