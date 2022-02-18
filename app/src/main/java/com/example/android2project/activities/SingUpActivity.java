@@ -1,5 +1,6 @@
 package com.example.android2project.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,11 +27,21 @@ import com.example.android2project.loggedInActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -42,9 +53,17 @@ public class SingUpActivity extends AppCompatActivity {
     private ActivitySingUpBinding binding;
     private PreferenceManager preferenceManager;
     private String encodedImage;
+    private StorageReference storageReference;
+    private FirebaseStorage storage;
+
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
 
     private FirebaseAuth mAuth;
     String fullName, age, email, password;
+
+    Uri imageUri;
 
     AwesomeValidation awesomeValidation;
     //Button registerUser;
@@ -57,6 +76,7 @@ public class SingUpActivity extends AppCompatActivity {
         preferenceManager = new PreferenceManager(getApplicationContext());
         mAuth = FirebaseAuth.getInstance();
         setListeners();
+
     }
 
     private void setListeners() {
@@ -124,7 +144,7 @@ public class SingUpActivity extends AppCompatActivity {
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
                     if (result.getData() != null) {
-                        Uri imageUri = result.getData().getData();
+                        imageUri = result.getData().getData();
                         try {
                             InputStream inputStream = getContentResolver().openInputStream(imageUri);
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
@@ -208,10 +228,41 @@ public class SingUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
+                    uploadPicture();
                     Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
+            }
+        });
+    }
+
+    private void uploadPicture()
+    {
+        storage = FirebaseStorage.getInstance();
+        storageReference=storage.getReference();
+
+        System.out.println(" QZZZZZZZZZZZZZZZZZZZZ");
+        showToast("before function");
+
+        StorageReference fileRef = storageReference.child("Profile pictures/"+FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
+
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@android.support.annotation.NonNull Exception exception) {
+                        Toast.makeText(SingUpActivity.this, "Failed To Upload", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@android.support.annotation.NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
             }
         });
     }

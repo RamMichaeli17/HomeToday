@@ -105,7 +105,6 @@ public class Ram_MainActivity extends Fragment implements ConversionListener {
     }
 
     private void listenConversations() {
-        System.out.println("111111111111111111111111111111111111111");
         database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
                 .whereEqualTo(Constants.KEY_SENDER_ID,preferenceManager.getString(Constants.KEY_USER_ID))
                 .addSnapshotListener(eventListener);
@@ -115,7 +114,6 @@ public class Ram_MainActivity extends Fragment implements ConversionListener {
     }
 
     private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
-        System.out.println("666666666666666666666666666666666666666666");
 
        if(error != null){
            return;
@@ -152,15 +150,12 @@ public class Ram_MainActivity extends Fragment implements ConversionListener {
                    }
                }
            }
-           System.out.println("77777777777777777777777");
            //MMMMYYYYY ADDDIIITIIIIOONNNN
            Collections.sort(conversations, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
-           System.out.println("77777777");
            conversationsAdapter.notifyDataSetChanged();
            recyclerView.smoothScrollToPosition(0);
            recyclerView.setVisibility(View.VISIBLE);
            progressBar.setVisibility(View.GONE);
-           System.out.println("77");
        }
     };
 
