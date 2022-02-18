@@ -1,7 +1,9 @@
 package com.example.android2project;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.example.android2project.activities.ChatActivity;
+import com.example.android2project.activities.SignInActivity;
 import com.example.android2project.listeners.UserListener;
 import com.example.android2project.models.chatUser;
 import com.example.android2project.utilities.Constants;
+import com.example.android2project.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
 import java.util.List;
 
@@ -28,6 +42,9 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     private final List<chatUser> chatUsers;
     private final UserListener userListener;
     RequestManager glide;
+    private FirebaseFirestore db;
+    private PreferenceManager preferenceManager;
+    int counter=0;
 
     public ApartmentAdapter(Context context, List<Apartment> apartments, List<chatUser> chatUsers,UserListener userListener) {
         this.apartments=apartments;
@@ -90,23 +107,46 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ApartmentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ApartmentViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Apartment apartment=apartments.get(position);
         holder.sellerNameTv.setText(apartment.getSellerName());
         holder.apartmentNameTv.setText(apartment.getApartmentName());
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         holder.chatTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    userListener.onUserClicked(chatUsers.get(position));
-                }catch (Exception E)
+
+                if(apartment.getSellerEmail().equals(user.getEmail()))
                 {
-                    Toast.makeText(view.getContext(), "This is your offer", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "This is your offer! ", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
+                    counter=0;
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("users")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            if(document.get("email").equals(user.getEmail()))
+                                                counter--;
+                                            if(document.get("email").equals(apartment.getSellerEmail()) ) {
+                                                userListener.onUserClicked(chatUsers.get(counter));
+                                                break;
+                                            }
+                                            else
+                                                counter++;
+                                        }
+                                    }
+                                }
+                            });
 
             }
         });

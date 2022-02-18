@@ -2,7 +2,7 @@ package com.example.android2project;
 
 public class Apartment {
     private int profilePic, postPic,price,rooms;
-    private String sellerName, apartmentName, date;
+    private String sellerName, apartmentName, date,sellerEmail;
 
 
     public Apartment()
@@ -18,13 +18,17 @@ public class Apartment {
         this.date = date;
         this.price = price;
         this.rooms=rooms;
+
     }
-    public Apartment(String sellerName, String apartmentName, String date, int price, int rooms) {
+
+
+    public Apartment(String sellerName, String apartmentName, String date, int price, int rooms, String sellerEmail) {
         this.sellerName = sellerName;
         this.apartmentName = apartmentName;
         this.date = date;
         this.price = price;
         this.rooms=rooms;
+        this.sellerEmail=sellerEmail;
     }
 
     public String getSellerName() {
@@ -84,6 +88,15 @@ public class Apartment {
     public void setRooms(int rooms) {
         this.rooms = rooms;
     }
+
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
+
 
 }
 

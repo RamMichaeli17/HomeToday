@@ -171,7 +171,7 @@ public class fragment_Add_Meeting extends Fragment {
 
     public void addMeeting()
     {
-        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms);
+        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail());
 
         FirebaseDatabase.getInstance().getReference("House Offers")
                 .child(userID).child(("Offer "+counter)).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
