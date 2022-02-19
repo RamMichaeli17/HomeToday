@@ -122,7 +122,6 @@ public class SingUpActivity extends AppCompatActivity {
                     signInRealTimeDataBase();
                 })
                 .addOnFailureListener(exception -> {
-                    System.out.println("Check failure");
                     loading(false);
                     showToast(exception.getMessage());
                 });
@@ -242,8 +241,6 @@ public class SingUpActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
 
-        System.out.println(" QZZZZZZZZZZZZZZZZZZZZ");
-        showToast("before function");
 
         StorageReference fileRef = storageReference.child("Profile pictures/"+FirebaseAuth.getInstance().getCurrentUser().getEmail());
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +51,8 @@ import java.util.List;
 public class fragment_Add_Meeting extends Fragment {
 
     TextInputEditText cityET,priceET,roomsET;
-    Button submitMeeting,addImage,goBackBtn;
+
+    Button submitMeeting,addImage;
     int counter=0;
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -59,6 +62,7 @@ public class fragment_Add_Meeting extends Fragment {
     Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    ImageView goBackBtn;
     List<Uri> listImageUri;
 
 
@@ -78,8 +82,8 @@ public class fragment_Add_Meeting extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_add_meeting,container,false);
-
+        View rootView = inflater.inflate(R.layout.yul_1,container,false);
+        listImageUri.clear();
         cityET = rootView.findViewById(R.id.cityET);
         priceET = rootView.findViewById(R.id.askingPriceET);
         roomsET=rootView.findViewById(R.id.roomsET);
@@ -100,6 +104,7 @@ public class fragment_Add_Meeting extends Fragment {
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                listImageUri.clear();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setType("image/*");
@@ -113,8 +118,20 @@ public class fragment_Add_Meeting extends Fragment {
             public void onClick(View view) {
 
                 city = cityET.getText().toString().trim();
-                price= Integer.parseInt(priceET.getText().toString());
-                rooms= Integer.parseInt(roomsET.getText().toString());
+                try {
+                    price = Integer.parseInt(priceET.getText().toString());
+                    rooms = Integer.parseInt(roomsET.getText().toString());
+                }
+                catch (Exception E)
+                {
+                    Toast.makeText(getActivity(), "Please fill all values", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(city.isEmpty())
+                {
+                    Toast.makeText(getActivity(), "Please fill all values", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
                 reference= FirebaseDatabase.getInstance().getReference("Users");
@@ -180,7 +197,11 @@ public class fragment_Add_Meeting extends Fragment {
 
     public void addMeeting()
     {
-        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail(),counter,listImageUri.size());
+        Date currentDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("kk:mm");
+        String timeIn24Hours = formatter.format(currentDate);
+
+        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail(),counter,listImageUri.size(),timeIn24Hours,user.getUid());
 
         FirebaseDatabase.getInstance().getReference("House Offers")
                 .child(userID).child(("Offer "+counter)).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -188,6 +209,7 @@ public class fragment_Add_Meeting extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getActivity(),"Offer #"+counter+" for "+username+" has been created!",Toast.LENGTH_LONG).show();
 
+                submitMeeting.setVisibility(View.GONE);
                 getActivity().getSupportFragmentManager().beginTransaction().remove(fragment_Add_Meeting.this).commit();
 
 
@@ -201,6 +223,7 @@ public class fragment_Add_Meeting extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == -1) {
+            submitMeeting.setVisibility(View.VISIBLE);
             ClipData clipData = data.getClipData();
             if (clipData!= null)
             {

@@ -1,7 +1,9 @@
 package com.example.android2project;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +29,17 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +56,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     int counter = 0, i;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    String testing;
+
 
     public ApartmentAdapter(Context context, List<Apartment> apartments, List<chatUser> chatUsers, UserListener userListener) {
         this.apartments = apartments;
@@ -72,9 +77,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
     public class ApartmentViewHolder extends RecyclerView.ViewHolder {
 
-        TextView apartmentNameTv, sellerNameTv, publishDateTv, favTv, chatTv, priceTV, roomsTV;
-        ImageView profilePic;
+        TextView apartmentNameTv, sellerNameTv, publishDateTv, favTv, chatTv, priceTV, roomsTV,hoursAgoTV;
+        RoundedImageView profilePic;
         ImageSlider imageSlider;
+        ImageView removeOffer;
 
         public ApartmentViewHolder(View itemView) {
             super(itemView);
@@ -85,11 +91,15 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             chatTv = itemView.findViewById(R.id.chat_tv);
             priceTV = itemView.findViewById(R.id.priceTV);
             roomsTV = itemView.findViewById(R.id.roomsTV);
+            hoursAgoTV = itemView.findViewById(R.id.hoursAgoTV);
+            removeOffer=itemView.findViewById(R.id.removeOfferBtn);
 
             imageSlider = itemView.findViewById(R.id.apartment_pic_slider);
 
             profilePic = itemView.findViewById(R.id.profile_pic);
 
+            storage = FirebaseStorage.getInstance();
+            storageReference=storage.getReference();
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -111,16 +121,40 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
     @Override
     public void onBindViewHolder(@NonNull ApartmentViewHolder holder, @SuppressLint("RecyclerView") int position) {
+     //   chatMessage.conversionName.substring(0, 1).toUpperCase() + chatMessage.conversionName.substring(1).toLowerCase()
+     //   apartment.getApartmentName().substring(0, 1).toUpperCase() + apartment.getSellerName().substring(1).toLowerCase()
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         Apartment apartment = apartments.get(position);
-        holder.sellerNameTv.setText(apartment.getSellerName());
-        holder.apartmentNameTv.setText(apartment.getApartmentName());
+        holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getApartmentName()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
+        holder.hoursAgoTV.setText(apartment.getTime());
+
+        if (apartment.getSellerEmail().equals(user.getEmail()))
+        {
+            holder.removeOffer.setVisibility(View.VISIBLE);
+        }
 
 
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
+        System.out.println("Profile pictures/" + apartment.getSellerEmail());
+        StorageReference pictureRef = storageReference.child("Profile pictures/" + apartment.getSellerEmail());
+        pictureRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                  glide.load(uri).into(holder.profilePic);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                holder.profilePic.setImageResource(R.drawable.ic_baseline_person_24);
+            }
+        });
+
+
 
 
         testFunc(apartment, holder.imageSlider);
@@ -139,10 +173,39 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 //            slideModels.add(new SlideModel(R.drawable.apartment3, ScaleTypes.FIT));
 //        }
 
-        System.out.println("111");
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        holder.removeOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+
+                                DeleteRealtimeDatabase(apartment);
+                                DeletePictures(apartment);
+
+                                apartments.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+                                notifyItemRangeChanged(holder.getAdapterPosition(), apartments.size());
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Are you sure you want to delete "+ apartment.getApartmentName()+"?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
+
 
         holder.chatTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,9 +241,25 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         });
 
 
-        glide.load(apartment.getProfilePic()).into(holder.profilePic);
+      //  glide.load(apartment.getProfilePic()).into(holder.profilePic);
 
 
+    }
+
+    private void DeleteRealtimeDatabase(Apartment apartment) {
+        System.out.println("getSellerUID = "+apartment.getSellerUID()+" Offer "+apartment.getOfferCounter());
+        DatabaseReference myReference = FirebaseDatabase.getInstance().getReference("House Offers");
+        myReference.child(apartment.getSellerUID()).child("Offer "+apartment.getOfferCounter()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@android.support.annotation.NonNull DataSnapshot snapshot) {
+                snapshot.getRef().removeValue();
+            }
+
+            @Override
+            public void onCancelled(@android.support.annotation.NonNull DatabaseError error) {
+                Toast.makeText(context.getApplicationContext(), "Something went wrong",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void testFunc(Apartment apartment, ImageSlider imageSlider) {
@@ -203,11 +282,27 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         }
     }
 
+    private void DeletePictures(Apartment apartment) {
+        List<SlideModel> slideModels;
+        slideModels = new ArrayList<>();
+        for (i = 0; i < apartment.getNumOfPictures(); i++) {
+            StorageReference pictureRef = storageReference.child("House Pictures/" + apartment.getSellerEmail() + "/House " + apartment.getOfferCounter() + "/Picture " + i);
+            pictureRef.delete();
+
+        }
+    }
+
+
 
 
 
     @Override
     public int getItemCount() {
         return apartments.size();
+    }
+
+    public String capitalizeStr(String str)
+    {
+        return  (str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
     }
 }

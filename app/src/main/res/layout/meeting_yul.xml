@@ -49,25 +49,27 @@
                     android:orientation="horizontal"
                     android:padding="10dp">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/profile_pic"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/profile_pic_check" />
+                        android:src="@drawable/profile_pic_check"
+                        app:riv_oval="true" />
 
                     <TextView
                         android:id="@+id/seller_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
                         android:layout_marginStart="10dp"
                         android:layout_toEndOf="@id/profile_pic"
                         android:fontFamily="@font/felix007"
+                        android:paddingStart="2dp"
                         android:shadowColor="@color/black"
-                        android:shadowRadius="2"
+                        android:shadowRadius="6"
                         android:text="Hello Shalom"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -75,14 +77,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/seller_name"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="10dp"
                         android:layout_toEndOf="@id/profile_pic"
                         android:fontFamily="@font/felix007"
                         android:shadowColor="@color/black"
                         android:shadowRadius="1"
                         android:text="24/10/2021"
                         android:textColor="#FFFFFF"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/hoursAgoTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/felix007"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="1"
+                        android:text="8h ago"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
@@ -191,15 +207,15 @@
                         android:layout_height="250dp"
                         android:layout_below="@+id/mission_tv"
                         android:layout_centerVertical="true"
-                        app:iss_auto_cycle="true"
-                        app:iss_delay="0"
-                        app:iss_period="3000"
-                        app:iss_placeholder="@color/black"
-                        app:iss_error_image="@color/purple_200"
-                        app:iss_corner_radius="20"
-
                         android:background="@drawable/round_corners"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        app:iss_auto_cycle="true"
+                        app:iss_corner_radius="20"
+                        app:iss_delay="0"
+                        app:iss_error_image="@color/purple_200"
+
+                        app:iss_period="3000"
+                        app:iss_placeholder="@color/black" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -223,6 +239,14 @@
                         android:layout_height="30dp"
                         android:layout_marginStart="10dp"
                         android:src="@drawable/house_icon" />
+
+                    <ImageView
+                        android:id="@+id/removeOfferBtn"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_baseline_delete_24" />
                 </LinearLayout>
 
                 <LinearLayout

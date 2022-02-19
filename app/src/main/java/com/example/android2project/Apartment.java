@@ -1,24 +1,17 @@
 package com.example.android2project;
 
+import android.widget.ImageView;
+
 public class Apartment {
-    private int profilePic, postPic,price,rooms,offerCounter,numOfPictures;
-    private String sellerName, apartmentName, date,sellerEmail;
+    private int price,rooms,offerCounter,numOfPictures;
+    private String sellerName, apartmentName, date,sellerEmail,time,sellerUID;
+    private ImageView profilePic;
 
 
     public Apartment()
     {
 
     }
-
-//    public Apartment(int profilePic, int postPic, String sellerName, String apartmentName, String date, int price, int rooms) {
-//        this.profilePic = profilePic;
-//        this.postPic = postPic;
-//        this.sellerName = sellerName;
-//        this.apartmentName = apartmentName;
-//        this.date = date;
-//        this.price = price;
-//        this.rooms=rooms;
-//    }
 
 
     public int getNumOfPictures() {
@@ -29,7 +22,23 @@ public class Apartment {
         this.numOfPictures = numOfPictures;
     }
 
-    public Apartment(String sellerName, String apartmentName, String date, int price, int rooms, String sellerEmail, int offerCounter, int numOfPictures) {
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getSellerUID() {
+        return sellerUID;
+    }
+
+    public void setSellerUID(String sellerUID) {
+        this.sellerUID = sellerUID;
+    }
+
+    public Apartment(String sellerName, String apartmentName, String date, int price, int rooms, String sellerEmail, int offerCounter, int numOfPictures, String time, String sellerUID) {
         this.sellerName = sellerName;
         this.apartmentName = apartmentName;
         this.date = date;
@@ -38,6 +47,8 @@ public class Apartment {
         this.sellerEmail=sellerEmail;
         this.offerCounter=offerCounter;
         this.numOfPictures=numOfPictures;
+        this.time=time;
+        this.sellerUID=sellerUID;
     }
 
     public String getSellerName() {
@@ -57,21 +68,7 @@ public class Apartment {
     }
 
 
-    public int getProfilePic() {
-        return profilePic;
-    }
 
-    public void setProfilePic(int profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    public int getPostPic() {
-        return postPic;
-    }
-
-    public void setPostPic(int postPic) {
-        this.postPic = postPic;
-    }
 
 
     public String getDate() {

@@ -316,7 +316,8 @@
                             android:id="@+id/viewing_apartment_elevator_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Elevator" />
+                            android:text="Elevator"
+                            android:checked="true"/>
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_storeroom_CB"
