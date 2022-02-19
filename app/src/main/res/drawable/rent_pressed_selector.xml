@@ -2,7 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/forrent_blackwhite" />
+        android:drawable="@drawable/forrent_blackwhite"
+        android:state_focused="true"/>
     <item
         android:state_pressed="false"
         android:drawable="@drawable/for_rent"/>
