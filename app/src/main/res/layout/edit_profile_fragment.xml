@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="470dp"
+    android:layout_height="550dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/edit_profile_dialog_round"
     android:layout_gravity="center_vertical">
@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:textColor="@color/primary"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name:"
+            android:text="@string/name"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:textSize="25sp"
@@ -36,68 +36,86 @@
             android:textStyle="bold"/>
 
 
-
-        <EditText
-            android:layout_width="250dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/full_name"
+            app:helperText="@string/required"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:helperTextTextColor="#C50303"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
             android:layout_gravity="center_horizontal"
-            android:hint="Full name"
-            android:textAlignment="center"
-            android:drawableStart="@drawable/ic_baseline_person_24"
-            android:drawablePadding="5dp"
-            android:inputType="textCapWords"
-            android:textStyle="italic"
-            android:padding="10dp"
-            android:background="@drawable/edit_profile_input"
-            android:layout_marginTop="5dp" />
+            android:textSize="25sp"
+            android:textColor="@color/primary"
+            android:fontFamily="@font/felix007"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            app:helperText="@string/required"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:helperTextTextColor="#C50303"
+            app:endIconMode="password_toggle"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password:"
+            android:text="@string/location"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
             android:textSize="25sp"
             android:textColor="@color/primary"
             android:fontFamily="@font/felix007"
             android:textStyle="bold"/>
 
-        <EditText
-            android:layout_width="250dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:hint="Password"
-            android:background="@drawable/edit_profile_input"
-            android:padding="10dp"
-            android:inputType="numberPassword"
-            android:drawableStart="@drawable/ic_blue_password"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            android:layout_marginTop="5dp"/>
+            android:hint="@string/location"
+            app:helperText="@string/required"
+            app:startIconDrawable="@drawable/ic_baseline_blue_location_on_24"
+            app:helperTextTextColor="#C50303"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_baseline_email_24"
+            app:endIconCheckable="true"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location:"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:textSize="25sp"
-            android:textColor="@color/primary"
-            android:fontFamily="@font/felix007"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:hint="Location"
-            android:drawableStart="@drawable/ic_baseline_blue_location_on_24"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            android:background="@drawable/edit_profile_input"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/auto_complete_text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:layout_width="wrap_content"
@@ -105,13 +123,11 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:padding="15dp"
-            android:text="Confirm changes"
+            android:text="@string/confirm_changes"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:fontFamily="@font/felix007"
             android:background="@drawable/edit_profile_log_out_buttons" />
 
     </LinearLayout>
-
-
 </LinearLayout>

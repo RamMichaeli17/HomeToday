@@ -59,8 +59,8 @@ public class SignInActivity extends AppCompatActivity {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS)
-                .whereEqualTo(Constants.KEY_EMAIL,binding.inputEmail.getText().toString())
-                .whereEqualTo(Constants.KEY_PASSWORD,binding.inputPassword.getText().toString())
+                .whereEqualTo(Constants.KEY_EMAIL,binding.inputEmail.getEditText().getText().toString())
+                .whereEqualTo(Constants.KEY_PASSWORD,binding.inputPassword.getEditText().getText().toString())
                 .get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful() && task.getResult()!= null
@@ -99,13 +99,13 @@ public class SignInActivity extends AppCompatActivity {
 
     //maybe we'll use awesome validation
     private boolean isValidSignInDetails() {
-        if (binding.inputEmail.getText().toString().trim().isEmpty()) {
+        if (binding.inputEmail.getEditText().getText().toString().trim().isEmpty()) {
             showToast("Enter email");
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getEditText().getText().toString()).matches()) {
             showToast("Enter valid email");
             return false;
-        } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
+        } else if (binding.inputPassword.getEditText().getText().toString().trim().isEmpty()) {
             showToast("Enter password");
             return false;
         }

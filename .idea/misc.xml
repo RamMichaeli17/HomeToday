@@ -27,7 +27,8 @@
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/activity_sign_in.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/activity_sing_up.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/activity_users.xml" value="0.18568840579710144" />
-        <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/adding_apartment_listing.xml" value="0.33" />
+        <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/adding_apartment_listing.xml" value="0.22" />
+        <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/cities_list.xml" value="0.1" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/deletethis_gal_meeting.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/edit_profile_fragment.xml" value="0.25" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/favourite_list_fragment.xml" value="0.18568840579710144" />
@@ -46,10 +47,44 @@
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/should_be_deleted.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/should_be_deleted2.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Yulia/Android2Project/app/src/main/res/layout/viewing_apartment_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable-v24/edit_profile_dialog_round.xml" value="0.1" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable/cardview_cell.xml" value="0.1" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable/cardview_little_cell.xml" value="0.1" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable/cardview_round_corners.xml" value="0.1" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable/little_fav_icon.xml" value="0.1455" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable/rent_pressed_selector.xml" value="0.1455" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/drawable/rent_sale_pressed_selector.xml" value="0.1455" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/activity_chat.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/activity_logged_in.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/activity_my_profile.xml" value="0.33" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/activity_sign_in.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/activity_sing_up.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/activity_users.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/adding_apartment_listing.xml" value="0.25" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/cities_list.xml" value="0.1" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/deletethis_gal_meeting.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/edit_profile_fragment.xml" value="0.2050561797752809" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/favourite_list_fragment.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/fragment_add_meeting.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/fragment_fragment1.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/fragment_fragment2.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/fragment_fragment3.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/fragment_profile.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/header_layout.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/item_container_received_message.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/item_container_recent_conversion.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/item_container_sent_message.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/item_container_user.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/meeting_yul.xml" value="0.20916905444126074" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/ram_activity_main.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/room_number_list.xml" value="0.18" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/should_be_deleted.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/should_be_deleted2.xml" value="0.1984375" />
+        <entry key="..\:/Users/Yulia/Documents/Android2Project/app/src/main/res/layout/viewing_apartment_fragment.xml" value="0.3283514492753623" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

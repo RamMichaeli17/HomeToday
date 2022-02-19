@@ -27,6 +27,7 @@ import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +45,7 @@ public class SingUpActivity extends AppCompatActivity {
     private String encodedImage;
 
     private FirebaseAuth mAuth;
+    //TextInputLayout nameInputLayout, emailInputLayout, passwordInputLayout;
     String fullName, age, email, password;
 
     AwesomeValidation awesomeValidation;
@@ -63,10 +65,10 @@ public class SingUpActivity extends AppCompatActivity {
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
         binding.buttonSignUp.setOnClickListener(v -> {
 
-            fullName = binding.inputName.getText().toString().trim();
+            fullName = binding.inputName.getEditText().getText().toString().trim();
             age = "Default";
-            email = binding.inputEmail.getText().toString().trim();
-            password = binding.inputPassword.getText().toString().trim();
+            email = binding.inputEmail.getEditText().getText().toString().trim();
+            password = binding.inputPassword.getEditText().getText().toString().trim();
 
             if (isValidSignUpDetails()) {
                 createUserRealTimeDatabase();
@@ -87,9 +89,9 @@ public class SingUpActivity extends AppCompatActivity {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         HashMap<String, Object> user = new HashMap<>();
-        user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
-        user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
-        user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
+        user.put(Constants.KEY_NAME, binding.inputName.getEditText().getText().toString());
+        user.put(Constants.KEY_EMAIL, binding.inputEmail.getEditText().getText().toString());
+        user.put(Constants.KEY_PASSWORD, binding.inputPassword.getEditText().getText().toString());
         user.put(Constants.KEY_IMAGE, encodedImage);
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
@@ -97,7 +99,7 @@ public class SingUpActivity extends AppCompatActivity {
                     loading(false);
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
-                    preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getEditText().getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
                     signInRealTimeDataBase();
                 })
@@ -203,7 +205,7 @@ public class SingUpActivity extends AppCompatActivity {
 
 
     private void signInRealTimeDataBase() {
-        mAuth.signInWithEmailAndPassword(binding.inputEmail.getText().toString(),binding.inputPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(binding.inputEmail.getEditText().getText().toString(),binding.inputPassword.getEditText().getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())

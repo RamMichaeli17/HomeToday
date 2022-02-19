@@ -62,7 +62,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Favourites"
+                        android:text="@string/favourites"
                         android:textSize="20sp"
                         android:fontFamily="@font/felix007"/>
 
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chats"
+                        android:text="@string/chats"
                         android:textSize="20sp"
                         android:fontFamily="@font/felix007"/>
 
@@ -219,7 +219,7 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:textAllCaps="false"
             android:layout_marginTop="40dp"
             android:textColor="@color/white"
@@ -235,7 +235,7 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Log Out"
+            android:text="@string/log_out"
             android:layout_marginBottom="5dp"
             android:textAllCaps="false"
             android:textColor="@color/white"

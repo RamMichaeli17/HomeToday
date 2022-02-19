@@ -75,7 +75,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="Add image"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
+
+
 
     <Button
         android:id="@+id/submitMeeting"
