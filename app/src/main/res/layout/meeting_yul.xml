@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/cardview_round_corners"
-    android:backgroundTint="@color/white"
+    android:background="@color/primary_text"
+    android:backgroundTint="@color/input_background"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineSpotShadowColor="@color/design_default_color_primary"
+        android:outlineSpotShadowColor="@color/primary_dark"
         app:cardCornerRadius="10dp"
         app:cardElevation="18dp"
         app:cardUseCompatPadding="true">
@@ -110,32 +110,24 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/secondry_text"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"/>
 
             <LinearLayout
                 android:id="@+id/infoLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardView"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/apartment_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/aharoni_boldt"
-                    android:shadowColor="#A39436"
-                    android:shadowRadius="15"
-                    android:text="@string/city"
-                    android:textColor="#FFFFFF"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/apartment_name_tv"
                     android:gravity="center"
                     android:layoutDirection="ltr">
 
@@ -149,7 +141,7 @@
                         android:shadowRadius="15"
                         android:text="1,500,000"
                         android:textColor="#FFFFFF"
-                        android:textSize="30sp"
+                        android:textSize="35sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -161,7 +153,7 @@
                         android:shadowRadius="15"
                         android:text=" ₪ | "
                         android:textColor="#FFFFFF"
-                        android:textSize="25sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -174,7 +166,7 @@
                         android:shadowRadius="15"
                         android:text="5"
                         android:textColor="#FFFFFF"
-                        android:textSize="27sp"
+                        android:textSize="35sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -187,9 +179,26 @@
                         android:text="@string/rooms"
                         android:layout_marginStart="@dimen/_7sdp"
                         android:textColor="#FFFFFF"
-                        android:textSize="25sp"
+                        android:textSize="35sp"
+                        android:padding="@dimen/_5sdp"
                         android:textStyle="bold" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/apartment_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/aharoni_boldt"
+                    android:shadowColor="#A39436"
+                    android:shadowRadius="15"
+                    android:text="@string/city"
+                    android:padding="2dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -257,7 +266,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

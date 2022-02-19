@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -68,10 +73,16 @@ public class fragment_Add_Meeting extends Fragment {
     List<Uri> listImageUri;
 
 
-    /* //Yul Expandable
-   TextView categoryDetails;
-   LinearLayout layout;
-*/
+    //Expandable cardViews
+   CardView categoryCV, propertyAddressCV, propertyInfoCV, priceDateCV;
+   LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4;
+   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV;
+
+   //selecting category
+   ImageView forRental, forSale;
+   Boolean forRentalFlag = false;
+   Boolean forSaleFlag = false;
+
     //Yul room number spinner
     AutoCompleteTextView autoCompleteRoomsTextView;
 
@@ -105,6 +116,119 @@ public class fragment_Add_Meeting extends Fragment {
 
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
+
+        //expandable cardViews
+        linearLayout1 = rootView.findViewById(R.id.category_info);
+        linearLayout2 = rootView.findViewById(R.id.property_address_info);
+        linearLayout3 = rootView.findViewById(R.id.property_info_info);
+        linearLayout4 = rootView.findViewById(R.id.priceDate_info);
+        categoryCV = rootView.findViewById(R.id.adding_apartment_first_CV);
+        propertyAddressCV = rootView.findViewById(R.id.adding_apartment_second_CV);
+        propertyInfoCV = rootView.findViewById(R.id.adding_apartment_third_CV);
+        priceDateCV = rootView.findViewById(R.id.adding_apartment_fourth_CV);
+        categoryTV = rootView.findViewById(R.id.category_title);
+        propertyAddressTV = rootView.findViewById(R.id.address_title);
+        propertyInfoTV = rootView.findViewById(R.id.property_info_title);
+        priceDateTV = rootView.findViewById(R.id.priceDate_title);
+
+        //clickable category
+        forRental = rootView.findViewById(R.id.for_rental);
+        forSale = rootView.findViewById(R.id.for_sale);
+
+
+        forRental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!forRentalFlag && forSaleFlag){
+                    forRental.setImageResource(R.drawable.forrent_blackwhite);
+                    forRentalFlag=true;
+                    forSale.setImageResource(R.drawable.for_sale);
+                    forSaleFlag=false;
+                } else {
+                    forRental.setImageResource(R.drawable.for_rent);
+                    forRentalFlag=false;
+                    forSale.setImageResource(R.drawable.forsale_blackwhite);
+                    forSaleFlag=true;
+                }
+            }
+        });
+
+        forSale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!forSaleFlag){
+                    forSale.setImageResource(R.drawable.forsale_blackwhite);
+                    forSaleFlag=true;
+                } else {
+                    forSale.setImageResource(R.drawable.for_sale);
+                    forSaleFlag=false;
+                }
+            }
+        });
+
+
+        //expandable cardViews
+        categoryTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(linearLayout1.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(categoryCV, new AutoTransition());
+                    linearLayout1.setVisibility(View.VISIBLE);
+                }else{
+                    TransitionManager.beginDelayedTransition(categoryCV, new AutoTransition());
+                    linearLayout1.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        propertyAddressTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(linearLayout2.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(propertyAddressCV, new AutoTransition());
+                    linearLayout2.setVisibility(View.VISIBLE);
+                }else{
+                    TransitionManager.beginDelayedTransition(propertyAddressCV, new AutoTransition());
+                    linearLayout2.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        propertyInfoTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(linearLayout3.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(propertyInfoCV, new AutoTransition());
+                    linearLayout3.setVisibility(View.VISIBLE);
+                }else{
+                    TransitionManager.beginDelayedTransition(propertyInfoCV, new AutoTransition());
+                    linearLayout3.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        priceDateTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(linearLayout4.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(priceDateCV, new AutoTransition());
+                    linearLayout4.setVisibility(View.VISIBLE);
+                }else{
+                    TransitionManager.beginDelayedTransition(priceDateCV, new AutoTransition());
+                    linearLayout4.setVisibility(View.GONE);
+                }
+            }
+        });
+
+//        //Yul room number spinner
+//        String [] roomNumberSpinner = getResources().getStringArray(R.array.room_number);
+//        ArrayAdapter roomsArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, roomNumberSpinner);
+//        autoCompleteRoomsTextView.setAdapter(roomsArrayAdapter);
+//
+//        //Yul parking amount spinner
+//        String [] parkingNumberSpinner = getResources().getStringArray(R.array.parking_number);
+//        ArrayAdapter parkingArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, parkingNumberSpinner);
+//        autoCompleteParkingTextView.setAdapter(parkingArrayAdapter);
 
         goBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,16 +314,6 @@ public class fragment_Add_Meeting extends Fragment {
     public void onResume() {
         super.onResume();
 
-//        //Yul room number spinner
-//        String [] roomNumberSpinner = getResources().getStringArray(R.array.room_number);
-//        ArrayAdapter roomsArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, roomNumberSpinner);
-//        autoCompleteRoomsTextView.setAdapter(roomsArrayAdapter);
-//
-//        //Yul parking amount spinner
-//        String [] parkingNumberSpinner = getResources().getStringArray(R.array.parking_number);
-//        ArrayAdapter parkingArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, parkingNumberSpinner);
-//        autoCompleteRoomsTextView.setAdapter(parkingArrayAdapter);
-
     }
 
     @Override
@@ -280,7 +394,13 @@ public class fragment_Add_Meeting extends Fragment {
     }
 
     public void expand_first_CV(View view) {
-
+        if(linearLayout1.getVisibility() == View.GONE){
+            TransitionManager.beginDelayedTransition(categoryCV, new AutoTransition());
+            linearLayout1.setVisibility(View.VISIBLE);
+        }else{
+            TransitionManager.beginDelayedTransition(categoryCV, new AutoTransition());
+            linearLayout1.setVisibility(View.GONE);
+        }
     }
 
 }
