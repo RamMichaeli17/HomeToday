@@ -19,4 +19,74 @@
     <string name="confirm_password_wrong">Invalid confirmed password</string>
     <string name="not_match_password_and_confirm_password_wrong">Password must match confirm password</string>
     <string name="longer_than_6_chars">Enter a password longer than 6 characters</string>
+    <string name="main">Main</string>
+    <string name="chat">Chat</string>
+    <string name="favourite">Favourite</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="log_out">Log Out</string>
+    <string name="location">Location</string>
+    <string name="confirm_changes">Confirm Changes</string>
+    <string name="your_favourites">Your Favourites</string>
+    <string name="rooms">Rooms</string>
+    <string name="floor">Floor</string>
+    <string name="square_meter">Square Meter</string>
+    <string name="entering_date">Entering Date</string>
+    <string name="total_building_floors">Total Building Floors</string>
+    <string name="parkings">Parkings</string>
+    <string name="facilities">Facilities:</string>
+    <string name="air_conditioner">Air Conditioner</string>
+    <string name="elevator">Elevator</string>
+    <string name="storeroom">Storeroom</string>
+    <string name="balcony">Balcony</string>
+    <string name="mamad">Residential Secure Space (Mamad)</string>
+    <string name="kosher_kitchen">Kosher Kitchen</string>
+    <string name="renovated">Renovated</string>
+    <string name="furnished">Furnished</string>
+    <string name="chat_with_seller">Chat with Seller</string>
+    <string name="hello">Hello,</string>
+    <string name="category">1) Category</string>
+    <string name="for_rental">For Rental</string>
+    <string name="for_sale">For Sale</string>
+    <string name="property_address">2) Property Address</string>
+    <string name="city">City</string>
+    <string name="address">Address</string>
+    <string name="property_info">3) Property Info</string>
+    <string name="rooms_number">Rooms Number</string>
+    <string name="property_facilities">Property Facilities:</string>
+    <string name="price_and_date">4) Price and Date</string>
+    <string name="post_apartment">Post Apartment</string>
+    <string name="favourites">Favourites</string>
+    <string name="chats">Chats</string>
+    <string name="asking_price">Asking Price:</string>
+    <string name="price">Price</string>
+    <string name="date">Date</string>
+
+    <string-array name="room_number">
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+        <item>2.5</item>
+        <item>3</item>
+        <item>3.5</item>
+        <item>4</item>
+        <item>4.5</item>
+        <item>5</item>
+        <item>5.5</item>
+        <item>6</item>
+        <item>6.5</item>
+        <item>7</item>
+        <item>7.5</item>
+    </string-array>
+
+    <string-array name="parking_number">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string name="entering_date2">Entering Date:</string>
+    <string name="full_name">Full Name</string>
+    <string name="required">Required*</string>
+
+
 </resources>

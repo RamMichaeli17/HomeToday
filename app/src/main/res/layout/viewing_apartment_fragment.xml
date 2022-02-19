@@ -125,7 +125,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Floor"
+                            android:text="@string/floor"
                             android:textSize="20sp"
                             android:textColor="#7A7A7A"
                             android:layout_marginTop="10dp"
@@ -135,7 +135,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/_10sdp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -155,7 +155,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="square meter"
+                            android:text="@string/square_meter"
                             android:textSize="20sp"
                             android:textColor="#7A7A7A"
                             android:layout_marginTop="10dp"
@@ -183,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Entering date"
+                    android:text="@string/entering_date"
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
                     android:textColor="#BCBABA"
@@ -207,15 +207,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="10dp"
-                android:layout_marginTop="25dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Total building floors"
+                    android:paddingStart="10dp"
+                    android:text="______________________________________________"
+                    android:inputType="date"
+                    android:textStyle="bold"
+                    android:textColor="#BCBABA"
+                    android:fontFamily="@font/felix007"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/total_building_floors"
                     android:textColor="#BCBABA"
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
@@ -239,15 +257,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="10dp"
-                android:layout_marginTop="25dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Parkings"
+                    android:paddingStart="10dp"
+                    android:text="______________________________________________"
+                    android:inputType="date"
+                    android:textStyle="bold"
+                    android:textColor="#BCBABA"
+                    android:fontFamily="@font/felix007"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/parkings"
                     android:textColor="#BCBABA"
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
@@ -285,7 +321,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Facilities:"
+                    android:text="@string/facilities"
                     android:paddingStart="15dp"
                     android:textStyle="bold"
                     android:paddingTop="10dp"
@@ -310,26 +346,26 @@
                             android:id="@+id/viewing_apartment_ac_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Air conditioner" />
+                            android:text="@string/air_conditioner" />
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_elevator_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Elevator"
+                            android:text="@string/elevator" />
                             android:checked="true"/>
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_storeroom_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Storeroom" />
+                            android:text="@string/storeroom" />
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_balcony_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Balcony" />
+                            android:text="@string/balcony" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -343,25 +379,25 @@
                             android:id="@+id/viewing_apartment_mamad_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Residential secure space (Mamad)" />
+                            android:text="@string/mamad" />
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_kk_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Kosher kitchen" />
+                            android:text="@string/kosher_kitchen" />
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_renovated_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Renovated" />
+                            android:text="@string/renovated" />
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_furniture_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Furnished" />
+                            android:text="@string/furnished" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -378,9 +414,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:padding="15dp"
-                android:text="Chat with seller"
+                android:text="@string/chat_with_seller"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:fontFamily="@font/felix007"
