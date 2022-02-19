@@ -59,6 +59,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/profile_pic_check"
                         app:riv_oval="true" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -71,7 +72,7 @@
                             android:fontFamily="@font/aharoni_boldt"
                             android:shadowColor="@color/black"
                             android:shadowRadius="2"
-                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginStart="@dimen/_6sdp"
                             android:text="Hello Shalom"
                             android:textColor="@color/white"
@@ -90,19 +91,18 @@
                             android:textColor="#FFFFFF"
                             android:textSize="15sp"
                             android:textStyle="bold" />
-
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/hoursAgoTV"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/aharoni"
                         android:shadowColor="@color/black"
                         android:shadowRadius="1"
-                        android:layout_marginStart="@dimen/_35sdp"
+                        android:gravity="end"
                         android:layout_marginTop="@dimen/_11sdp"
-                        android:text="8h ago"
+                        android:text="08:16"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:textStyle="bold" />
