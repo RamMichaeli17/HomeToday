@@ -1,4 +1,4 @@
-package com.example.android2project.activities;
+package com.example.android2project;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android2project.R;
+import com.example.android2project.activities.ChatActivity;
 import com.example.android2project.adapters.RecentConversationsAdapter;
 import com.example.android2project.listeners.ConversionListener;
 import com.example.android2project.models.ChatMessage;
@@ -36,7 +37,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Ram_MainActivity extends Fragment implements ConversionListener {
+public class fragment2_chat extends Fragment implements ConversionListener {
 
     private PreferenceManager preferenceManager;
     private List<ChatMessage> conversations;

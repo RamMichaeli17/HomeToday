@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,9 +21,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.android2project.activities.Ram_MainActivity;
 import com.example.android2project.activities.SignInActivity;
-import com.example.android2project.activities.SingUpActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +37,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class loggedInActivity extends AppCompatActivity {
@@ -53,6 +53,7 @@ public class loggedInActivity extends AppCompatActivity {
     public NavigationView navigationView;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ArrayList<View> touchablesToRestore = new ArrayList<View>();
 
     private PreferenceManager preferenceManager;
 
@@ -89,10 +90,27 @@ public class loggedInActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        vpAdapter.addFragment(new fragment1(),"MAIN");
-        vpAdapter.addFragment(new Ram_MainActivity(),"CHAT");
-        vpAdapter.addFragment(new fragment3(),"SOMETHING");
+        vpAdapter.addFragment(new fragment1_homePage(),"MAIN");
+        vpAdapter.addFragment(new fragment2_chat(),"CHAT");
+        vpAdapter.addFragment(new fragment3(),"FAVOURITES");
         viewPager.setAdapter(vpAdapter);
+
+
+
+
+//        LinearLayout tabStrip = ((LinearLayout)tabLayout.getChildAt(0));
+//        for(int i = 0; i < tabStrip.getChildCount(); i++) {
+//            tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    return true;
+//                }
+//            });
+//        }
+
+
+
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_view);
@@ -331,5 +349,23 @@ public class loggedInActivity extends AppCompatActivity {
 //                .addOnSuccessListener(unused -> showToast("Token updated successfully"))
                 .addOnFailureListener(e -> showToast("Unable to update token"));
     }
+
+    public void disableTabLayout()
+    {
+        for(View v: tabLayout.getTouchables()){
+            touchablesToRestore.add(v);
+            v.setClickable(false);
+        }
+    }
+
+    public void enableTabLayout()
+    {
+        for(View v: touchablesToRestore){
+            v.setClickable(true);
+        }
+        touchablesToRestore.clear();
+    }
+
+
 
 }

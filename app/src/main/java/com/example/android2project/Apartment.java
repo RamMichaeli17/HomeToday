@@ -3,7 +3,7 @@ package com.example.android2project;
 import android.widget.ImageView;
 
 public class Apartment {
-    private int price,rooms,offerCounter,numOfPictures;
+    private int price,rooms,offerCounter,numOfPictures,undo;
     private String sellerName, apartmentName, date,sellerEmail,time,sellerUID;
     private ImageView profilePic;
 
@@ -38,6 +38,7 @@ public class Apartment {
         this.sellerUID = sellerUID;
     }
 
+
     public Apartment(String sellerName, String apartmentName, String date, int price, int rooms, String sellerEmail, int offerCounter, int numOfPictures, String time, String sellerUID) {
         this.sellerName = sellerName;
         this.apartmentName = apartmentName;
@@ -49,6 +50,7 @@ public class Apartment {
         this.numOfPictures=numOfPictures;
         this.time=time;
         this.sellerUID=sellerUID;
+        this.undo=0;
     }
 
     public String getSellerName() {
@@ -109,6 +111,14 @@ public class Apartment {
 
     public void setOfferCounter(int offerCounter) {
         this.offerCounter = offerCounter;
+    }
+
+    public int getUndo() {
+        return undo;
+    }
+
+    public void setUndo(int undo) {
+        this.undo = undo;
     }
 
 

@@ -34,7 +34,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fragment1 extends Fragment implements UserListener {
+public class fragment1_homePage extends Fragment implements UserListener {
 
     RecyclerView recyclerView;
     DatabaseReference database;

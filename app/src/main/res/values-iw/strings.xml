@@ -64,4 +64,5 @@
     <string name="entering_date2">תאריך כניסה:</string>
     <string name="full_name">שם מלא</string>
     <string name="required">שדה חובה</string>
+    <string name="unfavourite">הסרה</string>
 </resources>

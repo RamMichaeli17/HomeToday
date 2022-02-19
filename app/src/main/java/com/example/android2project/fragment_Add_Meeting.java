@@ -68,6 +68,8 @@ public class fragment_Add_Meeting extends Fragment {
     List<Uri> listImageUri;
 
 
+
+
     /* //Yul Expandable
    TextView categoryDetails;
    LinearLayout layout;
@@ -106,9 +108,12 @@ public class fragment_Add_Meeting extends Fragment {
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
 
+        ((loggedInActivity)getActivity()).disableTabLayout();
+
         goBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((loggedInActivity)getActivity()).enableTabLayout();
                 getActivity().getSupportFragmentManager().beginTransaction().remove(fragment_Add_Meeting.this).commit();
             }
         });
@@ -225,6 +230,7 @@ public class fragment_Add_Meeting extends Fragment {
         String timeIn24Hours = formatter.format(currentDate);
 
         Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail(),counter,listImageUri.size(),timeIn24Hours,user.getUid());
+
 
         FirebaseDatabase.getInstance().getReference("House Offers")
                 .child(userID).child(("Offer "+counter)).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {

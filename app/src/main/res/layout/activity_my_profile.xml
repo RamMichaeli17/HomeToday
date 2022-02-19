@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="#fafafa">
+    android:background="#fafafa"
+    android:clickable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
