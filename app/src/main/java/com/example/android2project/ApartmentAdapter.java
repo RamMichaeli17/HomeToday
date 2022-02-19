@@ -189,7 +189,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Toast.makeText(view.getContext(), apartment.getApartmentName() + " is already in favourites", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), apartment.getAddress() + " is already in favourites", Toast.LENGTH_SHORT).show();
 
                             }
                             else {
@@ -197,7 +197,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                                         .child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(view.getContext(), "Added " + apartment.getApartmentName() + " to favourites", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), "Added " + apartment.getAddress() + " to favourites", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
