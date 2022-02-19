@@ -51,7 +51,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     int counter = 0, i;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    List<SlideModel> slideModels;
     String testing;
 
     public ApartmentAdapter(Context context, List<Apartment> apartments, List<chatUser> chatUsers, UserListener userListener) {
@@ -107,7 +106,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     public ApartmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meeting_yul, parent, false);
         ApartmentViewHolder apartmentViewHolder = new ApartmentViewHolder(view);
-        slideModels = new ArrayList<>();
         return apartmentViewHolder;
     }
 
@@ -186,13 +184,15 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     }
 
     private void testFunc(Apartment apartment, ImageSlider imageSlider) {
+        List<SlideModel> slideModels;
+        slideModels = new ArrayList<>();
         for (i = 0; i < apartment.getNumOfPictures(); i++) {
             StorageReference pictureRef = storageReference.child("House Pictures/" + apartment.getSellerEmail() + "/House " + apartment.getOfferCounter() + "/Picture " + i);
             pictureRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    System.out.println("222222 " + apartment.getNumOfPictures());
-                    slideModels.add(new SlideModel(R.drawable.apartment1, ScaleTypes.FIT));
+                    slideModels.add(new SlideModel(uri.toString(), ScaleTypes.FIT));
+                    imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 //                    slideModels.add(new SlideModel(uri.toString(), ScaleTypes.FIT));
 //                    if(i==apartment.getNumOfPictures()-1) {
 //                        holder.imageSlider.setImageList(slideModels, ScaleTypes.FIT);
@@ -200,28 +200,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 //                    }
                 }
             });
-
-            pictureRef.getDownloadUrl().addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@android.support.annotation.NonNull Exception e) {
-                    // If for some reason it fails , load default image
-                    //  slideModels.add(new SlideModel(R.drawable.apartment1, ScaleTypes.FIT));
-
-                }
-            });
-
-            pictureRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    System.out.println("2222222222222222222222222222222222222222 " + apartment.getNumOfPictures());
-                    if (i == apartment.getNumOfPictures() - 1) {
-                        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-                    }
-                }
-            });
-
         }
-
     }
 
 
