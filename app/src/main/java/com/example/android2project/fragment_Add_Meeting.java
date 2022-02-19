@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -65,6 +67,16 @@ public class fragment_Add_Meeting extends Fragment {
     ImageView goBackBtn;
     List<Uri> listImageUri;
 
+
+    /* //Yul Expandable
+   TextView categoryDetails;
+   LinearLayout layout;
+*/
+    //Yul room number spinner
+    AutoCompleteTextView autoCompleteRoomsTextView;
+
+    //Yul parking amount spinner
+    AutoCompleteTextView autoCompleteParkingTextView;
 
 
     @Override
@@ -177,6 +189,17 @@ public class fragment_Add_Meeting extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+//        //Yul room number spinner
+//        String [] roomNumberSpinner = getResources().getStringArray(R.array.room_number);
+//        ArrayAdapter roomsArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, roomNumberSpinner);
+//        autoCompleteRoomsTextView.setAdapter(roomsArrayAdapter);
+//
+//        //Yul parking amount spinner
+//        String [] parkingNumberSpinner = getResources().getStringArray(R.array.parking_number);
+//        ArrayAdapter parkingArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, parkingNumberSpinner);
+//        autoCompleteRoomsTextView.setAdapter(parkingArrayAdapter);
+
     }
 
     @Override
@@ -255,6 +278,11 @@ public class fragment_Add_Meeting extends Fragment {
                     });
         }
     }
+
+    public void expand_first_CV(View view) {
+
+    }
+
 }
 
 

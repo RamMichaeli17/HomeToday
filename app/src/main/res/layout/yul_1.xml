@@ -12,20 +12,17 @@
         tools:context=".loggedInActivity"
         android:orientation="vertical">
 
-
-
             <ImageView
                 android:layout_width="75dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_baseline_keyboard_backspace_24"
                 android:id="@+id/goBackBtn"/>
 
-
-
         <androidx.cardview.widget.CardView
             android:id="@+id/adding_apartment_first_CV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="expand_first_CV"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
 
@@ -40,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/aharoni_boldt"
                     android:padding="@dimen/_10sdp"
-                    android:text="1) Category"
+                    android:text="@string/category"
                     android:textColor="#E8B34A"
                     android:textSize="23sp"
                     android:textStyle="bold" />
@@ -52,16 +49,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/adding_apartment_sale_CV"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layoutDirection="ltr"
                     app:cardBackgroundColor="?attr/colorPrimary"
@@ -72,23 +68,22 @@
                         android:layout_height="match_parent"
                         android:layoutDirection="ltr"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/for_rent" />
+                        android:src="@drawable/rent_pressed_selector" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="15dp"
                         android:background="#FFFFFF"
                         android:layoutDirection="ltr"
                         android:orientation="vertical"
-                        android:padding="2dp">
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aharoni"
-                            android:text="For Rental"
+                            android:text="@string/for_rental"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -99,10 +94,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="36dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toEndOf="@id/adding_apartment_sale_CV"
                     android:layoutDirection="ltr"
                     app:cardBackgroundColor="?attr/colorPrimary"
                     app:cardCornerRadius="4dp">
@@ -112,31 +105,26 @@
                         android:layout_height="match_parent"
                         android:layoutDirection="ltr"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/for_sale" />
+                        android:src="@drawable/sale_pressed_selector" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="15dp"
                         android:background="#FFFFFF"
                         android:layoutDirection="ltr"
                         android:orientation="vertical"
-                        android:padding="2dp">
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aharoni"
-                            android:text="For Sale"
+                            android:text="@string/for_sale"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
-
-
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
-
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -176,14 +164,14 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="City"
+                        android:hint="@string/city"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/cityET"
+                            android:id="@+id/auto_complete_text1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"/>
@@ -193,7 +181,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Address"
+                        android:hint="@string/address"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
@@ -209,7 +197,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Floor"
+                        android:hint="@string/floor"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
@@ -225,13 +213,19 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Total Building Floors"
+                        android:hint="@string/total_building_floors"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/auto_complete_text4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"/>
                     </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -272,7 +266,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Square meter "
+                        android:hint="@string/square_meter"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_100sdp"
@@ -286,20 +280,38 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Rooms number"
+                        android:hint="@string/rooms_number"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_100sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        android:layout_marginEnd="@dimen/_100sdp">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/roomsET"
+                        <AutoCompleteTextView
+                            android:id="@+id/auto_complete_room_number"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:inputType="number" />
+                            android:layout_weight="1"
+                            android:inputType="none" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/parkings"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_100sdp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/auto_complete_parking_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
