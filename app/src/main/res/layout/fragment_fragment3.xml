@@ -3,15 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment3">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment1_homePage"
+    android:id="@+id/fragment_fragment1">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Profile? "
-        android:gravity="center|top"
-        android:layout_marginTop="50dp"
-        android:textSize="60sp"/>
+        android:id="@+id/recyclerViewMeetings" />
+
+
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:backgroundTint="@color/design_default_color_primary"-->
+    <!--        android:foreground="@drawable/ic_baseline_add_24"-->
+    <!--        android:layout_gravity="bottom|right"-->
+    <!--        android:layout_margin="30dp"-->
+    <!--        android:id="@+id/floatingActionButton"-->
+    <!--        />-->
+
 
 </FrameLayout>

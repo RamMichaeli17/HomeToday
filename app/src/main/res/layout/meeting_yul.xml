@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/cardview_round_corners"
-    android:backgroundTint="@color/white"
+    android:background="@color/primary_text"
+    android:backgroundTint="@color/input_background"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineSpotShadowColor="@color/design_default_color_primary"
+        android:outlineSpotShadowColor="@color/primary_dark"
         app:cardCornerRadius="10dp"
         app:cardElevation="18dp"
         app:cardUseCompatPadding="true">
@@ -69,11 +68,11 @@
                             android:id="@+id/seller_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_6sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
                             android:fontFamily="@font/aharoni_boldt"
                             android:shadowColor="@color/black"
                             android:shadowRadius="2"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:layout_marginStart="@dimen/_6sdp"
                             android:text="Hello Shalom"
                             android:textColor="@color/white"
                             android:textSize="20sp"
@@ -83,10 +82,10 @@
                             android:id="@+id/publish_date_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_6sdp"
                             android:fontFamily="@font/aharoni"
                             android:shadowColor="@color/black"
                             android:shadowRadius="1"
-                            android:layout_marginStart="@dimen/_6sdp"
                             android:text="24/10/2021"
                             android:textColor="#FFFFFF"
                             android:textSize="15sp"
@@ -97,11 +96,11 @@
                         android:id="@+id/hoursAgoTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
                         android:fontFamily="@font/aharoni"
+                        android:gravity="end"
                         android:shadowColor="@color/black"
                         android:shadowRadius="1"
-                        android:gravity="end"
-                        android:layout_marginTop="@dimen/_11sdp"
                         android:text="08:16"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
@@ -110,32 +109,24 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/secondry_text"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"/>
 
             <LinearLayout
                 android:id="@+id/infoLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardView"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/apartment_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/aharoni_boldt"
-                    android:shadowColor="#A39436"
-                    android:shadowRadius="15"
-                    android:text="@string/city"
-                    android:textColor="#FFFFFF"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/apartment_name_tv"
                     android:gravity="center"
                     android:layoutDirection="ltr">
 
@@ -149,7 +140,7 @@
                         android:shadowRadius="15"
                         android:text="1,500,000"
                         android:textColor="#FFFFFF"
-                        android:textSize="30sp"
+                        android:textSize="35sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -161,7 +152,7 @@
                         android:shadowRadius="15"
                         android:text=" ₪ | "
                         android:textColor="#FFFFFF"
-                        android:textSize="25sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -174,22 +165,39 @@
                         android:shadowRadius="15"
                         android:text="5"
                         android:textColor="#FFFFFF"
-                        android:textSize="27sp"
+                        android:textSize="35sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginStart="@dimen/_7sdp"
                         android:fontFamily="@font/felix007"
                         android:shadowColor="#A39436"
                         android:shadowRadius="15"
                         android:text="@string/rooms"
-                        android:layout_marginStart="@dimen/_7sdp"
                         android:textColor="#FFFFFF"
-                        android:textSize="25sp"
+                        android:textSize="35sp"
+                        android:padding="@dimen/_5sdp"
                         android:textStyle="bold" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/apartment_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/aharoni_boldt"
+                    android:shadowColor="#A39436"
+                    android:shadowRadius="15"
+                    android:text="@string/city"
+                    android:padding="2dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -242,6 +250,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="10dp"
+                        android:visibility="gone"
                         android:src="@drawable/house_icon" />
 
                     <ImageView
@@ -249,57 +258,57 @@
                         android:layout_width="30dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
-                        android:visibility="gone"
-                        android:src="@drawable/ic_baseline_delete_24" />
+                        android:src="@drawable/ic_baseline_delete_24"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/seperation_line" />
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layoutDirection="ltr"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/fav_tv"
-                        android:layout_width="140dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="50dp"
                         android:drawableStart="@drawable/little_fav_icon"
+                        android:drawablePadding="@dimen/_5sdp"
                         android:padding="5dp"
                         android:shadowColor="@color/black"
                         android:shadowRadius="10"
-                        android:drawablePadding="@dimen/_5sdp"
                         android:text="@string/favourite"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
-
                     <TextView
                         android:id="@+id/chat_tv"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="100dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="80dp"
                         android:drawableStart="@drawable/ic_baseline_chat_24"
-                        android:shadowColor="@color/black"
                         android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:shadowColor="@color/black"
+
                         android:shadowRadius="10"
                         android:text="@string/chat"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

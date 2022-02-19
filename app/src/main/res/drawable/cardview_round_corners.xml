@@ -6,6 +6,6 @@
         android:radius="5dp" />
 
     <solid
-        android:color="#FFC35D" />
+        android:color="@color/input_background" />
 
 </shape>

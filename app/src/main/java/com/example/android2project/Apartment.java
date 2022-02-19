@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import android.widget.ImageView;
 
 public class Apartment implements Parcelable {
-    private int price,rooms,offerCounter,numOfPictures,floor,totalFloors,squareMeter,parkings;
+    private int price,rooms,offerCounter,numOfPictures,floor,totalFloors,squareMeter,parkings,undo;
     private String sellerName, address, date,sellerEmail,time,sellerUID, enteringDate,city;
     private ImageView profilePic;
     private boolean forRental,airConditioner, elevator, storeroom, balcony, mamad, kosherKitchen, renovated, furnished;
@@ -44,6 +44,7 @@ public class Apartment implements Parcelable {
         this.kosherKitchen = kosherKitchen;
         this.renovated = renovated;
         this.furnished = furnished;
+        this.undo=0;
     }
 
     protected Apartment(Parcel in) {
@@ -297,6 +298,14 @@ public class Apartment implements Parcelable {
 
     public void setOfferCounter(int offerCounter) {
         this.offerCounter = offerCounter;
+    }
+
+    public int getUndo() {
+        return undo;
+    }
+
+    public void setUndo(int undo) {
+        this.undo = undo;
     }
 
 

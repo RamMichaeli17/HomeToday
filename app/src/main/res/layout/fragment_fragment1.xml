@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment1"
+    tools:context=".fragment1_homePage"
     android:id="@+id/fragment_fragment1">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -31,7 +31,7 @@
         android:layout_marginRight="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_24sdp"
         android:src="@drawable/ic_add"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/primary_dark"
         android:layout_gravity="bottom|right"
         app:tint="@color/white"/>
 

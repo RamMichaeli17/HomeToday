@@ -60,6 +60,7 @@
     <string name="asking_price">Asking Price:</string>
     <string name="price">Price</string>
     <string name="date">Date</string>
+    <string name="unfavourite">Unfavourite</string>
 
     <string-array name="room_number">
         <item>1</item>
