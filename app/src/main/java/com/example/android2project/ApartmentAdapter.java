@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,14 +101,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
             storage = FirebaseStorage.getInstance();
             storageReference=storage.getReference();
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onApartmentClicked(getAdapterPosition(), view);
-                }
-            });
-
         }
     }
 
@@ -127,7 +120,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
         Apartment apartment = apartments.get(position);
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
-        holder.apartmentNameTv.setText(capitalizeStr(apartment.getApartmentName()));
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
@@ -174,6 +167,14 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 //        }
 
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),ViewingApartmentActivity.class);
+                intent.putExtra("apartment",apartment);
+                view.getContext().startActivity(intent);
+            }
+        });
 
 
         holder.removeOffer.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +202,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Are you sure you want to delete "+ apartment.getApartmentName()+"?").setPositiveButton("Yes", dialogClickListener)
+                builder.setMessage("Are you sure you want to delete "+ apartment.getAddress()+"?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
             }
         });

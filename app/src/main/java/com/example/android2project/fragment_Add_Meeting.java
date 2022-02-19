@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -67,16 +68,14 @@ public class fragment_Add_Meeting extends Fragment {
     ImageView goBackBtn;
     List<Uri> listImageUri;
 
-
-    /* //Yul Expandable
-   TextView categoryDetails;
-   LinearLayout layout;
-*/
-    //Yul room number spinner
+    String[] items =  {"Material","Design","Components","Android","5.0 Lollipop"};
     AutoCompleteTextView autoCompleteRoomsTextView;
-
-    //Yul parking amount spinner
     AutoCompleteTextView autoCompleteParkingTextView;
+    ArrayAdapter<String> roomAdapterItems;
+    ArrayAdapter<String> parkingAdapterItems;
+
+
+
 
 
     @Override
@@ -102,6 +101,32 @@ public class fragment_Add_Meeting extends Fragment {
         submitMeeting = rootView.findViewById(R.id.submitMeeting);
         addImage=rootView.findViewById(R.id.addImage);
         goBackBtn=rootView.findViewById(R.id.goBackBtn);
+
+        autoCompleteParkingTextView = rootView.findViewById(R.id.auto_complete_parking_number);
+        parkingAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,items);
+        autoCompleteParkingTextView.setAdapter(parkingAdapterItems);
+
+        autoCompleteParkingTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(rootView.getContext(), "item", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        autoCompleteRoomsTextView = rootView.findViewById(R.id.auto_complete_room_number);
+        roomAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,items);
+        autoCompleteRoomsTextView.setAdapter(roomAdapterItems);
+
+        autoCompleteRoomsTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(rootView.getContext(), "item", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
