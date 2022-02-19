@@ -8,19 +8,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".loggedInActivity"
         android:orientation="vertical">
-
-
 
         <ImageView
             android:layout_width="75dp"
             android:layout_height="50dp"
+            android:layoutDirection="ltr"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             android:id="@+id/goBackBtn"/>
-
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/adding_apartment_first_CV"
@@ -30,17 +27,17 @@
             app:cardElevation="5dp">
 
             <LinearLayout
+                android:id="@+id/category_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/category_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/aharoni_boldt"
                     android:padding="@dimen/_10sdp"
-                    android:text="1) Category"
+                    android:text="@string/category"
                     android:textColor="#E8B34A"
                     android:textSize="23sp"
                     android:textStyle="bold" />
@@ -52,22 +49,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp"
+                android:layoutDirection="ltr"
+                android:visibility="gone">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/adding_apartment_sale_CV"
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:layoutDirection="ltr"
                     app:cardBackgroundColor="?attr/colorPrimary"
                     app:cardCornerRadius="4dp">
 
                     <ImageView
+                        android:id="@+id/for_rental"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layoutDirection="ltr"
@@ -78,17 +77,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="15dp"
                         android:background="#FFFFFF"
                         android:layoutDirection="ltr"
                         android:orientation="vertical"
-                        android:padding="2dp">
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aharoni"
-                            android:text="For Rental"
+                            android:text="@string/for_rental"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -99,15 +97,14 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="160dp"
                     android:layout_height="180dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="36dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_toEndOf="@id/adding_apartment_sale_CV"
                     android:layoutDirection="ltr"
                     app:cardBackgroundColor="?attr/colorPrimary"
                     app:cardCornerRadius="4dp">
 
                     <ImageView
+                        android:id="@+id/for_sale"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layoutDirection="ltr"
@@ -118,25 +115,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="15dp"
                         android:background="#FFFFFF"
                         android:layoutDirection="ltr"
                         android:orientation="vertical"
-                        android:padding="2dp">
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aharoni"
-                            android:text="For Sale"
+                            android:text="@string/for_sale"
                             android:textAlignment="center"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
-
-
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
-
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -150,12 +142,12 @@
             android:layout_marginBottom="@dimen/_5sdp">
 
             <LinearLayout
+                android:id="@+id/address_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/address_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2) Property Address"
@@ -164,75 +156,84 @@
                     android:fontFamily="@font/aharoni_boldt"
                     android:padding="@dimen/_10sdp"
                     android:textSize="23sp"/>
-
-                <LinearLayout
-                    android:id="@+id/property_address_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="@dimen/_10sdp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="City"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/cityET"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Address"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/auto_complete_text2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Floor"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/auto_complete_text3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Total Building Floors"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/property_address_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:hint="@string/city">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/auto_complete_text1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:hint="@string/address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/auto_complete_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:hint="@string/floor">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/auto_complete_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:hint="@string/total_building_floors">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/auto_complete_text4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
 
@@ -246,12 +247,12 @@
             android:layout_marginBottom="@dimen/_5sdp">
 
             <LinearLayout
+                android:id="@+id/property_info_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/property_info_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3) Property Info"
@@ -260,61 +261,77 @@
                     android:fontFamily="@font/aharoni_boldt"
                     android:padding="@dimen/_10sdp"
                     android:textSize="23sp"/>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/property_info_info"
+            <LinearLayout
+                android:id="@+id/property_info_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:hint="@string/square_meter"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_100sdp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/auto_complete_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Square meter "
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_100sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/auto_complete_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/rooms_number"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_100sdp">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <AutoCompleteTextView
+                        android:id="@+id/auto_complete_room_number"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Rooms number"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_100sdp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/roomsET"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="number" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/parkings"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_100sdp">
 
-
-
-                </LinearLayout>
+                    <AutoCompleteTextView
+                        android:id="@+id/auto_complete_parking_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:id="@+id/property_facilities_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_10sdp">
+                    android:layout_marginTop="@dimen/_20sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Property Facilities:"
+                        android:text="@string/property_facilities"
                         android:fontFamily="@font/aharoni_boldt"
                         android:padding="10dp"
                         android:textSize="@dimen/_15sdp"/>
@@ -405,12 +422,12 @@
             android:layout_marginBottom="@dimen/_5sdp">
 
             <LinearLayout
+                android:id="@+id/priceDate_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/priceDate_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4) Price and Dates"
@@ -419,64 +436,66 @@
                     android:fontFamily="@font/aharoni_boldt"
                     android:padding="@dimen/_10sdp"
                     android:textSize="23sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/priceDate_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:visibility="gone">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Asking price:"
+                        android:fontFamily="@font/aharoni_boldt"
+                        android:textSize="@dimen/_15sdp"/>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:fontFamily="@font/aharoni"
+                        android:inputType="number"
+                        android:hint="Price"
+                        android:textAlignment="center"
+                        android:id="@+id/askingPriceET"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_10sdp">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/priceDate_info"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Entering Date:"
+                        android:fontFamily="@font/aharoni_boldt"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Asking price:"
-                            android:fontFamily="@font/aharoni_boldt"
-                            android:textSize="@dimen/_15sdp"/>
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_20sdp"
-                            android:fontFamily="@font/aharoni"
-                            android:inputType="number"
-                            android:hint="Price"
-                            android:textAlignment="center"
-                            android:id="@+id/askingPriceET"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Entering Date:"
-                            android:fontFamily="@font/aharoni_boldt"
-                            android:textSize="@dimen/_15sdp" />
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Date"
-                            android:textAlignment="center"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_20sdp"
-                            android:inputType="date"/>
-                    </LinearLayout>
-
+                        android:hint="Date"
+                        android:textAlignment="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:inputType="date"/>
                 </LinearLayout>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
+
         <Button
             android:id="@+id/addImage"
             android:layout_width="wrap_content"
@@ -490,8 +509,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="@dimen/_10sdp"
             android:fontFamily="@font/aharoni_boldt"
-            android:background="@drawable/edit_profile_log_out_buttons" />
-
+            android:background="@drawable/add_pictures_button"/>
 
         <Button
             android:id="@+id/submitMeeting"
@@ -500,7 +518,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:padding="15dp"
-            android:text="Post listing"
+            android:text="@string/post_apartment"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textStyle="bold"

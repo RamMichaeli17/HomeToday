@@ -31,7 +31,7 @@
         android:layout_marginRight="@dimen/_24sdp"
         android:layout_marginBottom="@dimen/_24sdp"
         android:src="@drawable/ic_add"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/primary_dark"
         android:layout_gravity="bottom|right"
         app:tint="@color/white"/>
 
