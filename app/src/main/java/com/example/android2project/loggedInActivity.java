@@ -126,10 +126,10 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
 
         tabLayout.setupWithViewPager(viewPager);
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        vpAdapter.addFragment(new fragment1_homePage(),"Main");
+        vpAdapter.addFragment(new fragment1_homePage(),getString(R.string.main));
         if(isLoggedIn) {
-            vpAdapter.addFragment(new fragment2_chat(), "Chat");
-            vpAdapter.addFragment(new fragment3(), "Favourites");
+            vpAdapter.addFragment(new fragment2_chat(), getString(R.string.chat));
+            vpAdapter.addFragment(new fragment3(), getString(R.string.favourites));
         }
         viewPager.setAdapter(vpAdapter);
 

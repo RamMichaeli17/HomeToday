@@ -104,7 +104,6 @@
     <string name="cancel">ביטול</string>
     <string name="search">חיפוש</string>
     <string name="please_fill_all_values">אנא מלא את כל הערכים</string>
-    <string name="offer">הצעה</string>
     <string name="for1">עבור</string>
     <string name="has_been_created">נוצרה!</string>
     <string name="my_profile">הפרופיל שלי</string>
@@ -117,4 +116,6 @@
     <string name="name_required">דרוש שם מלא!</string>
     <string name="age_required">דרוש גיל!</string>
     <string name="email_required">דרוש אימייל!</string>
+    <string name="sub_menu">תפריט משנה</string>
+    <string name="menu">תפריט</string>
 </resources>

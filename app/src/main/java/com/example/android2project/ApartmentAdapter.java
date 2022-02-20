@@ -189,9 +189,9 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
         holder.hoursAgoTV.setText(apartment.getTime());
         if(apartment.isForRental())
-            holder.forRent.setText("For rental");
+            holder.forRent.setText(R.string.for_rental);
         else
-            holder.forRent.setText("For sale");
+            holder.forRent.setText(R.string.for_sale);
 
         if (isLoggedIn && apartment.getSellerEmail().equals(user.getEmail()))
         {

@@ -471,7 +471,7 @@
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:fontFamily="@font/aharoni"
                         android:inputType="number"
-                        android:hint="Price"
+                        android:hint="@string/price"
                         android:textAlignment="center"
                         android:id="@+id/askingPriceET"/>
                 </LinearLayout>

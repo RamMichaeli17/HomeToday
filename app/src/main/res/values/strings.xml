@@ -64,7 +64,6 @@
     <string name="unfavourite">Unfavourite</string>
     <string name="entering_date2">Entering Date:</string>
     <string name="full_name">Full Name</string>
-    <string name="required">Required*</string>
     <string name="insert_city_name">Insert City Name</string>
     <string name="offer">Offers</string>
     <string name="age">Age</string>
@@ -104,7 +103,6 @@
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
     <string name="please_fill_all_values">Please fill in all values</string>
-    <string name="offer">offer #</string>
     <string name="for1">for</string>
     <string name="has_been_created">has been created!</string>
     <string name="my_profile">My Profile</string>
@@ -117,6 +115,8 @@
     <string name="name_required">Full name is required!</string>
     <string name="age_required">Age is required!</string>
     <string name="email_required">Email is required!</string>
+    <string name="sub_menu">Sub menu</string>
+    <string name="menu">Menu</string>
 
 
 </resources>
