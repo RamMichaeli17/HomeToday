@@ -45,7 +45,7 @@ public class MessagingService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,channelId);
-        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setSmallIcon(R.drawable.ic_app_icon);
         builder.setContentTitle(chatUser.name);
         builder.setContentText(remoteMessage.getData().get(Constants.KEY_MESSAGE));
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(
