@@ -54,6 +54,7 @@ public class loggedInActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ArrayList<View> touchablesToRestore = new ArrayList<View>();
+    boolean isLoggedIn;
 
     private PreferenceManager preferenceManager;
 
@@ -83,41 +84,37 @@ public class loggedInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logged_in);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-        getToken();
+     //   getToken();
 
         tabLayout=findViewById(R.id.tabLayout);
         viewPager=findViewById(R.id.viewPager);
 
         tabLayout.setupWithViewPager(viewPager);
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        vpAdapter.addFragment(new fragment1_homePage(),"MAIN");
-        vpAdapter.addFragment(new fragment2_chat(),"CHAT");
-        vpAdapter.addFragment(new fragment3(),"FAVOURITES");
+        vpAdapter.addFragment(new fragment1_homePage(),"Main");
+      //  vpAdapter.addFragment(new fragment2_chat(),"Chat");
+      //  vpAdapter.addFragment(new fragment3(),"Favourites");
         viewPager.setAdapter(vpAdapter);
-
-
-
-
-//        LinearLayout tabStrip = ((LinearLayout)tabLayout.getChildAt(0));
-//        for(int i = 0; i < tabStrip.getChildCount(); i++) {
-//            tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
-//                @Override
-//                public boolean onTouch(View v, MotionEvent event) {
-//                    return true;
-//                }
-//            });
-//        }
-
-
-
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_view);
 
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        reference= FirebaseDatabase.getInstance().getReference("Users");
+        if (user == null)
+            isLoggedIn = false;
+        else
+            isLoggedIn = true;
+
+        // userID = user.getUid();
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Android Project");
+        if (isLoggedIn)
+            toolbar.setTitle("Android Project");
+        else
+            toolbar.setTitle("Android Project - Guest Mode");
         setSupportActionBar(toolbar);
 
         ActionBar actionBar= getSupportActionBar();
@@ -125,9 +122,6 @@ public class loggedInActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
 
 
-        user=FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
 
         pictureBtn=findViewById(R.id.pictureBtn);
         pictureIV=findViewById(R.id.pictureIV);
@@ -143,19 +137,11 @@ public class loggedInActivity extends AppCompatActivity {
                 }
                 else if(item.getTitle().equals("My Profile"))
                 {
-
-
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.testFrameLayout,new MyProfile());
                     fragmentTransaction.commit();
-               //     startActivity(new Intent(loggedInActivity.this, Ram_MainActivity.class));
-             //       startActivity(new Intent(loggedInActivity.this,MyProfile.class));
-//                    FragmentManager fragmentManager = getSupportFragmentManager();
-//                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                    transaction.add(R.id.drawer_layout,new profileFragment(),"profile_fragment");
-//                    transaction.addToBackStack(null);
-//                    transaction.commit();
+
                 }
                 else if(item.getTitle().equals("Main"))
                 {
@@ -168,143 +154,6 @@ public class loggedInActivity extends AppCompatActivity {
             }
         });
 
-
-/*        pictureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 1);
-            }
-        });
-
-
-        hiTV=findViewById(R.id.two);
-        nameTV=findViewById(R.id.three);
-        emailTV=findViewById(R.id.four);
-        ageTV=findViewById(R.id.five);
-
-
-        // Load user profile image
-
-        StorageReference profileRef = storageReference.child("Profile pictures/"+user.getEmail());
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(pictureIV);
-
-            }
-        });
-        profileRef.getDownloadUrl().addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pictureIV.setImageDrawable(getDrawable(R.drawable.ic_baseline_person_24));
-            }
-        });
-
-
-
-        // Load user data (email,age,name)
-
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-
-                if(userProfile!= null)
-                {
-                    String fullName = userProfile.fullName;
-                    String email = userProfile.email;
-                    String age = userProfile.age;
-
-                    jobCounter=userProfile.jobsCounter;
-
-                    nameTV.setText(fullName);
-                    emailTV.setText(email);
-                    ageTV.setText(age);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(loggedInActivity.this,"Something went wrong",Toast.LENGTH_LONG).show();
-            }
-        });
-
-        logoutBtn=findViewById(R.id.logoutBtn);
-        addMeetingBtn=findViewById(R.id.addMeeting);
-        addMeetingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(loggedInActivity.this,AddMeeting.class));
-            }
-        });
-
-        allMeetingsBtn=findViewById(R.id.allMeetings);
-        allMeetingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(loggedInActivity.this,AllMeetings.class));
-            }
-        });
-
-
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(loggedInActivity.this,"Successfully signed out",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(loggedInActivity.this,ShouldBeDeleted2.class));
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imageUri = data.getData();
-            uploadPicture();
-        }
-    }
-
-        private void uploadPicture()
-        {
-            final ProgressDialog pd = new ProgressDialog(this);
-            pd.setTitle("uploading Image...");
-            pd.show();
-
-            StorageReference fileRef = storageReference.child("Profile pictures/"+user.getEmail());
-
-                    fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    pd.dismiss();
-                                    Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
-
-                                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            Picasso.get().load(uri).into(pictureIV);
-                                        }
-                                    });
-                                }
-                                })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception exception) {
-                                        pd.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Failed To Upload", Toast.LENGTH_LONG).show();
-                                    }
-                                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                                            pd.setMessage("Just a moment...");
-                                        }
-                    });
-        }*/
     }
     public void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();

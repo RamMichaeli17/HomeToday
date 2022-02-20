@@ -1,6 +1,8 @@
 package com.example.android2project;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android2project.activities.ChatActivity;
+import com.example.android2project.activities.SignInActivity;
 import com.example.android2project.adapters.UserAdapter;
 import com.example.android2project.listeners.UserListener;
 import com.example.android2project.models.chatUser;
@@ -23,6 +26,7 @@ import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +45,8 @@ public class fragment1_homePage extends Fragment implements UserListener {
     List<Apartment> list;
     FloatingActionButton fab;
     TabLayout tabLayout;
+    boolean isLoggedIn;
+    Context context;
 
 
     List<chatUser> chatUsers = new ArrayList<>();
@@ -65,7 +71,13 @@ public class fragment1_homePage extends Fragment implements UserListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         preferenceManager = new PreferenceManager(getActivity());
-        getUsers();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+            isLoggedIn = false;
+        else {
+            isLoggedIn = true;
+            getUsers();
+        }
+        context = getContext();
         super.onCreate(savedInstanceState);
     }
 
@@ -88,6 +100,13 @@ public class fragment1_homePage extends Fragment implements UserListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(!isLoggedIn)
+                {
+                    notLoggedInDialog();
+                    return;
+                }
+
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.testFrameLayout,new fragment_Add_Meeting());
@@ -209,5 +228,27 @@ public class fragment1_homePage extends Fragment implements UserListener {
                     }
                 });
 
+    }
+
+    public void notLoggedInDialog()
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        startActivity(new Intent(context.getApplicationContext(), SignInActivity.class));
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("You are not logged in").setPositiveButton("Login", dialogClickListener)
+                .setNegativeButton("Back", dialogClickListener).show();
     }
 }

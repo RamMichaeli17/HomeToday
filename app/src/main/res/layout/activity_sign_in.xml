@@ -107,8 +107,18 @@
             android:id="@+id/textCreateNewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="@string/create_new_account"
+            android:textColor="@color/primary_dark"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/guestModeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:text="Continue as guest"
             android:textColor="@color/primary"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"/>

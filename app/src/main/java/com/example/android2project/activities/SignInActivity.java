@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -42,6 +43,8 @@ public class SignInActivity extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
+
+
     }
 
     private void setListeners() {
@@ -52,7 +55,9 @@ public class SignInActivity extends AppCompatActivity {
                 signIn();
             }
         });
-//        binding.buttonSignIn.setOnClickListener(v-> addDataToFirestore());
+        binding.guestModeTV.setOnClickListener(v-> {
+            startActivity(new Intent(getApplicationContext(),loggedInActivity.class));
+        });
     }
 
     private  void signIn() {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.bumptech.glide.RequestManager;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.android2project.activities.SignInActivity;
 import com.example.android2project.listeners.UserListener;
 import com.example.android2project.models.chatUser;
 import com.example.android2project.utilities.PreferenceManager;
@@ -56,6 +58,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     int counter = 0, i;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    boolean isLoggedIn;
 
 
     public ApartmentAdapter(Context context, List<Apartment> apartments, List<chatUser> chatUsers, UserListener userListener) {
@@ -63,6 +66,8 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         glide = Glide.with(context);
         this.userListener = userListener;
         this.chatUsers = chatUsers;
+        this.context=context;
+
     }
 
     interface ApartmentListener {
@@ -117,14 +122,18 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     public ApartmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meeting_yul, parent, false);
         ApartmentViewHolder apartmentViewHolder = new ApartmentViewHolder(view);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+            isLoggedIn = false;
+        else {
+            isLoggedIn = true;
+        }
+
         return apartmentViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ApartmentViewHolder holder, @SuppressLint("RecyclerView") int position) {
-     //   chatMessage.conversionName.substring(0, 1).toUpperCase() + chatMessage.conversionName.substring(1).toLowerCase()
-     //   apartment.getApartmentName().substring(0, 1).toUpperCase() + apartment.getSellerName().substring(1).toLowerCase()
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         Apartment apartment = apartments.get(position);
@@ -135,7 +144,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
         holder.hoursAgoTV.setText(apartment.getTime());
 
-        if (apartment.getSellerEmail().equals(user.getEmail()))
+        if (isLoggedIn && apartment.getSellerEmail().equals(user.getEmail()))
         {
             holder.removeOffer.setVisibility(View.VISIBLE);
         }
@@ -156,29 +165,18 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             }
         });
 
-
-
-
-        testFunc(apartment, holder.imageSlider);
-
-        // slideModels.clear();
-
-
-//        if(apartment.getNumOfPictures()==4) {
-//            slideModels.add(new SlideModel(R.drawable.apartment1, ScaleTypes.FIT));
-//            slideModels.add(new SlideModel(R.drawable.apartment2, ScaleTypes.FIT));
-//            slideModels.add(new SlideModel(R.drawable.apartment3, ScaleTypes.FIT));
-//        }
-//        else
-//        {
-//            slideModels.add(new SlideModel(R.drawable.apartment2, ScaleTypes.FIT));
-//            slideModels.add(new SlideModel(R.drawable.apartment3, ScaleTypes.FIT));
-//        }
+        loadImageSlider(apartment, holder.imageSlider);
 
 
         holder.favTv.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                if(!isLoggedIn)
+                {
+                    notLoggedInDialog();
+                    return;
+                }
 
                 if (apartment.getUndo()==0) {
                     holder.fav_clicked.setVisibility(View.VISIBLE);
@@ -260,6 +258,12 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             @Override
             public void onClick(View view) {
 
+                if(!isLoggedIn)
+                {
+                    notLoggedInDialog();
+                    return;
+                }
+
                 if (apartment.getSellerEmail().equals(user.getEmail())) {
                     Toast.makeText(view.getContext(), "This is your offer! ", Toast.LENGTH_SHORT).show();
                     return;
@@ -290,9 +294,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         });
 
 
-      //  glide.load(apartment.getProfilePic()).into(holder.profilePic);
-
-
     }
 
     private void DeleteRealtimeDatabase(Apartment apartment) {
@@ -311,7 +312,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         });
     }
 
-    private void testFunc(Apartment apartment, ImageSlider imageSlider) {
+    private void loadImageSlider(Apartment apartment, ImageSlider imageSlider) {
         List<SlideModel> slideModels;
         slideModels = new ArrayList<>();
         for (i = 0; i < apartment.getNumOfPictures(); i++) {
@@ -368,5 +369,27 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             @Override
             public void onCancelled(@android.support.annotation.NonNull DatabaseError error) { }
         });
+    }
+
+    public void notLoggedInDialog()
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        context.startActivity(new Intent(context.getApplicationContext(), SignInActivity.class));
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("You are not logged in").setPositiveButton("Login", dialogClickListener)
+                .setNegativeButton("Back", dialogClickListener).show();
     }
 }

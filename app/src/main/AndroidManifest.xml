@@ -25,7 +25,7 @@
 
         <!-- TODO Pending task -->
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".loggedInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -42,7 +42,7 @@
 
 
 
-        <activity android:name=".loggedInActivity" />
+        <activity android:name=".activities.SignInActivity" />
 <!--        <activity android:name=".ShouldBeDeleted" />-->
 
 <!--        <activity

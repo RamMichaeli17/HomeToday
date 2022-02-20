@@ -57,6 +57,7 @@ public class MyProfile extends Fragment {
     ImageView profileImage,backBtn;
     TextView nameTV,emailTV,ageTV;
     DrawerLayout drawerLayout;
+    Boolean isLoggedIn;
 
 
     @Override
@@ -79,6 +80,7 @@ public class MyProfile extends Fragment {
         emailTV=rootView.findViewById(R.id.profileEmailTV);
         ageTV=rootView.findViewById(R.id.profileAgeTV);
         backBtn=rootView.findViewById(R.id.profileBackBtn);
+
 
         ((loggedInActivity)getActivity()).disableTabLayout();
 
@@ -113,7 +115,15 @@ public class MyProfile extends Fragment {
 
         user= FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
+
+        if (user == null)
+            isLoggedIn = false;
+        else {
+            isLoggedIn = true;
+            userID = user.getUid();
+        }
+
+
 
 
 
@@ -124,21 +134,27 @@ public class MyProfile extends Fragment {
 
         // Load user profile image
 
-        StorageReference profileRef = storageReference.child("Profile pictures/"+user.getEmail());
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        if(isLoggedIn) {
+            StorageReference profileRef = storageReference.child("Profile pictures/" + user.getEmail());
+            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profileImage);
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).into(profileImage);
 
-            }
-        });
-        profileRef.getDownloadUrl().addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                profileImage.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_person_24));
-            }
-        });
+                }
+            });
+            profileRef.getDownloadUrl().addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    profileImage.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_person_24));
+                }
+            });
+        }
+        else
+        {
+            profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
+        }
 
 
 
