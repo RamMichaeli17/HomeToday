@@ -84,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding.buttonSignUp.setOnClickListener(v -> {
 
             fullName = binding.inputName.getEditText().getText().toString().trim();
-            age = "Default";
+            age = binding.inputAge.getEditText().getText().toString().trim();
             email = binding.inputEmail.getEditText().getText().toString().trim();
             password = binding.inputPassword.getEditText().getText().toString().trim();
 
