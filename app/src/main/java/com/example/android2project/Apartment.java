@@ -44,6 +44,7 @@ public class Apartment implements Parcelable {
         this.undo=0;
     }
 
+
     protected Apartment(Parcel in) {
         price = in.readInt();
         rooms = in.readInt();
@@ -53,6 +54,7 @@ public class Apartment implements Parcelable {
         totalFloors = in.readInt();
         squareMeter = in.readInt();
         parkings = in.readInt();
+        undo = in.readInt();
         sellerName = in.readString();
         address = in.readString();
         date = in.readString();

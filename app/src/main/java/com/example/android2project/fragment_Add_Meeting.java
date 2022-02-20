@@ -56,14 +56,15 @@ public class fragment_Add_Meeting extends Fragment {
     private DatabaseReference reference;
     private String userID;
     int price,rooms,floor,totalFloors,squareMeter,parkings;
-    String city,username, address, date;
+    String city,username, address, date,itemRooms="",itemParking="";
     Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     ImageView goBackBtn;
     List<Uri> listImageUri;
 
-    String[] items =  {"Material","Design","Components","Android","5.0 Lollipop"};
+    String[] roomItems =  {"1","2","3","4","5","6","7","8","9","10"};
+    String[] parkingItems = {"0","1","2","3"};
 
     //Expandable cardViews
    CardView categoryCV, propertyAddressCV, propertyInfoCV, priceDateCV;
@@ -123,26 +124,24 @@ public class fragment_Add_Meeting extends Fragment {
         goBackBtn=rootView.findViewById(R.id.goBackBtn);
 
         autoCompleteParkingTextView = rootView.findViewById(R.id.auto_complete_parking_number);
-        parkingAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,items);
+        parkingAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,parkingItems);
         autoCompleteParkingTextView.setAdapter(parkingAdapterItems);
 
         autoCompleteParkingTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(rootView.getContext(), "item", Toast.LENGTH_SHORT).show();
+                itemParking = adapterView.getItemAtPosition(i).toString();
             }
         });
 
         autoCompleteRoomsTextView = rootView.findViewById(R.id.auto_complete_room_number);
-        roomAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,items);
+        roomAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,roomItems);
         autoCompleteRoomsTextView.setAdapter(roomAdapterItems);
 
         autoCompleteRoomsTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(rootView.getContext(), "item", Toast.LENGTH_SHORT).show();
+                itemRooms = adapterView.getItemAtPosition(i).toString();
             }
         });
 
@@ -400,6 +399,9 @@ public class fragment_Add_Meeting extends Fragment {
                         squareMeterET.getText().toString().trim().isEmpty() ||
                         priceET.getText().toString().trim().isEmpty() ||
                         dateET.getText().toString().trim().isEmpty() ||
+                        itemRooms.isEmpty() ||
+                        itemParking.isEmpty() ||
+                        dateET.getText().toString().trim().isEmpty() ||
                         listImageUri.size()==0
                                 // room number and parkings
                 ) {
@@ -413,9 +415,10 @@ public class fragment_Add_Meeting extends Fragment {
                     squareMeter = Integer.parseInt(squareMeterET.getText().toString());
                     price = Integer.parseInt(priceET.getText().toString());
                     date = dateET.getText().toString().trim();
+                    rooms = Integer.parseInt(itemRooms);
+                    parkings = Integer.parseInt(itemParking);
                 }
 
-                System.out.println("adress="+address+"city="+city);
                 reference= FirebaseDatabase.getInstance().getReference("Users");
                 user= FirebaseAuth.getInstance().getCurrentUser();
                 userID = user.getUid();
@@ -488,13 +491,13 @@ public class fragment_Add_Meeting extends Fragment {
 
         Apartment apartment = new Apartment(
                 price,
-                4,
+                rooms,
                 counter,
                 listImageUri.size(),
                 floor,
                 totalFloors,
                 squareMeter,
-                4,
+                parkings,
                 username,
                 address,
                 new SimpleDateFormat("dd-MM-yyyy").format(new Date()),
