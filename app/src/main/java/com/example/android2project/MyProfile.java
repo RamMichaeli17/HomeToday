@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 public class MyProfile extends Fragment {
@@ -54,10 +56,12 @@ public class MyProfile extends Fragment {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     Uri imageUri;
-    ImageView profileImage,backBtn;
+    ImageView backBtn;
     TextView nameTV,emailTV,ageTV;
     DrawerLayout drawerLayout;
     Boolean isLoggedIn;
+    RoundedImageView profileImage;
+    Button editProfileBtn;
 
 
     @Override
@@ -80,6 +84,10 @@ public class MyProfile extends Fragment {
         emailTV=rootView.findViewById(R.id.profileEmailTV);
         ageTV=rootView.findViewById(R.id.profileAgeTV);
         backBtn=rootView.findViewById(R.id.profileBackBtn);
+        editProfileBtn=rootView.findViewById(R.id.editProfileBtn);
+
+        if(!isLoggedIn)
+            editProfileBtn.setVisibility(View.GONE);
 
 
         ((loggedInActivity)getActivity()).disableTabLayout();
@@ -94,43 +102,26 @@ public class MyProfile extends Fragment {
             }
         });
 
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isLoggedIn) {
+                    Toast.makeText(getActivity(), "Log-in to assign profile picture", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(intent, 1);
             }
         });
-
-
-
-        return rootView;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        user= FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
-
-        if (user == null)
-            isLoggedIn = false;
-        else {
-            isLoggedIn = true;
-            userID = user.getUid();
-        }
-
-
-
-
-
-        storage = FirebaseStorage.getInstance();
-        storageReference=storage.getReference();
-
-
 
         // Load user profile image
 
@@ -147,45 +138,73 @@ public class MyProfile extends Fragment {
             profileRef.getDownloadUrl().addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    profileImage.setImageDrawable(getActivity().getDrawable(R.drawable.ic_baseline_person_24));
+                    profileImage.setImageResource(R.drawable.ic_baseline_orange_person_24);
                 }
             });
         }
         else
         {
-            profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
+            profileImage.setImageResource(R.drawable.ic_baseline_orange_person_24);
         }
 
 
 
         // Load user data (email,age,name)
+        if(isLoggedIn) {
+            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User userProfile = snapshot.getValue(User.class);
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
+                    if (userProfile != null) {
+                        String fullName = userProfile.fullName;
+                        String email = userProfile.email;
+                        String age = userProfile.age;
 
-                if(userProfile!= null)
-                {
-                    String fullName = userProfile.fullName;
-                    String email = userProfile.email;
-                    String age = userProfile.age;
+                        //  jobCounter=userProfile.jobsCounter;
 
-                  //  jobCounter=userProfile.jobsCounter;
-
-                    nameTV.setText(fullName);
-                    emailTV.setText(email);
-                    ageTV.setText(age);
+                        nameTV.setText(fullName);
+                        emailTV.setText(email);
+                        ageTV.setText(age);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(),"Something went wrong",Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else
+        {
+              nameTV.setText("None");
+             emailTV.setText("None");
+            ageTV.setText("None");
+        }
+
+        return rootView;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        if (user == null)
+            isLoggedIn = false;
+        else {
+            isLoggedIn = true;
+            userID = user.getUid();
+
+            reference = FirebaseDatabase.getInstance().getReference("Users");
+            storage = FirebaseStorage.getInstance();
+            storageReference = storage.getReference();
+        }
+
+
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

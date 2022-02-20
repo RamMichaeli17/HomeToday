@@ -83,7 +83,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="0"
                         android:textStyle="bold"
                         android:paddingTop="10dp"
                         android:textColor="@color/primary"
@@ -107,7 +107,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5"
+                        android:text="0"
                         android:textStyle="bold"
                         android:paddingTop="10dp"
                         android:textColor="@color/primary"
@@ -131,7 +131,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="17"
+                        android:text="0"
                         android:textStyle="bold"
                         android:paddingTop="10dp"
                         android:textColor="@color/primary"
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingStart="20dp"
-                android:text="Ashdod"
+                android:text="Unknown"
                 android:textSize="18sp"
                 android:layout_marginTop="2dp"
                 android:textStyle="bold"
@@ -231,6 +231,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/editProfileBtn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/edit_profile"
@@ -246,22 +247,6 @@
             android:background="@drawable/edit_profile_log_out_buttons"
             android:padding="5dp"/>
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="@string/log_out"
-            android:layout_marginBottom="5dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:shadowColor="#E8B32D"
-            android:textStyle="bold|italic"
-            android:shadowRadius="10"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="40dp"
-            android:fontFamily="@font/felix007"
-            android:textSize="20sp"
-            android:background="@drawable/edit_profile_log_out_buttons"
-            android:padding="5dp"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -83,8 +83,19 @@ public class loggedInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
 
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null)
+            isLoggedIn = false;
+        else {
+            isLoggedIn = true;
+            userID = user.getUid();
+            reference= FirebaseDatabase.getInstance().getReference("Users");
+            getToken();
+        }
+
+
         preferenceManager = new PreferenceManager(getApplicationContext());
-     //   getToken();
+
 
         tabLayout=findViewById(R.id.tabLayout);
         viewPager=findViewById(R.id.viewPager);
@@ -92,22 +103,17 @@ public class loggedInActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new fragment1_homePage(),"Main");
-      //  vpAdapter.addFragment(new fragment2_chat(),"Chat");
-      //  vpAdapter.addFragment(new fragment3(),"Favourites");
+        if(isLoggedIn) {
+            vpAdapter.addFragment(new fragment2_chat(), "Chat");
+            vpAdapter.addFragment(new fragment3(), "Favourites");
+        }
         viewPager.setAdapter(vpAdapter);
+
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_view);
 
-        user=FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
-        if (user == null)
-            isLoggedIn = false;
-        else
-            isLoggedIn = true;
-
-        // userID = user.getUid();
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
