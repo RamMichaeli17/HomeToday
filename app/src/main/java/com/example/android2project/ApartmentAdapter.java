@@ -242,7 +242,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Toast.makeText(view.getContext(), apartment.getCity() + R.string.is_already_in_fav, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), apartment.getCity()+" " + context.getString(R.string.is_already_in_fav), Toast.LENGTH_SHORT).show();
 
                             }
                             else {
@@ -250,7 +250,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                                         .child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(view.getContext(), R.string.added + apartment.getCity() + R.string.to_favourites, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), context.getString(R.string.added)+" " + apartment.getCity() +" " + context.getString(R.string.to_favourites), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -269,7 +269,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                     holder.fav_clicked.setVisibility(View.GONE);
                     holder.favTv.setText(R.string.favourite);
                     undoFav(apartment);
-                    Toast.makeText(view.getContext(), R.string.removed_from_fav, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), context.getString(R.string.removed_from_fav), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -317,7 +317,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 }
 
                 if (apartment.getSellerEmail().equals(user.getEmail())) {
-                    Toast.makeText(view.getContext(), R.string.this_is_our_offer, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), context.getString(R.string.this_is_our_offer), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -359,7 +359,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
             @Override
             public void onCancelled(@android.support.annotation.NonNull DatabaseError error) {
-                Toast.makeText(context.getApplicationContext(), R.string.something_wrong,Toast.LENGTH_LONG).show();
+                Toast.makeText(context.getApplicationContext(), context.getString(R.string.something_wrong),Toast.LENGTH_LONG).show();
             }
         });
     }
