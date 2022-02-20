@@ -3,6 +3,7 @@ package com.example.android2project;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -45,10 +46,12 @@ public class MyProfile extends Fragment {
     private StorageReference storageReference;
     Uri imageUri;
     ImageView backBtn;
-    TextView nameTV,emailTV,ageTV, howManyOffers;
+    TextView nameTV,emailTV,ageTV, howManyOffers,locationTV;
     DrawerLayout drawerLayout;
     Boolean isLoggedIn;
     RoundedImageView profileImage;
+
+    ItemViewModel viewModel;
 
 
 
@@ -73,6 +76,14 @@ public class MyProfile extends Fragment {
         ageTV=rootView.findViewById(R.id.profileAgeTV);
         backBtn=rootView.findViewById(R.id.profileBackBtn);
         howManyOffers =rootView.findViewById(R.id.howManyFav);
+        locationTV=rootView.findViewById(R.id.locationTV);
+
+        viewModel=new ViewModelProvider(requireActivity()).get(ItemViewModel.class);
+
+
+        viewModel.getSelectedItem().observe(getViewLifecycleOwner(),item->{
+            locationTV.setText(item.get(0)+" "+item.get(1)+" "+item.get(3));
+        });
 
 
 

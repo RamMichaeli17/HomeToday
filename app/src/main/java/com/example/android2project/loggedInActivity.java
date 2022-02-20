@@ -1,10 +1,23 @@
 package com.example.android2project;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,15 +30,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.android2project.activities.SignInActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,10 +60,13 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class loggedInActivity extends AppCompatActivity implements budget_dialog.budgetDialogListener {
+public class loggedInActivity extends AppCompatActivity implements budget_dialog.budgetDialogListener ,LocationListener{
 
 
     private FirebaseUser user;
@@ -58,8 +82,16 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
     private ArrayList<View> touchablesToRestore = new ArrayList<View>();
     boolean isLoggedIn;
     FragmentTransaction fragmentTransaction;
-
+    Geocoder geocoder;
     private PreferenceManager preferenceManager;
+    Handler handler = new Handler();
+    final int LOCATION_PERMISSON_REQUEST = 1;
+    LocationManager manager;
+    ArrayList<String> theLocation;
+
+    private ItemViewModel viewModel;
+
+
 
     @Override
     public void onBackPressed() {
@@ -82,12 +114,6 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                 .show();
 
     }
-
-    Button logoutBtn,addMeetingBtn,pictureBtn,allMeetingsBtn;
-    ImageView pictureIV;
-    TextView nameTV,emailTV,ageTV,hiTV;
-    int jobCounter=0;
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -117,6 +143,20 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
             getToken();
         }
 
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            int hasLocationPermission = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION);
+            if (hasLocationPermission != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSON_REQUEST);
+            }
+        }
+
+        viewModel = new ViewModelProvider(this).get(ItemViewModel.class);
+
+
+
+        theLocation=new ArrayList<>();
+        geocoder = new Geocoder(this);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
@@ -153,8 +193,6 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
 
 
 
-        pictureBtn=findViewById(R.id.pictureBtn);
-        pictureIV=findViewById(R.id.pictureIV);
 
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
@@ -164,6 +202,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
             navigationView.inflateMenu(R.menu.drawer_menu_logout); //inflate new items.
         else
             navigationView.inflateMenu(R.menu.drawer_menu_login); //inflate new items.
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -192,6 +231,23 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                 return true;
             }
         });
+
+
+
+
+        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, loggedInActivity.this);
+
+
+
+
+        Criteria criteria = new Criteria();
+        criteria.setSpeedRequired(false);
+        criteria.setAltitudeRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setPowerRequirement(Criteria.POWER_MEDIUM);
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
     }
     public void showToast(String message) {
@@ -260,4 +316,92 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         fragment1_homePage frag = fragment1_homePage.GetInstance();
         frag.applyBudget(theBudget);
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==LOCATION_PERMISSON_REQUEST){
+            if(grantResults[0]!= PackageManager.PERMISSION_GRANTED){
+                AlertDialog.Builder builder = new AlertDialog.Builder(loggedInActivity.this);
+                builder.setTitle("Attention").setMessage("The application must have location permission in order for it to work!")
+                        .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                intent.setData(Uri.parse("package:"+getPackageName()));
+                                startActivity(intent);
+                            }
+                        }).setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setCancelable(false).show();
+            }
+        }
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        final double lat = location.getLatitude();
+        final double lng = location.getLongitude();
+
+
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(lat, lng, 2);
+                    Address bestAddress = addresses.get(0);
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            // Gal - I used this to reverse address 4/2 to 2/4 (nachal ada 2/4)
+                            StringBuffer buffer = new StringBuffer(bestAddress.getSubThoroughfare());
+                            buffer.reverse();
+                            theLocation.clear();
+                            theLocation.add(bestAddress.getCountryName());
+                            theLocation.add(bestAddress.getThoroughfare());
+                            theLocation.add((buffer.toString()));
+                            theLocation.add(bestAddress.getLocality());
+
+                            viewModel.setData(theLocation);
+
+
+                        }
+                    });
+
+
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+
+    }
+
+
+
+
 }
