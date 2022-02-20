@@ -269,16 +269,12 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
         MenuItem menuItem = menu.findItem(R.id.search_action);
         MenuItem menuItem1 = menu.findItem(R.id.filter_action);
 
-        Slider zaza = (Slider)menuItem1.getActionView();
-
         menuItem1.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
                 budget_dialog budget_dialog = new budget_dialog();
                 budget_dialog.show(getActivity().getSupportFragmentManager(),"Budget dialog" );
-
-                Toast.makeText(getActivity(), "yoyoyo + "+zaza.getValue(), Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -312,6 +308,7 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
     @Override
     public void applyBudget(int theBudget) {
         budget=theBudget;
+        adapter.getFilter().filter(Integer.toString(theBudget),null);
     }
 
     public static fragment1_homePage GetInstance()

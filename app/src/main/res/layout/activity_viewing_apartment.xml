@@ -44,8 +44,8 @@
 
             <TextView
                 android:id="@+id/viewing_apartment_price"
-                android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing_apartment_pic"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="20dp"
@@ -56,7 +56,7 @@
 
             <TextView
                 android:id="@+id/viewing_apartment_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing_apartment_price"
                 android:layout_marginStart="35dp"
@@ -69,7 +69,7 @@
 
             <TextView
                 android:id="@+id/viewing_apartment_city"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing_apartment_address"
                 android:layout_marginStart="35dp"

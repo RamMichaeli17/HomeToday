@@ -12,7 +12,6 @@
         android:id="@+id/filter_action"
         android:title="Search"
         android:icon="@drawable/ic_baseline_filter_alt_24"
-        app:showAsAction="always"
-        app:actionViewClass="com.google.android.material.slider.Slider"/>
+        app:showAsAction="always" />
 
 </menu>
