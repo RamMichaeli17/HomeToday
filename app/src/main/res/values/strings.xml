@@ -61,30 +61,6 @@
     <string name="price">Price</string>
     <string name="date">Date</string>
     <string name="unfavourite">Unfavourite</string>
-
-    <string-array name="room_number">
-        <item>1</item>
-        <item>1.5</item>
-        <item>2</item>
-        <item>2.5</item>
-        <item>3</item>
-        <item>3.5</item>
-        <item>4</item>
-        <item>4.5</item>
-        <item>5</item>
-        <item>5.5</item>
-        <item>6</item>
-        <item>6.5</item>
-        <item>7</item>
-        <item>7.5</item>
-    </string-array>
-
-    <string-array name="parking_number">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
     <string name="entering_date2">Entering Date:</string>
     <string name="full_name">Full Name</string>
     <string name="required">Required*</string>
