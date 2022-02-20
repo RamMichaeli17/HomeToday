@@ -1,5 +1,7 @@
 package com.example.android2project.activities;
 
+import static com.basgeekball.awesomevalidation.ValidationStyle.TEXT_INPUT_LAYOUT;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.android2project.R;
 import com.example.android2project.ShouldBeDeleted2;
 import com.example.android2project.databinding.ActivitySignInBinding;
 import com.example.android2project.loggedInActivity;
@@ -128,18 +133,25 @@ public class SignInActivity extends AppCompatActivity {
 
     //maybe we'll use awesome validation
     private boolean isValidSignInDetails() {
-        if (binding.inputEmail.getEditText().getText().toString().trim().isEmpty()) {
-            showToast("Enter email");
+
+        AwesomeValidation awesomeValidation = new AwesomeValidation(TEXT_INPUT_LAYOUT);
+        awesomeValidation.setTextInputLayoutErrorTextAppearance(R.style.Theme_Android2Project);
+        awesomeValidation.addValidation(this,R.id.inputEmail, Patterns.EMAIL_ADDRESS,R.string.email_wrong);
+        awesomeValidation.addValidation(this,R.id.inputPassword,RegexTemplate.NOT_EMPTY,R.string.password_wrong);
+        if(!awesomeValidation.validate()){
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getEditText().getText().toString()).matches()) {
-            showToast("Enter valid email");
-            return false;
-        } else if (binding.inputPassword.getEditText().getText().toString().trim().isEmpty()) {
-            showToast("Enter password");
-            return false;
-        }
-        else
-            return true;
+        } else
+        return true;
+//        if (binding.inputEmail.getEditText().getText().toString().trim().isEmpty()) {
+//            showToast("Enter email");
+//            return false;
+//        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getEditText().getText().toString()).matches()) {
+//            showToast("Enter valid email");
+//            return false;
+//        } else if (binding.inputPassword.getEditText().getText().toString().trim().isEmpty()) {
+//            showToast("Enter password");
+//            return false;
+//        }
     }
 //    private void addDataToFirestore() {
 //        FirebaseFirestore database = FirebaseFirestore.getInstance();

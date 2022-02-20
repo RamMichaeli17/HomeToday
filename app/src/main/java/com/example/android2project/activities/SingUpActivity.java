@@ -1,5 +1,8 @@
 package com.example.android2project.activities;
 
+import static com.basgeekball.awesomevalidation.ValidationStyle.TEXT_INPUT_LAYOUT;
+import static com.basgeekball.awesomevalidation.ValidationStyle.UNDERLABEL;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -160,7 +163,9 @@ public class SingUpActivity extends AppCompatActivity {
 
     //maybe we'll use awesome validation
     private boolean isValidSignUpDetails() {
-        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+//        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        AwesomeValidation awesomeValidation = new AwesomeValidation(TEXT_INPUT_LAYOUT);
+        awesomeValidation.setTextInputLayoutErrorTextAppearance(R.style.Theme_Android2Project);  // mandatory for UNDERLABEL style
         awesomeValidation.addValidation(this,R.id.inputName, RegexTemplate.NOT_EMPTY,R.string.name_wrong);
         awesomeValidation.addValidation(this,R.id.inputEmail, Patterns.EMAIL_ADDRESS,R.string.email_wrong);
         awesomeValidation.addValidation(this,R.id.inputPassword,RegexTemplate.NOT_EMPTY,R.string.password_wrong);
