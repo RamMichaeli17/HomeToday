@@ -2,12 +2,10 @@ package com.example.android2project;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
 
 public class Apartment implements Parcelable {
     private int price,rooms,offerCounter,numOfPictures,floor,totalFloors,squareMeter,parkings,undo;
     private String sellerName, address, date,sellerEmail,time,sellerUID, enteringDate,city;
-    private ImageView profilePic;
     private boolean forRental,airConditioner, elevator, storeroom, balcony, mamad, kosherKitchen, renovated, furnished;
 
 
@@ -17,7 +15,7 @@ public class Apartment implements Parcelable {
 
     }
 
-    public Apartment(int price, int rooms, int offerCounter, int numOfPictures, int floor, int totalFloors, int squareMeter, int parkings, String sellerName, String address, String date, String sellerEmail, String time, String sellerUID, String enteringDate, String city, ImageView profilePic, boolean forRental, boolean airConditioner, boolean elevator, boolean storeroom, boolean balcony, boolean mamad, boolean kosherKitchen, boolean renovated, boolean furnished) {
+    public Apartment(int price, int rooms, int offerCounter, int numOfPictures, int floor, int totalFloors, int squareMeter, int parkings, String sellerName, String address, String date, String sellerEmail, String time, String sellerUID, String enteringDate, String city, boolean forRental, boolean airConditioner, boolean elevator, boolean storeroom, boolean balcony, boolean mamad, boolean kosherKitchen, boolean renovated, boolean furnished) {
         this.price = price;
         this.rooms = rooms;
         this.offerCounter = offerCounter;
@@ -34,7 +32,6 @@ public class Apartment implements Parcelable {
         this.sellerUID = sellerUID;
         this.enteringDate = enteringDate;
         this.city = city;
-        this.profilePic = profilePic;
         this.forRental = forRental;
         this.airConditioner = airConditioner;
         this.elevator = elevator;
@@ -133,14 +130,6 @@ public class Apartment implements Parcelable {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public ImageView getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(ImageView profilePic) {
-        this.profilePic = profilePic;
     }
 
     public boolean isForRental() {
@@ -324,6 +313,7 @@ public class Apartment implements Parcelable {
         parcel.writeInt(totalFloors);
         parcel.writeInt(squareMeter);
         parcel.writeInt(parkings);
+        parcel.writeInt(undo);
         parcel.writeString(sellerName);
         parcel.writeString(address);
         parcel.writeString(date);

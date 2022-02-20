@@ -120,6 +120,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+
         Apartment apartment = apartments.get(position);
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
         holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress()));

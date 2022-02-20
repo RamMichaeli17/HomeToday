@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.android2project.listeners.UserListener;
 import com.example.android2project.models.chatUser;
 import com.example.android2project.utilities.PreferenceManager;
@@ -41,7 +37,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAdapterFavourites.ApartmentViewHolder> {
@@ -112,7 +107,7 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Apartment apartment = apartments.get(position);
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
-        holder.apartmentNameTv.setText(capitalizeStr(apartment.getApartmentName()));
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.hoursAgoTV.setText(apartment.getTime());
 
@@ -141,7 +136,7 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
 
                                 DeleteRealtimeDatabase(apartment);
 
-                                Toast.makeText(view.getContext(), "Removed "+apartment.getApartmentName()+" from favourites",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), "Removed "+apartment.getAddress()+" from favourites",Toast.LENGTH_SHORT).show();
                                 apartments.remove(holder.getAdapterPosition());
                                 notifyItemRemoved(holder.getAdapterPosition());
                                 notifyItemRangeChanged(holder.getAdapterPosition(), apartments.size());
@@ -155,7 +150,7 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Are you sure you want to delete "+ apartment.getApartmentName()+"?").setPositiveButton("Yes", dialogClickListener)
+                builder.setMessage("Are you sure you want to delete "+ apartment.getAddress()+"?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
             }
         });
