@@ -44,13 +44,14 @@
 
             <TextView
                 android:id="@+id/viewing_apartment_price"
-                android:layout_width="match_parent"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing_apartment_pic"
-                android:layout_marginStart="35dp"
+                android:gravity="center"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/aharoni_boldt"
-                android:text="1,000,000 ₪"
+                android:padding="@dimen/_3sdp"
+                android:text=" 1,000,000 ₪"
                 android:textSize="35sp"
                 android:textStyle="bold|italic" />
 
@@ -59,12 +60,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing_apartment_price"
-                android:layout_marginStart="35dp"
                 android:fontFamily="@font/aharoni"
                 android:padding="@dimen/_2sdp"
                 android:text="@string/agas_3"
+                android:textAlignment="center"
                 android:textColor="#B6B6B6"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 android:textStyle="bold|italic" />
 
             <TextView
@@ -72,13 +73,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewing_apartment_address"
-                android:layout_marginStart="35dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/aharoni"
                 android:padding="@dimen/_2sdp"
                 android:text="@string/city"
+                android:textAlignment="center"
                 android:textColor="#B6B6B6"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold|italic" />
 
             <androidx.cardview.widget.CardView

@@ -32,9 +32,9 @@
         android:layout_marginEnd="@dimen/_8sdp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:fontFamily="@font/aharoni"
+        android:fontFamily="@font/aharoni_boldt"
         android:textColor="@color/primary_dark"
-        android:textSize="@dimen/_13ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toTopOf="@id/viewSupporter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageProfile"/>

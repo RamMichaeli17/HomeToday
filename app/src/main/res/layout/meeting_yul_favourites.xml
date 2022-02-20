@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineSpotShadowColor="@color/design_default_color_primary"
+        android:outlineSpotShadowColor="@color/primary_dark"
         app:cardCornerRadius="10dp"
         app:cardElevation="18dp"
         app:cardUseCompatPadding="true">
@@ -51,7 +51,7 @@
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">
@@ -151,11 +151,11 @@
                         android:drawableStart="@drawable/little_fav_icon"
                         android:padding="5dp"
                         android:fontFamily="@font/aharoni"
-                        android:shadowColor="@color/black"
+                        android:shadowColor="@color/white"
                         android:shadowRadius="10"
+                        android:textColor="@color/fav_and_chat"
                         android:drawablePadding="@dimen/_5sdp"
                         android:text="@string/unfavourite"
-                        android:textColor="@color/white"
                         android:textSize="20sp" />
 
 
@@ -166,12 +166,12 @@
                         android:layout_marginStart="100dp"
                         android:layout_marginBottom="5dp"
                         android:drawableStart="@drawable/ic_baseline_chat_24"
-                        android:shadowColor="@color/black"
+                        android:shadowColor="@color/white"
+                        android:shadowRadius="10"
+                        android:textColor="@color/fav_and_chat"
                         android:drawablePadding="@dimen/_5sdp"
                         android:fontFamily="@font/aharoni"
-                        android:shadowRadius="10"
                         android:text="@string/chat"
-                        android:textColor="@color/white"
                         android:textSize="20sp" />
 
                 </LinearLayout>

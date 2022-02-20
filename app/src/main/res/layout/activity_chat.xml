@@ -50,7 +50,8 @@
         android:src="@drawable/ic_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white"/>
+        app:tint="@color/white"
+        android:visibility="invisible"/>
 
    <!-- <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/addChatPerson"
@@ -154,7 +155,7 @@
         android:fontFamily="@font/aharoni"
         android:paddingStart="@dimen/_16sdp"
         android:paddingEnd="@dimen/_16sdp"
-        android:textColor="@color/primary"
+        android:textColor="@color/primary_dark"
         android:textColorHint="@color/primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/layoutSend"

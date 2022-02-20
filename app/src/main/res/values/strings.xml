@@ -49,7 +49,7 @@
     <string name="for_rental">For Rental</string>
     <string name="for_sale">For Sale</string>
     <string name="property_address">2) Property Address</string>
-    <string name="city">City</string>
+    <string name="city">" City"</string>
     <string name="address">Address</string>
     <string name="property_info">3) Property Info</string>
     <string name="rooms_number">Rooms Number</string>
@@ -73,7 +73,7 @@
     <string name="israel_israeli">Israel Israeli</string>
     <string name="unknown">Unknown</string>
     <string name="continue_as_guest">Continue as Guest</string>
-    <string name="agas_3">Agas 3</string>
+    <string name="agas_3">" Agas 3"</string>
     <string name="add_pictures">Add Pictures</string>
     <string name="error">Error :</string>
     <string name="unable_to_sign_in">Unable to Sign In</string>

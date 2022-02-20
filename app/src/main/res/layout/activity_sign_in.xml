@@ -114,6 +114,8 @@
             android:text="@string/create_new_account"
             android:fontFamily="@font/aharoni_boldt"
             android:textColor="@color/primary_dark"
+            android:shadowColor="@color/primary_text"
+            android:shadowRadius="10"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
 
@@ -124,6 +126,8 @@
             android:layout_marginTop="@dimen/_25sdp"
             android:text="@string/continue_as_guest"
             android:fontFamily="@font/aharoni"
+            android:shadowColor="@color/primary_text"
+            android:shadowRadius="10"
             android:textColor="@color/primary"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"/>

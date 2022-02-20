@@ -28,8 +28,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
-        android:textColor="@color/primary"
-        android:textSize="@dimen/_8ssp"
+        android:textColor="@color/fav_and_chat"
+        android:textSize="@dimen/_9ssp"
         android:fontFamily="@font/aharoni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textMessage" />

@@ -4,7 +4,9 @@
     <item
         android:id="@+id/half_overlay"
         android:drawable="@drawable/fav_icon_clicked"
-        android:width="25dp"
-        android:height="25dp" />
+        android:width="22dp"
+        android:height="22dp" />
+
+
 
 </layer-list>

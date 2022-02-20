@@ -29,11 +29,24 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/cardview_cell" />
 
+            <TextView
+                android:id="@+id/for_rental"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/aharoni_boldt"
+                android:shadowColor="#FFFFFF"
+                android:shadowRadius="15"
+                android:text="@string/for_rental"
+                android:padding="2dp"
+                android:textColor="@color/primary_dark"
+                android:textSize="22sp" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">
@@ -127,8 +140,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layoutDirection="ltr">
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/priceTV"
@@ -193,24 +205,9 @@
                     android:shadowRadius="15"
                     android:text="@string/city"
                     android:padding="2dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#FBFBFB"
                     android:textSize="28sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/for_rental"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/aharoni_boldt"
-                    android:shadowColor="#A39436"
-                    android:shadowRadius="15"
-                    android:text="For rental"
-                    android:padding="2dp"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp" />
-
-
 
             </LinearLayout>
 
@@ -280,16 +277,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@drawable/seperation_line" />
                 </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layoutDirection="ltr"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
@@ -297,30 +294,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_1sdp"
                         android:drawableStart="@drawable/little_fav_icon"
-                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_7sdp"
                         android:fontFamily="@font/aharoni"
                         android:padding="5dp"
-                        android:shadowColor="@color/black"
+                        android:shadowColor="@color/white"
                         android:shadowRadius="10"
+                        android:textColor="@color/fav_and_chat"
                         android:text="@string/favourite"
-                        android:textColor="@color/white"
                         android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/chat_tv"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="40dp"
                         android:drawableStart="@drawable/ic_baseline_chat_24"
-                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_7sdp"
                         android:fontFamily="@font/aharoni"
                         android:gravity="center"
-                        android:shadowColor="@color/black"
+                        android:padding="@dimen/_5sdp"
+                        android:shadowColor="@color/white"
                         android:shadowRadius="10"
                         android:text="@string/chat"
-                        android:textColor="@color/white"
+                        android:textColor="@color/fav_and_chat"
                         android:textSize="23sp" />
                 </RelativeLayout>
             </LinearLayout>

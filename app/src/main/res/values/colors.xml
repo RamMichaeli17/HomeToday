@@ -14,6 +14,7 @@
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>
+    <color name="fav_and_chat">#E1914D</color>
     <color name="received_message_background">#FDDCB2</color>
     <color name="green">#008000</color>
 </resources>
