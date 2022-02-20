@@ -55,6 +55,8 @@ dependencies {
     //Image Slider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 
+    //Seek bar
+ //   implementation 'com.github.hearsilent:DiscreteSlider:1.2.1'
     
     //Scalable Size Unit
     implementation 'com.intuit.sdp:sdp-android:1.0.6'

@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment1_homePage"
-    android:id="@+id/fragment_fragment1">
+    android:id="@+id/fragment_fragment1"
+    android:background="@color/input_background">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

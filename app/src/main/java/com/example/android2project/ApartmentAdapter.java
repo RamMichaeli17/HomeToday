@@ -52,7 +52,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
     Context context;
     private ArrayList<Apartment> apartments;
-    private List<ArrayList> apartmentsFiltered;
+    private ArrayList<Apartment> apartmentsFull;
     private final List<chatUser> chatUsers;
     private final UserListener userListener;
     RequestManager glide;
@@ -65,19 +65,62 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
 
     public ApartmentAdapter(Context context, ArrayList<Apartment> apartments, List<chatUser> chatUsers, UserListener userListener) {
-        this.apartments = apartments;
         glide = Glide.with(context);
         this.userListener = userListener;
         this.chatUsers = chatUsers;
         this.context=context;
-      //  this.apartmentsFiltered = new ArrayList<>(apartments);
+        this.apartmentsFull = apartments;
+        this.apartments = new ArrayList<>(apartmentsFull);
 
     }
 
     @Override
     public Filter getFilter() {
-        return null;
+        return newsFilter;
     }
+
+    private final Filter newsFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Apartment> filteredApartments = new ArrayList<>();
+
+            if(constraint == null || constraint.length() ==0)
+                filteredApartments.addAll(apartmentsFull);
+            else if(isNumeric((String)constraint)){
+                int budget = Integer.parseInt((String)constraint);
+                for( Apartment apar : apartmentsFull){
+                    if (apar.getPrice() <= budget )
+                        filteredApartments.add(apar);
+                }
+
+            }
+
+
+            else
+            {
+                String FilterPattern = constraint.toString().toLowerCase().trim();
+
+                for( Apartment apar : apartmentsFull){
+                    if (apar.getCity().toLowerCase().contains(FilterPattern))
+                        filteredApartments.add(apar);
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredApartments;
+            results.count = filteredApartments.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+            apartments.clear();
+            apartments.addAll((ArrayList)filterResults.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
     interface ApartmentListener {
         void onApartmentClicked(int position, View view);
@@ -140,7 +183,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
         Apartment apartment = apartments.get(position);
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
-        holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress()));
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getCity()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
@@ -196,7 +239,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Toast.makeText(view.getContext(), apartment.getAddress() + " is already in favourites", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), apartment.getCity() + " is already in favourites", Toast.LENGTH_SHORT).show();
 
                             }
                             else {
@@ -204,7 +247,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                                         .child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(view.getContext(), "Added " + apartment.getAddress() + " to favourites", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), "Added " + apartment.getCity() + " to favourites", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -258,7 +301,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Are you sure you want to delete "+ apartment.getAddress()+"?").setPositiveButton("Yes", dialogClickListener)
+                builder.setMessage("Are you sure you want to delete "+ apartment.getCity()+"?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
             }
         });
@@ -401,5 +444,17 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("You are not logged in").setPositiveButton("Login", dialogClickListener)
                 .setNegativeButton("Back", dialogClickListener).show();
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

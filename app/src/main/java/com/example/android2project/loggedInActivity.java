@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
@@ -43,7 +45,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class loggedInActivity extends AppCompatActivity {
+public class loggedInActivity extends AppCompatActivity implements budget_dialog.budgetDialogListener {
 
 
     private FirebaseUser user;
@@ -58,6 +60,7 @@ public class loggedInActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ArrayList<View> touchablesToRestore = new ArrayList<View>();
     boolean isLoggedIn;
+    FragmentTransaction fragmentTransaction;
 
     private PreferenceManager preferenceManager;
 
@@ -173,7 +176,7 @@ public class loggedInActivity extends AppCompatActivity {
                 else if(item.getTitle().equals("My Profile"))
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.testFrameLayout,new MyProfile());
                     fragmentTransaction.commit();
 
@@ -251,5 +254,9 @@ public class loggedInActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void applyBudget(int theBudget) {
+        fragment1_homePage frag = fragment1_homePage.GetInstance();
+        frag.applyBudget(theBudget);
+    }
 }

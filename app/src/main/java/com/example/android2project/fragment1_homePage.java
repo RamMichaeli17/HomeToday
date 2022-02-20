@@ -5,12 +5,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +33,7 @@ import com.example.android2project.models.chatUser;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.slider.Slider;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +47,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class fragment1_homePage extends Fragment implements UserListener {
+public class fragment1_homePage extends Fragment implements UserListener, budget_dialog.budgetDialogListener{
 
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -47,7 +56,10 @@ public class fragment1_homePage extends Fragment implements UserListener {
     TabLayout tabLayout;
     boolean isLoggedIn;
     Context context;
+    View rootView;
+    int budget=0;
 
+    private static fragment1_homePage instance;
 
     List<chatUser> chatUsers = new ArrayList<>();
 
@@ -78,14 +90,18 @@ public class fragment1_homePage extends Fragment implements UserListener {
             getUsers();
         }
         context = getContext();
+
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_fragment1,container,false);
+        instance= this;
+
+        rootView = inflater.inflate(R.layout.fragment_fragment1,container,false);
 
 
         database = FirebaseDatabase.getInstance().getReference("House Offers");
@@ -123,18 +139,8 @@ public class fragment1_homePage extends Fragment implements UserListener {
 */
 
         recyclerView = rootView.findViewById(R.id.recyclerViewMeetings);
-        adapter = new ApartmentAdapter(getActivity(), apartments, chatUsers,this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        adapter.setListener(new ApartmentAdapter.ApartmentListener() {
-            @Override
-            public void onApartmentClicked(int position, View view) {
 
-              //  Apartment mission = apartments.get(position);
-             //   adapter.notifyItemChanged(position);
-            }
-        });
+
 
         list = new ArrayList<>();
 
@@ -151,6 +157,10 @@ public class fragment1_homePage extends Fragment implements UserListener {
                         list.add(apartment);
                     }
                 }
+                adapter = new ApartmentAdapter(getActivity(), apartments, chatUsers, fragment1_homePage.this);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
             @Override
@@ -251,4 +261,63 @@ public class fragment1_homePage extends Fragment implements UserListener {
         builder.setMessage("You are not logged in").setPositiveButton("Login", dialogClickListener)
                 .setNegativeButton("Back", dialogClickListener).show();
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_item,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_action);
+        MenuItem menuItem1 = menu.findItem(R.id.filter_action);
+
+        Slider zaza = (Slider)menuItem1.getActionView();
+
+        menuItem1.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                budget_dialog budget_dialog = new budget_dialog();
+                budget_dialog.show(getActivity().getSupportFragmentManager(),"Budget dialog" );
+
+                Toast.makeText(getActivity(), "yoyoyo + "+zaza.getValue(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+
+
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setQueryHint("Insert city name");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapter.getFilter().filter(newText,null);
+                return false;
+            }
+        });
+
+
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void applyBudget(int theBudget) {
+        budget=theBudget;
+    }
+
+    public static fragment1_homePage GetInstance()
+    {
+        return instance;
+    }
+
+
 }

@@ -107,7 +107,7 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Apartment apartment = apartments.get(position);
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
-        holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress()));
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getCity()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.hoursAgoTV.setText(apartment.getTime());
 

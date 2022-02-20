@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context=".fragment2_chat">
+    tools:context=".fragment2_chat"
+    android:background="@color/input_background">
 
 
 
