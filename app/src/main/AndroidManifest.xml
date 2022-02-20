@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2Project">
         <activity
+            android:name=".ViewingApartmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
@@ -25,27 +28,21 @@
 
         <!-- TODO Pending task -->
         <activity
-            android:name=".loggedInActivity"
+            android:name=".activities.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-<!--        <activity-->
-<!--            android:name=".activities.ShouldBeDeleted2"-->
-<!--            android:exported="false">-->
-
-<!--        </activity> -->
-
-
-
-        <activity android:name=".activities.SignInActivity" />
-<!--        <activity android:name=".ShouldBeDeleted" />-->
-
-<!--        <activity
+        </activity> <!-- <activity -->
+        <!-- android:name=".activities.ShouldBeDeleted2" -->
+        <!-- android:exported="false"> -->
+        <!-- </activity> -->
+        <activity android:name=".loggedInActivity" /> <!-- <activity android:name=".ShouldBeDeleted" /> -->
+        <!--
+        <activity
             android:name=".ShouldBeDeleted2"
             android:exported="true">
             <intent-filter>

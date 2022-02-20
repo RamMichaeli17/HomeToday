@@ -106,14 +106,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
             storage = FirebaseStorage.getInstance();
             storageReference=storage.getReference();
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onApartmentClicked(getAdapterPosition(), view);
-                }
-            });
-
         }
     }
 
@@ -136,9 +128,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     public void onBindViewHolder(@NonNull ApartmentViewHolder holder, @SuppressLint("RecyclerView") int position) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+
         Apartment apartment = apartments.get(position);
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
-        holder.apartmentNameTv.setText(capitalizeStr(apartment.getApartmentName()));
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
@@ -168,6 +161,14 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         loadImageSlider(apartment, holder.imageSlider);
 
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),ViewingApartmentActivity.class);
+                intent.putExtra("apartment",apartment);
+                view.getContext().startActivity(intent);
+            }
+        });
         holder.favTv.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -186,7 +187,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Toast.makeText(view.getContext(), apartment.getApartmentName() + " is already in favourites", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), apartment.getAddress() + " is already in favourites", Toast.LENGTH_SHORT).show();
 
                             }
                             else {
@@ -194,7 +195,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                                         .child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(view.getContext(), "Added " + apartment.getApartmentName() + " to favourites", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), "Added " + apartment.getAddress() + " to favourites", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -248,7 +249,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Are you sure you want to delete "+ apartment.getApartmentName()+"?").setPositiveButton("Yes", dialogClickListener)
+                builder.setMessage("Are you sure you want to delete "+ apartment.getAddress()+"?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
             }
         });
