@@ -1,6 +1,5 @@
 package com.example.android2project.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,7 +30,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,14 +40,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class SingUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySingUpBinding binding;
     private PreferenceManager preferenceManager;
@@ -84,7 +81,7 @@ public class SingUpActivity extends AppCompatActivity {
         binding.buttonSignUp.setOnClickListener(v -> {
 
             fullName = binding.inputName.getEditText().getText().toString().trim();
-            age = "Default";
+            age = binding.inputAge.getEditText().getText().toString().trim();
             email = binding.inputEmail.getEditText().getText().toString().trim();
             password = binding.inputPassword.getEditText().getText().toString().trim();
 
@@ -164,6 +161,7 @@ public class SingUpActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this,R.id.inputName, RegexTemplate.NOT_EMPTY,R.string.name_wrong);
         awesomeValidation.addValidation(this,R.id.inputEmail, Patterns.EMAIL_ADDRESS,R.string.email_wrong);
         awesomeValidation.addValidation(this,R.id.inputPassword,RegexTemplate.NOT_EMPTY,R.string.password_wrong);
+        awesomeValidation.addValidation(this,R.id.inputAge,RegexTemplate.NOT_EMPTY,R.string.age_wrong);
         awesomeValidation.addValidation(this,R.id.inputConfirmPassword,RegexTemplate.NOT_EMPTY,R.string.confirm_password_wrong);
         String regexPassword = ".{6,}";
         awesomeValidation.addValidation(this, R.id.inputPassword, regexPassword, R.string.longer_than_6_chars);
@@ -254,7 +252,7 @@ public class SingUpActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@android.support.annotation.NonNull Exception exception) {
-                        Toast.makeText(SingUpActivity.this, "Failed To Upload", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, "Failed To Upload", Toast.LENGTH_LONG).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override

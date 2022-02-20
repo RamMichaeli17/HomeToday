@@ -49,7 +49,7 @@ public class MyProfile extends Fragment {
     DrawerLayout drawerLayout;
     Boolean isLoggedIn;
     RoundedImageView profileImage;
-    Button editProfileBtn;
+
 
 
     @Override
@@ -72,12 +72,8 @@ public class MyProfile extends Fragment {
         emailTV=rootView.findViewById(R.id.profileEmailTV);
         ageTV=rootView.findViewById(R.id.profileAgeTV);
         backBtn=rootView.findViewById(R.id.profileBackBtn);
-        editProfileBtn=rootView.findViewById(R.id.editProfileBtn);
         howManyOffers =rootView.findViewById(R.id.howManyFav);
 
-
-        if(!isLoggedIn)
-            editProfileBtn.setVisibility(View.GONE);
 
 
         ((loggedInActivity)getActivity()).disableTabLayout();
@@ -88,13 +84,6 @@ public class MyProfile extends Fragment {
                 ((loggedInActivity)getActivity()).galNavigation();
                 ((loggedInActivity)getActivity()).enableTabLayout();
                 getActivity().getSupportFragmentManager().beginTransaction().remove(MyProfile.this).commit();
-
-            }
-        });
-
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
             }
         });
