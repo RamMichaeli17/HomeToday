@@ -52,7 +52,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class SingUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySingUpBinding binding;
     private PreferenceManager preferenceManager;
@@ -260,7 +260,7 @@ public class SingUpActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@android.support.annotation.NonNull Exception exception) {
-                        Toast.makeText(SingUpActivity.this, "Failed To Upload", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, "Failed To Upload", Toast.LENGTH_LONG).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override

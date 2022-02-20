@@ -144,7 +144,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         if (isLoggedIn)
             toolbar.setTitle("Home Today");
         else
-            toolbar.setTitle("Home Today - "+getString(R.string.guest));
+            toolbar.setTitle(getString(R.string.guest));
         setSupportActionBar(toolbar);
 
         ActionBar actionBar= getSupportActionBar();
