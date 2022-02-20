@@ -113,7 +113,7 @@ public class MyProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 if(!isLoggedIn) {
-                    Toast.makeText(getActivity(), "Log-in to assign profile picture", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.log_in_to_assign_profile_picture, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent();
@@ -171,15 +171,15 @@ public class MyProfile extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.something_wrong, Toast.LENGTH_LONG).show();
                 }
             });
         }
         else
         {
-              nameTV.setText("None");
-             emailTV.setText("None");
-            ageTV.setText("None");
+              nameTV.setText(R.string.none);
+             emailTV.setText(R.string.none);
+            ageTV.setText(R.string.none);
         }
 
         return rootView;
@@ -217,7 +217,7 @@ public class MyProfile extends Fragment {
     private void uploadPicture()
     {
         final ProgressDialog pd = new ProgressDialog(getActivity());
-        pd.setTitle("uploading Image...");
+        pd.setTitle(R.string.uploading_image);
         pd.show();
 
         StorageReference fileRef = storageReference.child("Profile pictures/"+user.getEmail());
@@ -226,7 +226,7 @@ public class MyProfile extends Fragment {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 pd.dismiss();
-                Snackbar.make(getActivity().findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.uploading_image, Snackbar.LENGTH_LONG).show();
 
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -240,12 +240,12 @@ public class MyProfile extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         pd.dismiss();
-                        Toast.makeText(getActivity(), "Failed To Upload", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), R.string.failed_to_upload, Toast.LENGTH_LONG).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                pd.setMessage("Just a moment...");
+                pd.setMessage(getString(R.string.just_a_moment));
             }
         });
     }

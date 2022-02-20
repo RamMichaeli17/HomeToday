@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android2project.R;
 import com.example.android2project.ShouldBeDeleted2;
 import com.example.android2project.databinding.ActivitySignInBinding;
 import com.example.android2project.loggedInActivity;
@@ -106,7 +107,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     }else {
                         loading(false);
-                        showToast("Unable to sign in");
+                        showToast(getString(R.string.unable_to_sign_in));
                     }
                 });
 
@@ -129,13 +130,13 @@ public class SignInActivity extends AppCompatActivity {
     //maybe we'll use awesome validation
     private boolean isValidSignInDetails() {
         if (binding.inputEmail.getEditText().getText().toString().trim().isEmpty()) {
-            showToast("Enter email");
+            showToast(getString(R.string.enter_email));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getEditText().getText().toString()).matches()) {
-            showToast("Enter valid email");
+            showToast(getString(R.string.enter_valid_email));
             return false;
         } else if (binding.inputPassword.getEditText().getText().toString().trim().isEmpty()) {
-            showToast("Enter password");
+            showToast(getString(R.string.enter_password));
             return false;
         }
         else

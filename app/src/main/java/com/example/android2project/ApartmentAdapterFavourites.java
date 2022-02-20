@@ -136,7 +136,7 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
 
                                 DeleteRealtimeDatabase(apartment);
 
-                                Toast.makeText(view.getContext(), "Removed "+apartment.getAddress()+" from favourites",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), R.string.removed +apartment.getAddress()+R.string.from_fav,Toast.LENGTH_SHORT).show();
                                 apartments.remove(holder.getAdapterPosition());
                                 notifyItemRemoved(holder.getAdapterPosition());
                                 notifyItemRangeChanged(holder.getAdapterPosition(), apartments.size());
@@ -150,8 +150,8 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Are you sure you want to delete "+ apartment.getAddress()+"?").setPositiveButton("Yes", dialogClickListener)
-                        .setNegativeButton("No", dialogClickListener).show();
+                builder.setMessage(R.string.are_you_sure_delete+ apartment.getAddress()+"?").setPositiveButton(R.string.yes, dialogClickListener)
+                        .setNegativeButton(R.string.no, dialogClickListener).show();
             }
         });
 
@@ -161,7 +161,7 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
             public void onClick(View view) {
 
                 if (apartment.getSellerEmail().equals(user.getEmail())) {
-                    Toast.makeText(view.getContext(), "This is your offer! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), R.string.this_is_our_offer, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

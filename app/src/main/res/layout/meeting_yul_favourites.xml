@@ -91,9 +91,9 @@
                             android:shadowRadius="2"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:layout_marginStart="@dimen/_6sdp"
-                            android:text="Hello Shalom"
+                            android:text="@string/israel_israeli"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -150,6 +150,7 @@
                         android:layout_marginStart="10dp"
                         android:drawableStart="@drawable/little_fav_icon"
                         android:padding="5dp"
+                        android:fontFamily="@font/aharoni"
                         android:shadowColor="@color/black"
                         android:shadowRadius="10"
                         android:drawablePadding="@dimen/_5sdp"
@@ -167,6 +168,7 @@
                         android:drawableStart="@drawable/ic_baseline_chat_24"
                         android:shadowColor="@color/black"
                         android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/aharoni"
                         android:shadowRadius="10"
                         android:text="@string/chat"
                         android:textColor="@color/white"

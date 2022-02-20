@@ -62,7 +62,7 @@
                 android:layout_marginStart="35dp"
                 android:fontFamily="@font/aharoni"
                 android:padding="@dimen/_2sdp"
-                android:text="Agas 3"
+                android:text="@string/agas_3"
                 android:textColor="#B6B6B6"
                 android:textSize="25sp"
                 android:textStyle="bold|italic" />
@@ -78,7 +78,7 @@
                 android:padding="@dimen/_2sdp"
                 android:text="@string/city"
                 android:textColor="#B6B6B6"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
             <androidx.cardview.widget.CardView
@@ -109,17 +109,17 @@
                             android:textStyle="bold"
                             android:paddingTop="10dp"
                             android:textColor="#E8B34A"
-                            android:textSize="20sp"
-                            android:fontFamily="@font/felix007"/>
+                            android:textSize="22sp"
+                            android:fontFamily="@font/aharoni_boldt"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/rooms"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
                             android:textColor="#7A7A7A"
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/felix007"/>
+                            android:fontFamily="@font/aharoni"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -137,25 +137,26 @@
                             android:textStyle="bold"
                             android:paddingTop="10dp"
                             android:textColor="#E8B34A"
-                            android:textSize="20sp"
-                            android:fontFamily="@font/felix007"/>
+                            android:textSize="22sp"
+                            android:fontFamily="@font/aharoni_boldt"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/floor"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
                             android:textColor="#7A7A7A"
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/felix007"/>
+                            android:fontFamily="@font/aharoni"/>
 
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="@dimen/_10sdp"
+                        android:layout_width="@dimen/_15sdp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/_15sdp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -167,8 +168,8 @@
                             android:textStyle="bold"
                             android:paddingTop="10dp"
                             android:textColor="#E8B34A"
-                            android:textSize="20sp"
-                            android:fontFamily="@font/felix007"/>
+                            android:textSize="22sp"
+                            android:fontFamily="@font/aharoni_boldt"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -177,7 +178,7 @@
                             android:textSize="20sp"
                             android:textColor="#7A7A7A"
                             android:layout_marginTop="10dp"
-                            android:fontFamily="@font/felix007"/>
+                            android:fontFamily="@font/aharoni"/>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -206,7 +207,7 @@
                     android:textStyle="bold"
                     android:textColor="#BCBABA"
                     android:textSize="18sp"
-                    android:fontFamily="@font/felix007"/>
+                    android:fontFamily="@font/aharoni"/>
 
                 <TextView
                     android:id="@+id/viewing_apartment_entering_date_TV"
@@ -218,8 +219,8 @@
                     android:inputType="date"
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/felix007"/>
+                    android:textSize="20sp"
+                    android:fontFamily="@font/aharoni_boldt"/>
             </LinearLayout>
 
             <LinearLayout
@@ -253,7 +254,7 @@
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:fontFamily="@font/felix007"/>
+                    android:fontFamily="@font/aharoni"/>
 
                 <TextView
                     android:id="@+id/viewing_apartment_total_building_floors_TV"
@@ -263,10 +264,10 @@
                     android:paddingStart="20dp"
                     android:text="15"
                     android:inputType="number"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/felix007"/>
+                    android:fontFamily="@font/aharoni_boldt"/>
             </LinearLayout>
 
             <LinearLayout
@@ -299,7 +300,7 @@
                     android:layout_marginTop="2dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:fontFamily="@font/felix007"/>
+                    android:fontFamily="@font/aharoni"/>
 
                 <TextView
                     android:id="@+id/viewing_apartment_parkingTV"
@@ -307,11 +308,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingStart="20dp"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="2dp"
                     android:inputType="number"
-                    android:fontFamily="@font/felix007"
+                    android:fontFamily="@font/aharoni_boldt"
                     android:text="0"/>
             </LinearLayout>
         </LinearLayout>
@@ -338,7 +339,7 @@
                     android:paddingTop="10dp"
                     android:textColor="#E8B34A"
                     android:textSize="20sp"
-                    android:fontFamily="@font/felix007" />
+                    android:fontFamily="@font/aharoni_boldt" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -357,6 +358,7 @@
                             android:id="@+id/viewing_apartment_ac_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/air_conditioner" />
 
@@ -364,14 +366,16 @@
                             android:id="@+id/viewing_apartment_elevator_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/elevator" />
-                        android:checked="true"/>
+
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_storeroom_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/storeroom" />
 
@@ -379,6 +383,7 @@
                             android:id="@+id/viewing_apartment_balcony_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/balcony" />
 
@@ -395,12 +400,14 @@
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:text="@string/mamad" />
 
                         <CheckBox
                             android:id="@+id/viewing_apartment_kk_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/kosher_kitchen" />
 
@@ -408,6 +415,7 @@
                             android:id="@+id/viewing_apartment_renovated_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/renovated" />
 
@@ -415,6 +423,7 @@
                             android:id="@+id/viewing_apartment_furniture_CB"
                             android:layout_width="150dp"
                             android:clickable="false"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/furnished" />
 
@@ -438,7 +447,7 @@
                 android:text="@string/chat_with_seller"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:fontFamily="@font/felix007"
+                android:fontFamily="@font/aharoni_boldt"
                 android:background="@drawable/edit_profile_log_out_buttons" />
 
         </LinearLayout>

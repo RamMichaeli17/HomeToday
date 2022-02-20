@@ -51,8 +51,7 @@
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp"
-                android:layoutDirection="ltr"
-                android:visibility="gone">
+                android:layoutDirection="ltr">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/adding_apartment_sale_CV"
@@ -150,7 +149,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2) Property Address"
+                    android:text="@string/property_address"
                     android:textStyle="bold"
                     android:textColor="#E8B34A"
                     android:fontFamily="@font/aharoni_boldt"
@@ -164,8 +163,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_35sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -180,7 +178,7 @@
                         android:id="@+id/auto_complete_text1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -197,7 +195,7 @@
                         android:id="@+id/auto_complete_text2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
+                        android:inputType="textPostalAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -255,7 +253,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3) Property Info"
+                    android:text="@string/property_info"
                     android:textStyle="bold"
                     android:textColor="#E8B34A"
                     android:fontFamily="@font/aharoni_boldt"
@@ -267,8 +265,7 @@
                 android:id="@+id/property_info_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -355,25 +352,29 @@
                             android:id="@+id/viewing_apartment_ac_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Air conditioner" />
+                            android:fontFamily="@font/aharoni"
+                            android:text="@string/air_conditioner" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_elevator_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:text="Elevator" />
+                            android:fontFamily="@font/aharoni"
+                            android:text="@string/elevator" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_storeroom_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
-                            android:text="Storeroom" />
+                            android:text="@string/storeroom" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_balcony_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
-                            android:text="Balcony" />
+                            android:text="@string/balcony" />
 
                     </LinearLayout>
                     <LinearLayout
@@ -386,26 +387,30 @@
                         <RadioButton
                             android:id="@+id/viewing_apartment_mamad_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
-                            android:text="Residential secure space (Mamad)" />
+                            android:text="@string/mamad" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_kk_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
-                            android:text="Kosher kitchen" />
+                            android:text="@string/kosher_kitchen" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_renovated_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
-                            android:text="Renovated" />
+                            android:text="@string/renovated" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_furniture_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
-                            android:text="Furnished" />
+                            android:text="@string/furnished" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -430,7 +435,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4) Price and Dates"
+                    android:text="@string/price_and_date"
                     android:textStyle="bold"
                     android:textColor="#E8B34A"
                     android:fontFamily="@font/aharoni_boldt"
@@ -445,8 +450,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:visibility="gone">
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <LinearLayout
 
@@ -456,7 +460,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Asking price:"
+                        android:text="@string/asking_price"
                         android:fontFamily="@font/aharoni_boldt"
                         android:textSize="@dimen/_15sdp"/>
 
@@ -480,7 +484,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Entering Date:"
+                        android:text="@string/entering_date2"
                         android:fontFamily="@font/aharoni_boldt"
                         android:textSize="@dimen/_15sdp" />
 
@@ -488,8 +492,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/dateET"
-                        android:hint="Date"
+                        android:hint="@string/date"
                         android:textAlignment="center"
+                        android:fontFamily="@font/aharoni"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:inputType="date"/>
@@ -504,7 +509,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:padding="15dp"
-            android:text="Add Pictures"
+            android:text="@string/add_pictures"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textStyle="bold"

@@ -258,8 +258,8 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("You are not logged in").setPositiveButton("Login", dialogClickListener)
-                .setNegativeButton("Back", dialogClickListener).show();
+        builder.setMessage(R.string.you_are_not_logged_in).setPositiveButton(R.string.login, dialogClickListener)
+                .setNegativeButton(R.string.back, dialogClickListener).show();
     }
 
 

@@ -67,9 +67,9 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
+                .setMessage(R.string.are_you_sure_exit)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -81,7 +81,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                         android.os.Process.killProcess(pid);
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(R.string.no, null)
                 .show();
 
     }
@@ -167,13 +167,13 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getTitle().equals("Log in")) {
+                if (item.getTitle().equals(R.string.login)) {
                     startActivity(new Intent(loggedInActivity.this, SignInActivity.class));
                 }
-                if (item.getTitle().equals("Log out")) {
+                if (item.getTitle().equals(R.string.log_out)) {
                     firebaseSignOut();
                 }
-                else if(item.getTitle().equals("My Profile"))
+                else if(item.getTitle().equals(R.string.my_profile))
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
@@ -181,7 +181,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                     fragmentTransaction.commit();
 
                 }
-                else if(item.getTitle().equals("Main"))
+                else if(item.getTitle().equals(R.string.main))
                 {
                     startActivity(new Intent(loggedInActivity.this,loggedInActivity.class));
 
@@ -213,11 +213,11 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         documentReference.update(updates)
                 .addOnSuccessListener(unused -> {
                     preferenceManager.clear();
-                    Toast.makeText(loggedInActivity.this,"Successfully signed out",Toast.LENGTH_LONG).show();
+                    Toast.makeText(loggedInActivity.this,R.string.successfully_signed_out,Toast.LENGTH_LONG).show();
                     FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(loggedInActivity.this, SignInActivity.class));
                 })
-                .addOnFailureListener(e -> showToast("Unable to sign out"));
+                .addOnFailureListener(e -> showToast(getString(R.string.unable_to_sign_out)));
     }
 
 

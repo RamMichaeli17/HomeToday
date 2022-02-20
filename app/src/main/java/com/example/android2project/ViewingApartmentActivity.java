@@ -77,8 +77,6 @@ public class ViewingApartmentActivity extends AppCompatActivity {
         }
 
 
-
-
         price.setText(apartment.getPrice()+" ₪");
         address.setText(apartment.getAddress());
         city.setText(apartment.getCity());

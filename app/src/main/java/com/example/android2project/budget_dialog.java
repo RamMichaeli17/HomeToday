@@ -38,13 +38,13 @@ public class budget_dialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.budget_dialog,null);
 
-        builder.setView(view).setTitle("Budget (Max price)")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setView(view).setTitle(R.string.budget)
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
-                }).setPositiveButton("Search", new DialogInterface.OnClickListener() {
+                }).setPositiveButton(R.string.search, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 int budget = (int)budgetSlider.getValue();
