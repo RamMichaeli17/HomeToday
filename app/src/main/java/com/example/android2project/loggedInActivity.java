@@ -168,13 +168,13 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getTitle().equals(R.string.login)) {
+                if (item.getTitle().equals(getString((R.string.login)))) {
                     startActivity(new Intent(loggedInActivity.this, SignInActivity.class));
                 }
-                if (item.getTitle().equals(R.string.log_out)) {
+                if (item.getTitle().equals(getString(R.string.log_out))) {
                     firebaseSignOut();
                 }
-                else if(item.getTitle().equals(R.string.my_profile))
+                else if(item.getTitle().equals(getString(R.string.my_profile)))
                 {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
@@ -182,7 +182,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                     fragmentTransaction.commit();
 
                 }
-                else if(item.getTitle().equals(R.string.main))
+                else if(item.getTitle().equals(getString(R.string.main)))
                 {
                     startActivity(new Intent(loggedInActivity.this,loggedInActivity.class));
 
