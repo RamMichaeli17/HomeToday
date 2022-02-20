@@ -64,6 +64,8 @@
     <string name="entering_date2">Entering Date:</string>
     <string name="full_name">Full Name</string>
     <string name="required">Required*</string>
+    <string name="insert_city_name">Insert City Name</string>
+    <string name="offer">Offers</string>
 
 
 </resources>

@@ -14,28 +14,33 @@
         android:theme="@style/Theme.Android2Project">
         <activity
             android:name=".ViewingApartmentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activities.SingUpActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
 
 
         <!-- TODO Pending task -->
         <activity
             android:name=".loggedInActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" >
         </activity> <!-- <activity -->
         <!-- android:name=".activities.ShouldBeDeleted2" -->
         <!-- android:exported="false"> -->
         <!-- </activity> -->
-        <activity android:name=".activities.SignInActivity" /> <!-- <activity android:name=".ShouldBeDeleted" /> -->
+        <activity android:name=".activities.SignInActivity"
+            android:screenOrientation="portrait" /> <!-- <activity android:name=".ShouldBeDeleted" /> -->
         <!--
         <activity
             android:name=".ShouldBeDeleted2"
@@ -48,7 +53,8 @@
         </activity>-->
 
         <activity android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

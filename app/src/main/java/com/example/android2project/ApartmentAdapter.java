@@ -134,7 +134,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
     public class ApartmentViewHolder extends RecyclerView.ViewHolder {
 
-        TextView apartmentNameTv, sellerNameTv, publishDateTv, favTv, chatTv, priceTV, roomsTV,hoursAgoTV;
+        TextView apartmentNameTv, sellerNameTv, publishDateTv, favTv, chatTv, priceTV, roomsTV,hoursAgoTV,forRent;
         RoundedImageView profilePic;
         ImageSlider imageSlider;
         ImageView removeOffer,fav_clicked;
@@ -151,6 +151,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             hoursAgoTV = itemView.findViewById(R.id.hoursAgoTV);
             removeOffer=itemView.findViewById(R.id.removeOfferBtn);
             fav_clicked=itemView.findViewById(R.id.fav_bt_clicked);
+            forRent=itemView.findViewById(R.id.for_rental);
 
             imageSlider = itemView.findViewById(R.id.apartment_pic_slider);
 
@@ -182,12 +183,17 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
 
         Apartment apartment = apartments.get(position);
+
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
         holder.apartmentNameTv.setText(capitalizeStr(apartment.getCity()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
         holder.hoursAgoTV.setText(apartment.getTime());
+        if(apartment.isForRental())
+            holder.forRent.setText("For rental");
+        else
+            holder.forRent.setText("For sale");
 
         if (isLoggedIn && apartment.getSellerEmail().equals(user.getEmail()))
         {
@@ -195,7 +201,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         }
 
 
-        System.out.println("Profile pictures/" + apartment.getSellerEmail());
         StorageReference pictureRef = storageReference.child("Profile pictures/" + apartment.getSellerEmail());
         pictureRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

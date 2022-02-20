@@ -65,4 +65,6 @@
     <string name="full_name">שם מלא</string>
     <string name="required">שדה חובה</string>
     <string name="unfavourite">הסרה</string>
+    <string name="insert_city_name">הכנס שם עיר</string>
+    <string name="offer">הצעות</string>
 </resources>

@@ -124,13 +124,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Favourites"
+                        android:text="@string/offer"
                         android:textSize="20sp"
                         android:fontFamily="@font/felix007"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/howManyFav"
                         android:text="0"
                         android:textStyle="bold"
                         android:paddingTop="10dp"
