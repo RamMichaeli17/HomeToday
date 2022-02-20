@@ -141,9 +141,9 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (isLoggedIn)
-            toolbar.setTitle("Android Project");
+            toolbar.setTitle("Home Today");
         else
-            toolbar.setTitle("Android Project - Guest Mode");
+            toolbar.setTitle("Home Today - "+getString(R.string.guest));
         setSupportActionBar(toolbar);
 
         ActionBar actionBar= getSupportActionBar();

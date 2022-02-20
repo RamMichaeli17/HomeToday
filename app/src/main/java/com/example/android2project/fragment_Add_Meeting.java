@@ -521,7 +521,6 @@ public class fragment_Add_Meeting extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getActivity(),"Offer #"+counter+" for "+username+" has been created!",Toast.LENGTH_LONG).show();
 
-                submitMeeting.setVisibility(View.GONE);
                 getActivity().getSupportFragmentManager().beginTransaction().remove(fragment_Add_Meeting.this).commit();
 
 
@@ -535,7 +534,6 @@ public class fragment_Add_Meeting extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == -1) {
-            submitMeeting.setVisibility(View.VISIBLE);
             ClipData clipData = data.getClipData();
             if (clipData!= null)
             {
