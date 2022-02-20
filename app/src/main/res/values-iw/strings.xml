@@ -81,8 +81,8 @@
     <string name="enter_valid_email">הכנס אימייל אימות</string>
     <string name="enter_password">הכנס סיסמה</string>
     <string name="select_profile_image">בחר/י תמונת פרופיל</string>
-    <string name="is_already_in_fav">נמצא כבר במועדפים</string>
-    <string name="added">הוסף</string>
+    <string name="is_already_in_fav">נמצאת כבר במועדפים</string>
+    <string name="added">נוספה</string>
     <string name="to_favourites">למועדפים</string>
     <string name="removed_from_fav">הוסר ממועדפים</string>
     <string name="undo">בטל</string>
@@ -118,4 +118,5 @@
     <string name="email_required">דרוש אימייל!</string>
     <string name="sub_menu">תפריט משנה</string>
     <string name="menu">תפריט</string>
+    <string name="single_offer">הצעה</string>
 </resources>

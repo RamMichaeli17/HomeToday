@@ -117,6 +117,7 @@
     <string name="email_required">Email is required!</string>
     <string name="sub_menu">Sub menu</string>
     <string name="menu">Menu</string>
+    <string name="single_offer">Offer</string>
 
 
 </resources>

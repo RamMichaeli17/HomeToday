@@ -405,7 +405,7 @@ public class fragment_Add_Meeting extends Fragment {
                         listImageUri.size()==0
                                 // room number and parkings
                 ) {
-                    Toast.makeText(getActivity(), R.string.please_fill_all_values, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.please_fill_all_values), Toast.LENGTH_SHORT).show();
                     return;
                 } else{
                     city = cityET.getText().toString().trim();
@@ -442,7 +442,7 @@ public class fragment_Add_Meeting extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getActivity(),R.string.something_wrong,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),getString(R.string.something_wrong),Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -519,7 +519,7 @@ public class fragment_Add_Meeting extends Fragment {
                 .child(userID).child(("Offer "+counter)).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getActivity(),R.string.offer +counter+R.string.for1 +username+R.string.has_been_created,Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),getString(R.string.single_offer)+" " +counter+" "+ getString(R.string.for1)+ " " +username+" "+ getString(R.string.has_been_created),Toast.LENGTH_LONG).show();
 
                 getActivity().getSupportFragmentManager().beginTransaction().remove(fragment_Add_Meeting.this).commit();
 
@@ -560,7 +560,7 @@ public class fragment_Add_Meeting extends Fragment {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            Toast.makeText(getActivity(), R.string.failed_to_upload, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), getString(R.string.failed_to_upload), Toast.LENGTH_LONG).show();
                         }
                     });
         }

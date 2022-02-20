@@ -58,9 +58,9 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
+                .setMessage(R.string.are_you_sure_exit)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -72,7 +72,7 @@ public class SignInActivity extends AppCompatActivity {
                         android.os.Process.killProcess(pid);
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(R.string.no, null)
                 .show();
 
     }
