@@ -1,5 +1,7 @@
 package com.example.android2project;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.android2project.activities.SignInActivity;
+import com.example.android2project.activities.SingUpActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
@@ -60,7 +63,24 @@ public class loggedInActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-            super.onBackPressed();
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+
+                        int pid = android.os.Process.myPid();
+                        android.os.Process.killProcess(pid);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+
     }
 
     Button logoutBtn,addMeetingBtn,pictureBtn,allMeetingsBtn;
@@ -135,9 +155,18 @@ public class loggedInActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference=storage.getReference();
 
+        navigationView.getMenu().clear(); //clear old inflated items.
+        if(isLoggedIn)
+            navigationView.inflateMenu(R.menu.drawer_menu_logout); //inflate new items.
+        else
+            navigationView.inflateMenu(R.menu.drawer_menu_login); //inflate new items.
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getTitle().equals("Log in")) {
+                    startActivity(new Intent(loggedInActivity.this, SignInActivity.class));
+                }
                 if (item.getTitle().equals("Log out")) {
                     firebaseSignOut();
                 }

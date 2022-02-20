@@ -7,6 +7,12 @@
     tools:context=".fragment1_homePage"
     android:id="@+id/fragment_fragment1">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarForSearching"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

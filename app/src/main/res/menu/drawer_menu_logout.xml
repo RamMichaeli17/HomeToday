@@ -4,20 +4,16 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/profile"
+            android:id="@+id/mainMenu"
             android:checked="true"
-            android:icon="@drawable/ic_baseline_profile"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="Main"/>
         <item
-            android:id="@+id/example1"
-            android:icon="@drawable/ic_baseline_kitesurfing_24"
+            android:id="@+id/myProfile"
+            android:icon="@drawable/ic_baseline_person_24"
             android:title="My Profile"
             />
-        <item
-            android:id="@+id/example2"
-            android:icon="@drawable/ic_baseline_downhill_skiing_24"
-            android:title="Another Example"
-            />
+
 
     </group>
 
@@ -26,7 +22,7 @@
 
             <item android:title="Log out"
                 android:icon="@drawable/ic_baseline_logout_24"
-                android:id="@+id/logoutINHAMBURGER"/>
+                android:id="@+id/logInOutHamburger"/>
 
         </menu>
 

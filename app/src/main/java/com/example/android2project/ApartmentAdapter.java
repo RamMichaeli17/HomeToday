@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,10 +48,11 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.ApartmentViewHolder> {
+public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.ApartmentViewHolder> implements Filterable {
 
     Context context;
-    private List<Apartment> apartments;
+    private ArrayList<Apartment> apartments;
+    private List<ArrayList> apartmentsFiltered;
     private final List<chatUser> chatUsers;
     private final UserListener userListener;
     RequestManager glide;
@@ -61,13 +64,19 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     boolean isLoggedIn;
 
 
-    public ApartmentAdapter(Context context, List<Apartment> apartments, List<chatUser> chatUsers, UserListener userListener) {
+    public ApartmentAdapter(Context context, ArrayList<Apartment> apartments, List<chatUser> chatUsers, UserListener userListener) {
         this.apartments = apartments;
         glide = Glide.with(context);
         this.userListener = userListener;
         this.chatUsers = chatUsers;
         this.context=context;
+      //  this.apartmentsFiltered = new ArrayList<>(apartments);
 
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 
     interface ApartmentListener {

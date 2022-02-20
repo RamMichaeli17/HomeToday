@@ -42,7 +42,7 @@ public class fragment1_homePage extends Fragment implements UserListener {
 
     RecyclerView recyclerView;
     DatabaseReference database;
-    List<Apartment> list;
+    ArrayList<Apartment> list;
     FloatingActionButton fab;
     TabLayout tabLayout;
     boolean isLoggedIn;
@@ -54,7 +54,7 @@ public class fragment1_homePage extends Fragment implements UserListener {
     // YUL
 
     ApartmentAdapter adapter;
-    List<Apartment> apartments;
+    ArrayList<Apartment> apartments;
     // RecyclerView recyclerView;
     //Button favouriteHomePageBt= findViewById(R.id.fav_tv);
     //Boolean favVisibleFlag = false;
