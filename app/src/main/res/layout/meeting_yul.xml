@@ -69,13 +69,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_6sdp"
-                            android:layout_marginTop="@dimen/_7sdp"
+                            android:layout_marginTop="@dimen/_6sdp"
                             android:fontFamily="@font/aharoni_boldt"
                             android:shadowColor="@color/black"
                             android:shadowRadius="2"
-                            android:text="Hello Shalom"
+                            android:text="@string/israel_israeli"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/felix007"
+                        android:fontFamily="@font/aharoni_boldt"
                         android:shadowColor="#A39436"
                         android:shadowRadius="15"
                         android:text="1,500,000"
@@ -160,7 +160,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/felix007"
+                        android:fontFamily="@font/aharoni_boldt"
                         android:shadowColor="#A39436"
                         android:shadowRadius="15"
                         android:text="5"
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="@dimen/_7sdp"
-                        android:fontFamily="@font/felix007"
+                        android:fontFamily="@font/aharoni"
                         android:shadowColor="#A39436"
                         android:shadowRadius="15"
                         android:text="@string/rooms"
@@ -296,32 +296,32 @@
                         android:id="@+id/fav_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="10dp"
                         android:drawableStart="@drawable/little_fav_icon"
                         android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/aharoni"
                         android:padding="5dp"
                         android:shadowColor="@color/black"
                         android:shadowRadius="10"
                         android:text="@string/favourite"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/chat_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="80dp"
+                        android:layout_marginEnd="40dp"
                         android:drawableStart="@drawable/ic_baseline_chat_24"
                         android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/aharoni"
                         android:gravity="center"
                         android:shadowColor="@color/black"
-
                         android:shadowRadius="10"
                         android:text="@string/chat"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
-
+                        android:textSize="23sp" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

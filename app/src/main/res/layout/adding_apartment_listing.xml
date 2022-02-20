@@ -26,7 +26,7 @@
                 android:text="@string/hello"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:fontFamily="@font/felix007"/>
+                android:fontFamily="@font/aharoni_boldt"/>
         </androidx.appcompat.widget.Toolbar>
 
 
@@ -132,7 +132,6 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:fontFamily="@font/aharoni"
                             android:text="@string/for_sale"
                             android:textAlignment="center"
@@ -190,7 +189,7 @@
                             android:id="@+id/auto_complete_text1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"/>
+                            android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -207,7 +206,7 @@
                             android:id="@+id/auto_complete_text2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"/>
+                            android:inputType="textPostalAddress"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -223,7 +222,7 @@
                             android:id="@+id/auto_complete_text3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"/>
+                            android:inputType="number"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -239,7 +238,7 @@
                             android:id="@+id/auto_complete_text4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"/>
+                            android:inputType="number"/>
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -365,23 +364,27 @@
                             android:id="@+id/viewing_apartment_ac_CB"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/aharoni"
                             android:text="@string/air_conditioner" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_elevator_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/elevator" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_storeroom_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/storeroom" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_balcony_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/balcony" />
 
@@ -396,24 +399,28 @@
                         <RadioButton
                             android:id="@+id/viewing_apartment_mamad_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/mamad" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_kk_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/kosher_kitchen" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_renovated_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/renovated" />
 
                         <RadioButton
                             android:id="@+id/viewing_apartment_furniture_CB"
                             android:layout_width="150dp"
+                            android:fontFamily="@font/aharoni"
                             android:layout_height="wrap_content"
                             android:text="@string/furnished" />
                     </LinearLayout>
@@ -494,6 +501,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/date"
                             android:textAlignment="center"
+                            android:fontFamily="@font/aharoni"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginEnd="@dimen/_20sdp"
                             android:inputType="date"/>

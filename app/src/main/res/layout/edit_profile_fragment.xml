@@ -18,10 +18,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:textColor="@color/primary"
-            android:textSize="35sp"
+            android:textSize="39sp"
             android:shadowColor="@color/white"
             android:shadowRadius="20"
-            android:fontFamily="@font/felix007"
+            android:fontFamily="@font/aharoni_boldt"
             android:textStyle="bold"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_marginTop="20dp"
             android:textSize="25sp"
             android:textColor="@color/primary"
-            android:fontFamily="@font/felix007"
+            android:fontFamily="@font/aharoni_boldt"
             android:textStyle="bold"/>
 
 
@@ -62,7 +62,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="25sp"
             android:textColor="@color/primary"
-            android:fontFamily="@font/felix007"
+            android:fontFamily="@font/aharoni_boldt"
             android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +92,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="25sp"
             android:textColor="@color/primary"
-            android:fontFamily="@font/felix007"
+            android:fontFamily="@font/aharoni_boldt"
             android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -100,11 +100,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/location"
             app:helperText="@string/required"
+            app:endIconMode="clear_text"
             app:startIconDrawable="@drawable/ic_baseline_blue_location_on_24"
             app:helperTextTextColor="#C50303"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_baseline_email_24"
-            app:endIconCheckable="true"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_5sdp"
@@ -126,7 +124,7 @@
             android:text="@string/confirm_changes"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:fontFamily="@font/felix007"
+            android:fontFamily="@font/aharoni_boldt"
             android:background="@drawable/edit_profile_log_out_buttons" />
 
     </LinearLayout>

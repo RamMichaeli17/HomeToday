@@ -20,8 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             android:text="@string/welcome_back"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_18ssp"
+            android:textColor="@color/primary_dark"
+            android:textSize="@dimen/_20ssp"
+            android:fontFamily="@font/aharoni_boldt"
             android:textStyle="bold"/>
 
         <TextView
@@ -29,8 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="@string/login_to_continue"
-            android:textColor="@color/secondry_text"
-            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/aharoni_boldt"
             android:textStyle="bold"/>
 
 
@@ -86,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:text="@string/sign_in"
+                android:fontFamily="@font/aharoni_boldt"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
@@ -107,20 +110,22 @@
             android:id="@+id/textCreateNewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_22sdp"
             android:text="@string/create_new_account"
+            android:fontFamily="@font/aharoni_boldt"
             android:textColor="@color/primary_dark"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/guestModeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:text="Continue as guest"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:text="@string/continue_as_guest"
+            android:fontFamily="@font/aharoni"
             android:textColor="@color/primary"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_16ssp"
             android:textStyle="bold"/>
 
 

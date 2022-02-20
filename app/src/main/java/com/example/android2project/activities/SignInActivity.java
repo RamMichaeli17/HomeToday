@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android2project.R;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.android2project.R;
@@ -111,7 +112,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     }else {
                         loading(false);
-                        showToast("Unable to sign in");
+                        showToast(getString(R.string.unable_to_sign_in));
                     }
                 });
 

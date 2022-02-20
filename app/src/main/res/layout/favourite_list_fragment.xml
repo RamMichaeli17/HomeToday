@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/primary"
-    tools:context=".activities.UsersActivity">
+    android:background="@color/primary">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageBack"
@@ -27,9 +26,10 @@
         android:layout_height="wrap_content"
         android:text="@string/your_favourites"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="27sp"
         android:textStyle="bold"
-        android:fontFamily="@font/felix007"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:fontFamily="@font/aharoni"
         app:layout_constraintBottom_toBottomOf="@id/imageBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

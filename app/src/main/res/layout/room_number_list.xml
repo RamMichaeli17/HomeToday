@@ -9,7 +9,7 @@
     android:maxLines="1"
     android:textSize="16sp"
     android:text="TextView"
-    android:fontFamily="@font/felix007"
+    android:fontFamily="@font/aharoni"
     android:textAppearance="?attr/textAppearanceSubtitle1">
 
 </TextView>

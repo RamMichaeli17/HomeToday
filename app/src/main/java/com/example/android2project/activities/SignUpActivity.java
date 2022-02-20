@@ -175,7 +175,7 @@ public class SignUpActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.inputPassword, regexPassword, R.string.longer_than_6_chars);
         awesomeValidation.addValidation(this, R.id.inputPassword, R.id.inputConfirmPassword, R.string.not_match_password_and_confirm_password_wrong);
         if(encodedImage== null) {
-            showToast("Select profile image");
+            showToast(getString(R.string.select_profile_image));
             return false;
         }  else if(!awesomeValidation.validate()){
             return false;
@@ -253,14 +253,14 @@ public class SignUpActivity extends AppCompatActivity {
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(android.R.id.content), getString(R.string.image_uploaded), Snackbar.LENGTH_LONG).show();
 
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@android.support.annotation.NonNull Exception exception) {
-                        Toast.makeText(SignUpActivity.this, "Failed To Upload", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, getString(R.string.failed_to_upload), Toast.LENGTH_LONG).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override

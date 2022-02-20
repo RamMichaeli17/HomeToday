@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.android2project.R;
 import com.example.android2project.adapters.ChatAdapter;
 import com.example.android2project.databinding.ActivityChatBinding;
 import com.example.android2project.models.ChatMessage;
@@ -152,7 +153,7 @@ public class ChatActivity extends BaseActivity {
                     }
                    // showToast("Notification sent successfully");
                 }else {
-                    showToast("Error: " + response.code());
+                    showToast(getString(R.string.error) + response.code());
                 }
             }
 

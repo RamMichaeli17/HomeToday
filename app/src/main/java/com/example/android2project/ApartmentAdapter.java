@@ -92,9 +92,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                     if (apar.getPrice() <= budget )
                         filteredApartments.add(apar);
                 }
-
             }
-
 
             else
             {
@@ -238,13 +236,13 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
                 if (apartment.getUndo()==0) {
                     holder.fav_clicked.setVisibility(View.VISIBLE);
-                    holder.favTv.setText("Undo");
+                    holder.favTv.setText(R.string.undo);
                     apartment.setUndo(1);
                     FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Toast.makeText(view.getContext(), apartment.getCity() + " is already in favourites", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(view.getContext(), apartment.getCity() + R.string.is_already_in_fav, Toast.LENGTH_SHORT).show();
 
                             }
                             else {
@@ -252,7 +250,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                                         .child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(view.getContext(), "Added " + apartment.getCity() + " to favourites", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), R.string.added + apartment.getCity() + R.string.to_favourites, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -269,14 +267,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 {
                     apartment.setUndo(0);
                     holder.fav_clicked.setVisibility(View.GONE);
-                    holder.favTv.setText("Favourite");
+                    holder.favTv.setText(R.string.favourite);
                     undoFav(apartment);
-                    Toast.makeText(view.getContext(), "Removed from favourites", Toast.LENGTH_SHORT).show();
-
-
+                    Toast.makeText(view.getContext(), R.string.removed_from_fav, Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 
@@ -306,8 +300,8 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Are you sure you want to delete "+ apartment.getCity()+"?").setPositiveButton("Yes", dialogClickListener)
-                        .setNegativeButton("No", dialogClickListener).show();
+                builder.setMessage(R.string.are_you_sure_delete+ apartment.getCity()+"?").setPositiveButton(R.string.yes, dialogClickListener)
+                        .setNegativeButton(R.string.no, dialogClickListener).show();
             }
         });
 
@@ -323,7 +317,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 }
 
                 if (apartment.getSellerEmail().equals(user.getEmail())) {
-                    Toast.makeText(view.getContext(), "This is your offer! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), R.string.this_is_our_offer, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -365,7 +359,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
 
             @Override
             public void onCancelled(@android.support.annotation.NonNull DatabaseError error) {
-                Toast.makeText(context.getApplicationContext(), "Something went wrong",Toast.LENGTH_LONG).show();
+                Toast.makeText(context.getApplicationContext(), R.string.something_wrong,Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -447,8 +441,8 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("You are not logged in").setPositiveButton("Login", dialogClickListener)
-                .setNegativeButton("Back", dialogClickListener).show();
+        builder.setMessage(R.string.you_are_not_logged_in).setPositiveButton(R.string.login, dialogClickListener)
+                .setNegativeButton(R.string.back, dialogClickListener).show();
     }
 
     public static boolean isNumeric(String strNum) {
