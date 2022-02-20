@@ -151,7 +151,6 @@ public class fragment2_chat extends Fragment implements ConversionListener {
                    }
                }
            }
-           //MMMMYYYYY ADDDIIITIIIIOONNNN
            Collections.sort(conversations, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
            conversationsAdapter.notifyDataSetChanged();
            recyclerView.smoothScrollToPosition(0);

@@ -69,9 +69,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     Uri imageUri;
 
-    AwesomeValidation awesomeValidation;
-    //Button registerUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,9 +158,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
     );
 
-    //maybe we'll use awesome validation
     private boolean isValidSignUpDetails() {
-//        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         AwesomeValidation awesomeValidation = new AwesomeValidation(TEXT_INPUT_LAYOUT);
         awesomeValidation.setTextInputLayoutErrorTextAppearance(R.style.Theme_Android2Project);  // mandatory for UNDERLABEL style
         awesomeValidation.addValidation(this,R.id.inputName, RegexTemplate.NOT_EMPTY,R.string.name_wrong);
@@ -181,21 +176,6 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         } else
             return true;
-//        else if (binding.inputName.getText().toString().trim().isEmpty()) {
-//            showToast("Enter name");
-//            return false;
-//        } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
-//            showToast("Enter email");
-//            return false;
-//        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-//            showToast("Enter valid email");
-//            return false;
-//        } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
-//            showToast("Enter password");
-//            return false;
-//        } else if (binding.inputConfirmPassword.getText().toString().trim().isEmpty()) {
-//            showToast("Confirm your password");
-//            return false;
     }
 
     private void loading(Boolean isLoading) {

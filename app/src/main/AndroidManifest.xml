@@ -29,28 +29,15 @@
             android:screenOrientation="portrait" />
 
 
-        <!-- TODO Pending task -->
         <activity
             android:name=".loggedInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" >
-        </activity> <!-- <activity -->
-        <!-- android:name=".activities.ShouldBeDeleted2" -->
-        <!-- android:exported="false"> -->
-        <!-- </activity> -->
-        <activity android:name=".activities.SignInActivity"
-            android:screenOrientation="portrait" /> <!-- <activity android:name=".ShouldBeDeleted" /> -->
-        <!--
-        <activity
-            android:name=".ShouldBeDeleted2"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>-->
+        <activity android:name=".activities.SignInActivity"
+            android:screenOrientation="portrait" />
 
         <activity android:name=".SplashActivity"
             android:exported="true"

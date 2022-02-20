@@ -107,8 +107,6 @@ public class fragment_Add_Meeting extends Fragment {
         floorET = rootView.findViewById(R.id.auto_complete_text3);
         totalFloorsET = rootView.findViewById(R.id.auto_complete_text4);
         squareMeterET = rootView.findViewById(R.id.auto_complete_text);
-        //room number
-        //parking
         acRB = rootView.findViewById(R.id.viewing_apartment_ac_CB);
         elevatorRB = rootView.findViewById(R.id.viewing_apartment_elevator_CB);
         storeroomRB = rootView.findViewById(R.id.viewing_apartment_storeroom_CB);
@@ -358,15 +356,6 @@ public class fragment_Add_Meeting extends Fragment {
             }
         });
 
-//        //Yul room number spinner
-//        String [] roomNumberSpinner = getResources().getStringArray(R.array.room_number);
-//        ArrayAdapter roomsArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, roomNumberSpinner);
-//        autoCompleteRoomsTextView.setAdapter(roomsArrayAdapter);
-//
-//        //Yul parking amount spinner
-//        String [] parkingNumberSpinner = getResources().getStringArray(R.array.parking_number);
-//        ArrayAdapter parkingArrayAdapter = new ArrayAdapter(getActivity(), R.layout.adding_apartment_listing, parkingNumberSpinner);
-//        autoCompleteParkingTextView.setAdapter(parkingArrayAdapter);
 
         goBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -486,8 +475,6 @@ public class fragment_Add_Meeting extends Fragment {
         Date currentDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("kk:mm");
         String timeIn24Hours = formatter.format(currentDate);
-
-//        Apartment apartment = new Apartment(username,city,new SimpleDateFormat("dd-MM-yyyy").format(new Date()),price,rooms,user.getEmail(),counter,listImageUri.size(),timeIn24Hours,user.getUid());
 
         Apartment apartment = new Apartment(
                 price,

@@ -188,11 +188,6 @@ public class ApartmentAdapterFavourites extends RecyclerView.Adapter<ApartmentAd
 
             }
         });
-
-
-        //  glide.load(apartment.getProfilePic()).into(holder.profilePic);
-
-
     }
 
 

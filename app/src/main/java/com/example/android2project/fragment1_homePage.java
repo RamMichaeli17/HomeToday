@@ -63,13 +63,8 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
 
     List<chatUser> chatUsers = new ArrayList<>();
 
-    // YUL
-
     ApartmentAdapter adapter;
     ArrayList<Apartment> apartments;
-    // RecyclerView recyclerView;
-    //Button favouriteHomePageBt= findViewById(R.id.fav_tv);
-    //Boolean favVisibleFlag = false;
     private PreferenceManager preferenceManager;
 
 
@@ -105,11 +100,6 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
 
 
         database = FirebaseDatabase.getInstance().getReference("House Offers");
-/*
-        recyclerView=rootView.findViewById(R.id.recyclerViewMeetings);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-*/
         fab=rootView.findViewById(R.id.floatingActionButton);
 
 
@@ -131,12 +121,6 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
             }
         });
         apartments = new ArrayList<>();
-/*
-        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment1, "Yossi Cohen", "Ashdod", "03/02/2020",1500000,5));
-        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment2, "Shlomi Barel", "Tel Aviv","02/02/2022",2200000,4));
-        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment3, "Yonit Levi", "Bat Yam","15/08/2021",1800000,5));
-        apartments.add(new Apartment(R.drawable.profile_pic_check,R.drawable.apartment4, "Matan Adler", "Eilat","29/10/2019",3200000,6));
-*/
 
         recyclerView = rootView.findViewById(R.id.recyclerViewMeetings);
 

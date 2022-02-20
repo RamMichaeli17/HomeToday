@@ -45,17 +45,11 @@ public class fragment3 extends Fragment implements UserListener {
 
     List<chatUser> chatUsers = new ArrayList<>();
 
-    // YUL
 
     ApartmentAdapterFavourites adapter;
     List<Apartment> apartments;
-    // RecyclerView recyclerView;
-    //Button favouriteHomePageBt= findViewById(R.id.fav_tv);
-    //Boolean favVisibleFlag = false;
     private PreferenceManager preferenceManager;
 
-
-    //
 
     @Override
     public void onAttach(@NonNull Context context) {

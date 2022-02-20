@@ -16,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.android2project.R;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.example.android2project.R;
-import com.example.android2project.ShouldBeDeleted2;
 import com.example.android2project.databinding.ActivitySignInBinding;
 import com.example.android2project.loggedInActivity;
 import com.example.android2project.utilities.Constants;
@@ -26,7 +24,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -132,7 +129,6 @@ public class SignInActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    //maybe we'll use awesome validation
     private boolean isValidSignInDetails() {
 
         AwesomeValidation awesomeValidation = new AwesomeValidation(TEXT_INPUT_LAYOUT);
@@ -143,32 +139,8 @@ public class SignInActivity extends AppCompatActivity {
             return false;
         } else
         return true;
-//        if (binding.inputEmail.getEditText().getText().toString().trim().isEmpty()) {
-//            showToast("Enter email");
-//            return false;
-//        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getEditText().getText().toString()).matches()) {
-//            showToast("Enter valid email");
-//            return false;
-//        } else if (binding.inputPassword.getEditText().getText().toString().trim().isEmpty()) {
-//            showToast("Enter password");
-//            return false;
-//        }
     }
-//    private void addDataToFirestore() {
-//        FirebaseFirestore database = FirebaseFirestore.getInstance();
-//        HashMap<String, Object> data = new HashMap<>();
-//        data.put("first_name","RamGalYulia");
-//        data.put("last_name","YuliaGalRam");
-//        database.collection("users")
-//                .add(data)
-//                .addOnSuccessListener(documentReference -> {
-//                    Toast.makeText(getApplicationContext(), "Data Inserted", Toast.LENGTH_SHORT).show();
-//                })
-//                .addOnFailureListener(exception -> {
-//                    Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-//                });
-//
-//    }
+
 
 
     private void signInRealTimeDataBase() {

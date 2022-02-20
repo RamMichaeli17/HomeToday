@@ -349,7 +349,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     }
 
     private void DeleteRealtimeDatabase(Apartment apartment) {
-        System.out.println("getSellerUID = "+apartment.getSellerUID()+" Offer "+apartment.getOfferCounter());
         DatabaseReference myReference = FirebaseDatabase.getInstance().getReference("House Offers");
         myReference.child(apartment.getSellerUID()).child("Offer "+apartment.getOfferCounter()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -374,11 +373,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 public void onSuccess(Uri uri) {
                     slideModels.add(new SlideModel(uri.toString(), ScaleTypes.FIT));
                     imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-//                    slideModels.add(new SlideModel(uri.toString(), ScaleTypes.FIT));
-//                    if(i==apartment.getNumOfPictures()-1) {
-//                        holder.imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-//                        slideModels.clear();
-//                    }
                 }
             });
         }
