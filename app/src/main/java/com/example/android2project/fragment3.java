@@ -159,16 +159,6 @@ public class fragment3 extends Fragment implements UserListener {
                             chatUser.id = queryDocumentSnapshot.getId();
                             chatUsers.add(chatUser);
                         }
-                        if(chatUsers.size()>0) {
-                            // UserAdapter userAdapter = new UserAdapter(chatUsers, this);
-                            // binding.usersRecyclerView.setAdapter(userAdapter);
-                            // binding.usersRecyclerView.setVisibility(View.VISIBLE);
-
-                        } else {
-                            //showErrorMessage();
-                        }
-                    } else {
-                        //showErrorMessage();
                     }
                 });
 

@@ -68,7 +68,7 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
     private PreferenceManager preferenceManager;
 
 
-    //
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -209,16 +209,6 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
                             chatUser.id = queryDocumentSnapshot.getId();
                             chatUsers.add(chatUser);
                         }
-                        if(chatUsers.size()>0) {
-                           // UserAdapter userAdapter = new UserAdapter(chatUsers, this);
-                           // binding.usersRecyclerView.setAdapter(userAdapter);
-                           // binding.usersRecyclerView.setVisibility(View.VISIBLE);
-
-                        } else {
-                            //showErrorMessage();
-                        }
-                    } else {
-                        //showErrorMessage();
                     }
                 });
 
