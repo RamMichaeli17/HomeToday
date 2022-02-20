@@ -169,6 +169,7 @@ public class SingUpActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this,R.id.inputName, RegexTemplate.NOT_EMPTY,R.string.name_wrong);
         awesomeValidation.addValidation(this,R.id.inputEmail, Patterns.EMAIL_ADDRESS,R.string.email_wrong);
         awesomeValidation.addValidation(this,R.id.inputPassword,RegexTemplate.NOT_EMPTY,R.string.password_wrong);
+        awesomeValidation.addValidation(this,R.id.inputAge,RegexTemplate.NOT_EMPTY,R.string.age_wrong);
         awesomeValidation.addValidation(this,R.id.inputConfirmPassword,RegexTemplate.NOT_EMPTY,R.string.confirm_password_wrong);
         String regexPassword = ".{6,}";
         awesomeValidation.addValidation(this, R.id.inputPassword, regexPassword, R.string.longer_than_6_chars);

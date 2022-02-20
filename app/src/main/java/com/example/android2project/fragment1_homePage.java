@@ -284,7 +284,7 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
-        searchView.setQueryHint("Insert city name");
+        searchView.setQueryHint(getString(R.string.insert_city_name));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

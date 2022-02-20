@@ -1,22 +1,14 @@
 package com.example.android2project;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -27,12 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android2project.activities.SignInActivity;
-import com.example.android2project.utilities.Constants;
-import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,11 +45,11 @@ public class MyProfile extends Fragment {
     private StorageReference storageReference;
     Uri imageUri;
     ImageView backBtn;
-    TextView nameTV,emailTV,ageTV;
+    TextView nameTV,emailTV,ageTV, howManyOffers;
     DrawerLayout drawerLayout;
     Boolean isLoggedIn;
     RoundedImageView profileImage;
-    Button editProfileBtn;
+
 
 
     @Override
@@ -84,10 +72,8 @@ public class MyProfile extends Fragment {
         emailTV=rootView.findViewById(R.id.profileEmailTV);
         ageTV=rootView.findViewById(R.id.profileAgeTV);
         backBtn=rootView.findViewById(R.id.profileBackBtn);
-        editProfileBtn=rootView.findViewById(R.id.editProfileBtn);
+        howManyOffers =rootView.findViewById(R.id.howManyFav);
 
-        if(!isLoggedIn)
-            editProfileBtn.setVisibility(View.GONE);
 
 
         ((loggedInActivity)getActivity()).disableTabLayout();
@@ -98,13 +84,6 @@ public class MyProfile extends Fragment {
                 ((loggedInActivity)getActivity()).galNavigation();
                 ((loggedInActivity)getActivity()).enableTabLayout();
                 getActivity().getSupportFragmentManager().beginTransaction().remove(MyProfile.this).commit();
-
-            }
-        });
-
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
             }
         });
@@ -161,11 +140,12 @@ public class MyProfile extends Fragment {
                         String email = userProfile.email;
                         String age = userProfile.age;
 
-                        //  jobCounter=userProfile.jobsCounter;
+                        int howMany=userProfile.jobsCounter;
 
                         nameTV.setText(fullName);
                         emailTV.setText(email);
                         ageTV.setText(age);
+                        howManyOffers.setText(Integer.toString(howMany));
                     }
                 }
 

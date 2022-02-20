@@ -17,6 +17,7 @@
     <string name="name_wrong">שם שגוי</string>
     <string name="email_wrong">אימייל שגוי</string>
     <string name="password_wrong">סיסמה שגוייה</string>
+    <string name="age_wrong">גיל שגוי</string>
     <string name="confirm_password_wrong">סיסמת אימות שגוייה</string>
     <string name="not_match_password_and_confirm_password_wrong">הסיסמה חייבת להתאים לסיסמת האימות</string>
     <string name="longer_than_6_chars">הכנס סיסמה בעלת 6 תווים לפחות</string>
@@ -66,4 +67,7 @@
     <string name="required">שדה חובה</string>
     <string name="unfavourite">הסרה</string>
     <string name="guest">מצב אורח</string>
+    <string name="insert_city_name">הכנס שם עיר</string>
+    <string name="offer">הצעות</string>
+    <string name="age">גיל</string>
 </resources>

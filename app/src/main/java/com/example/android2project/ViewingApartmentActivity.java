@@ -28,7 +28,6 @@ public class ViewingApartmentActivity extends AppCompatActivity {
     private StorageReference storageReference;
     ImageSlider imageSlider;
     AppCompatImageView back;
-    Button chat;
     CheckBox acCB,elevatorCB,storeroomCB,balconyCB,mamadCB,kosherKitchenCB,renovatedCB,furnishedCB;
 
     @Override
@@ -55,7 +54,6 @@ public class ViewingApartmentActivity extends AppCompatActivity {
         kosherKitchenCB = findViewById(R.id.viewing_apartment_kk_CB);
         renovatedCB = findViewById(R.id.viewing_apartment_renovated_CB);
         furnishedCB = findViewById(R.id.viewing_apartment_furniture_CB);
-        chat = findViewById(R.id.viewing_apartment_chat);
 
         imageSlider = findViewById(R.id.viewing_apartment_pic);
         back = findViewById(R.id.imageBack);
@@ -79,7 +77,7 @@ public class ViewingApartmentActivity extends AppCompatActivity {
 
 
 
-        price.setText(apartment.getPrice()+" ₪");
+        price.setText(String.format("%,d", apartment.getPrice())+" ₪");
         address.setText(apartment.getAddress());
         city.setText(apartment.getCity());
         rooms.setText(apartment.getRooms()+"");
@@ -113,13 +111,6 @@ public class ViewingApartmentActivity extends AppCompatActivity {
             }
         });
 
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                // TODO: 02/20/22 add chat button 
-
-            }
-        });
     }
 }

@@ -428,19 +428,6 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/viewing_apartment_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:padding="15dp"
-                android:text="@string/chat_with_seller"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:fontFamily="@font/felix007"
-                android:background="@drawable/edit_profile_log_out_buttons" />
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -15,6 +15,7 @@
     <string name="online">Online</string>
     <string name="name_wrong">Invalid name</string>
     <string name="email_wrong">Invalid email</string>
+    <string name="age_wrong">Invalid age</string>
     <string name="password_wrong">Invalid password</string>
     <string name="confirm_password_wrong">Invalid confirmed password</string>
     <string name="not_match_password_and_confirm_password_wrong">Password must match confirm password</string>
@@ -64,6 +65,9 @@
     <string name="entering_date2">Entering Date:</string>
     <string name="full_name">Full Name</string>
     <string name="required">Required*</string>
+    <string name="insert_city_name">Insert City Name</string>
+    <string name="offer">Offers</string>
+    <string name="age">Age</string>
     <string name="guest">Guest Mode</string>
 
 
