@@ -96,7 +96,11 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==android.R.id.home)
         {
-            drawerLayout.openDrawer(Gravity.LEFT);
+            try {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            } catch (Exception e) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
