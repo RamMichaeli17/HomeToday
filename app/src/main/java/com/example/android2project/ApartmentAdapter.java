@@ -183,7 +183,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         Apartment apartment = apartments.get(position);
 
         holder.sellerNameTv.setText( capitalizeStr(apartment.getSellerName()) );
-        holder.apartmentNameTv.setText(capitalizeStr(apartment.getCity()));
+        holder.apartmentNameTv.setText(capitalizeStr(apartment.getAddress())+", "+capitalizeStr(apartment.getCity()));
         holder.publishDateTv.setText(apartment.getDate());
         holder.priceTV.setText(String.format("%,d", apartment.getPrice()));
         holder.roomsTV.setText(Integer.toString(apartment.getRooms()));
