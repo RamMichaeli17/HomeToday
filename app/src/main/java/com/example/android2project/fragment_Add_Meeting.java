@@ -403,7 +403,6 @@ public class fragment_Add_Meeting extends Fragment {
                         itemParking.isEmpty() ||
                         dateET.getText().toString().trim().isEmpty() ||
                         listImageUri.size()==0
-                                // room number and parkings
                 ) {
                     Toast.makeText(getActivity(), getString(R.string.please_fill_all_values), Toast.LENGTH_SHORT).show();
                     return;
