@@ -250,7 +250,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                                         .child(user.getUid()).child("userFavourites").child(apartment.getSellerName() + " offer " + apartment.getOfferCounter()).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(view.getContext(), context.getString(R.string.added)+" " + apartment.getCity() +" " + context.getString(R.string.to_favourites), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(view.getContext(), apartment.getAddress() +" " + context.getString(R.string.added)+" " + context.getString(R.string.to_favourites), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -300,7 +300,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage(context.getString(R.string.are_you_sure_delete)+" " + apartment.getCity()+"?").setPositiveButton(R.string.yes, dialogClickListener)
+                builder.setMessage(context.getString(R.string.are_you_sure_delete)+" " + apartment.getCity()+", " + apartment.getAddress()+"?").setPositiveButton(R.string.yes, dialogClickListener)
                         .setNegativeButton(R.string.no, dialogClickListener).show();
             }
         });

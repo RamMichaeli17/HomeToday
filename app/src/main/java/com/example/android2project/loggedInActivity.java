@@ -259,7 +259,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
     }
 
     private void firebaseSignOut() {
-        showToast("Signing out...");
+        showToast(getString(R.string.sign_out));
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference =
                 database.collection(Constants.KEY_COLLECTION_USERS).document(
@@ -291,7 +291,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                 );
         documentReference.update(Constants.KEY_FCM_TOKEN, token)
 //                .addOnSuccessListener(unused -> showToast("Token updated successfully"))
-                .addOnFailureListener(e -> showToast("Unable to update token"));
+                .addOnFailureListener(e -> showToast(getString(R.string.update_token_failed)));
     }
 
     public void disableTabLayout()
