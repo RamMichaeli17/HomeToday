@@ -3,7 +3,11 @@ package com.example.android2project;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Apartment implements Parcelable {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Apartment implements Parcelable,Comparable {
     private int price,rooms,offerCounter,numOfPictures,floor,totalFloors,squareMeter,parkings,undo;
     private String sellerName, address, date,sellerEmail,time,sellerUID, enteringDate,city;
     private boolean forRental,airConditioner, elevator, storeroom, balcony, mamad, kosherKitchen, renovated, furnished;
@@ -333,6 +337,39 @@ public class Apartment implements Parcelable {
         parcel.writeByte((byte) (kosherKitchen ? 1 : 0));
         parcel.writeByte((byte) (renovated ? 1 : 0));
         parcel.writeByte((byte) (furnished ? 1 : 0));
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Date date1=null;
+        Date date2=null;
+        Date time1=null;
+        Date time2=null;
+        try {
+            date1=new SimpleDateFormat("dd-MM-yyyy").parse(this.getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            date2=new SimpleDateFormat("dd-MM-yyyy").parse(((Apartment)o).getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(date1.compareTo(date2)==0)
+        {
+            try {
+                time1= new SimpleDateFormat("kk:mm").parse(this.getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            try {
+                time2= new SimpleDateFormat("kk:mm").parse(((Apartment)o).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return (-time1.compareTo(time2));
+        }
+        return (-date1.compareTo(date2));
     }
 }
 

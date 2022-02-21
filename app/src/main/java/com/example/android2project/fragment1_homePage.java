@@ -45,6 +45,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class fragment1_homePage extends Fragment implements UserListener, budget_dialog.budgetDialogListener{
@@ -141,6 +142,7 @@ public class fragment1_homePage extends Fragment implements UserListener, budget
                         list.add(apartment);
                     }
                 }
+                Collections.sort(apartments);
                 adapter = new ApartmentAdapter(getActivity(), apartments, chatUsers, fragment1_homePage.this);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setHasFixedSize(true);
