@@ -254,9 +254,6 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    public void galNavigation() {
-        navigationView.getMenu().getItem(0).setChecked(true);
-    }
 
     private void firebaseSignOut() {
         showToast(getString(R.string.sign_out));
@@ -362,7 +359,6 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                         @Override
                         public void run() {
 
-                            // Gal - I used this to reverse address 4/2 to 2/4 (nachal ada 2/4)
                             StringBuffer buffer = new StringBuffer(bestAddress.getSubThoroughfare());
                             buffer.reverse();
                             theLocation.clear();
