@@ -300,7 +300,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage(R.string.are_you_sure_delete+ apartment.getCity()+"?").setPositiveButton(R.string.yes, dialogClickListener)
+                builder.setMessage(context.getString(R.string.are_you_sure_delete)+" " + apartment.getCity()+"?").setPositiveButton(R.string.yes, dialogClickListener)
                         .setNegativeButton(R.string.no, dialogClickListener).show();
             }
         });

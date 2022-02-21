@@ -269,7 +269,7 @@
                         android:layout_width="30dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
-                        android:src="@drawable/ic_baseline_delete_24"
+                        android:src="@drawable/ic_delete_new"
                         android:visibility="gone" />
                 </LinearLayout>
 
