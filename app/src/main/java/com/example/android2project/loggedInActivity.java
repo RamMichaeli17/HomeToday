@@ -31,6 +31,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -66,7 +67,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class loggedInActivity extends AppCompatActivity implements budget_dialog.budgetDialogListener ,LocationListener{
+public class loggedInActivity extends AppCompatActivity implements budget_dialog.budgetDialogListener, LocationListener {
 
 
     private FirebaseUser user;
@@ -90,7 +91,6 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
     ArrayList<String> theLocation;
 
     private ItemViewModel viewModel;
-
 
 
     @Override
@@ -117,8 +117,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==android.R.id.home)
-        {
+        if (item.getItemId() == android.R.id.home) {
             try {
                 drawerLayout.openDrawer(Gravity.LEFT);
             } catch (Exception e) {
@@ -133,13 +132,13 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_in);
 
-        user=FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null)
             isLoggedIn = false;
         else {
             isLoggedIn = true;
             userID = user.getUid();
-            reference= FirebaseDatabase.getInstance().getReference("Users");
+            reference = FirebaseDatabase.getInstance().getReference("Users");
             getToken();
         }
 
@@ -154,30 +153,27 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         viewModel = new ViewModelProvider(this).get(ItemViewModel.class);
 
 
-
-        theLocation=new ArrayList<>();
+        theLocation = new ArrayList<>();
         geocoder = new Geocoder(this);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
 
-        tabLayout=findViewById(R.id.tabLayout);
-        viewPager=findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
 
         tabLayout.setupWithViewPager(viewPager);
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        vpAdapter.addFragment(new fragment1_homePage(),getString(R.string.main));
-        if(isLoggedIn) {
+        vpAdapter.addFragment(new fragment1_homePage(), getString(R.string.main));
+        if (isLoggedIn) {
             vpAdapter.addFragment(new fragment2_chat(), getString(R.string.chat));
             vpAdapter.addFragment(new fragment3(), getString(R.string.favourites));
         }
         viewPager.setAdapter(vpAdapter);
 
 
-
         drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView=findViewById(R.id.navigation_view);
-
+        navigationView = findViewById(R.id.navigation_view);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -187,18 +183,16 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
             toolbar.setTitle(getString(R.string.guest));
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
 
 
-
-
         storage = FirebaseStorage.getInstance();
-        storageReference=storage.getReference();
+        storageReference = storage.getReference();
 
         navigationView.getMenu().clear(); //clear old inflated items.
-        if(isLoggedIn)
+        if (isLoggedIn)
             navigationView.inflateMenu(R.menu.drawer_menu_logout); //inflate new items.
         else
             navigationView.inflateMenu(R.menu.drawer_menu_login); //inflate new items.
@@ -212,18 +206,14 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                 }
                 if (item.getTitle().equals(getString(R.string.log_out))) {
                     firebaseSignOut();
-                }
-                else if(item.getTitle().equals(getString(R.string.my_profile)))
-                {
+                } else if (item.getTitle().equals(getString(R.string.my_profile))) {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.testFrameLayout,new MyProfile());
+                    fragmentTransaction.replace(R.id.testFrameLayout, new MyProfile());
                     fragmentTransaction.commit();
 
-                }
-                else if(item.getTitle().equals(getString(R.string.main)))
-                {
-                    startActivity(new Intent(loggedInActivity.this,loggedInActivity.class));
+                } else if (item.getTitle().equals(getString(R.string.main))) {
+                    startActivity(new Intent(loggedInActivity.this, loggedInActivity.class));
 
                 }
                 item.setChecked(true);
@@ -231,15 +221,6 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                 return true;
             }
         });
-
-
-
-
-        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, loggedInActivity.this);
-
-
 
 
         Criteria criteria = new Criteria();
@@ -250,6 +231,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
     }
+
     public void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
@@ -267,7 +249,7 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         documentReference.update(updates)
                 .addOnSuccessListener(unused -> {
                     preferenceManager.clear();
-                    Toast.makeText(loggedInActivity.this,R.string.successfully_signed_out,Toast.LENGTH_LONG).show();
+                    Toast.makeText(loggedInActivity.this, R.string.successfully_signed_out, Toast.LENGTH_LONG).show();
                     FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(loggedInActivity.this, SignInActivity.class));
                 })
@@ -279,8 +261,8 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateToken);
     }
 
-    private void updateToken (String token) {
-        preferenceManager.putString(Constants.KEY_FCM_TOKEN,token);
+    private void updateToken(String token) {
+        preferenceManager.putString(Constants.KEY_FCM_TOKEN, token);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference =
                 database.collection(Constants.KEY_COLLECTION_USERS).document(
@@ -291,17 +273,15 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                 .addOnFailureListener(e -> showToast(getString(R.string.update_token_failed)));
     }
 
-    public void disableTabLayout()
-    {
-        for(View v: tabLayout.getTouchables()){
+    public void disableTabLayout() {
+        for (View v : tabLayout.getTouchables()) {
             touchablesToRestore.add(v);
             v.setClickable(false);
         }
     }
 
-    public void enableTabLayout()
-    {
-        for(View v: touchablesToRestore){
+    public void enableTabLayout() {
+        for (View v : touchablesToRestore) {
             v.setClickable(true);
         }
         touchablesToRestore.clear();
@@ -318,15 +298,15 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==LOCATION_PERMISSON_REQUEST){
-            if(grantResults[0]!= PackageManager.PERMISSION_GRANTED){
+        if (requestCode == LOCATION_PERMISSON_REQUEST) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(loggedInActivity.this);
                 builder.setTitle("Attention").setMessage("The application must have location permission in order for it to work!")
                         .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                intent.setData(Uri.parse("package:"+getPackageName()));
+                                intent.setData(Uri.parse("package:" + getPackageName()));
                                 startActivity(intent);
                             }
                         }).setNegativeButton("Quit", new DialogInterface.OnClickListener() {
@@ -335,6 +315,19 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
                         finish();
                     }
                 }).setCancelable(false).show();
+            } else {
+                manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, loggedInActivity.this);
             }
         }
     }
