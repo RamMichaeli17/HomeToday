@@ -51,7 +51,8 @@
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp"
-                android:layoutDirection="ltr">
+                android:layoutDirection="ltr"
+                android:visibility="gone">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/adding_apartment_sale_CV"
@@ -163,7 +164,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_35sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -265,7 +267,8 @@
                 android:id="@+id/property_info_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -450,7 +453,8 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp">
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:visibility="gone">
 
                 <LinearLayout
 
