@@ -236,6 +236,10 @@ public class loggedInActivity extends AppCompatActivity implements budget_dialog
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    public void galNavigation() {
+        navigationView.getMenu().getItem(0).setChecked(true);
+    }
+
 
     private void firebaseSignOut() {
         showToast(getString(R.string.sign_out));

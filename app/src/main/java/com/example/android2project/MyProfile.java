@@ -92,6 +92,7 @@ public class MyProfile extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((loggedInActivity)getActivity()).galNavigation();
                 ((loggedInActivity)getActivity()).enableTabLayout();
                 getActivity().getSupportFragmentManager().beginTransaction().remove(MyProfile.this).commit();
 
