@@ -41,7 +41,7 @@
                     android:shadowRadius="15"
                     android:text="@string/city"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
