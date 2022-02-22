@@ -7,6 +7,7 @@
     android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/before_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".loggedInActivity"
@@ -495,20 +496,38 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="@dimen/_10sdp">
+
+
+
         <Button
             android:id="@+id/addImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
             android:padding="15dp"
             android:text="@string/add_pictures"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:fontFamily="@font/aharoni_boldt"
-            android:background="@drawable/add_pictures_button"/>
+            android:background="@drawable/add_pictures_button"
+            android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/approve_added_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_outline_done_24"
+                android:layout_toEndOf="@id/addImage"
+                android:layout_marginStart="5dp"
+                android:visibility="gone">
+            </ImageView>
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/submitMeeting"

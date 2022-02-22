@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,10 +70,10 @@ public class fragment_Add_Meeting extends Fragment {
     //Expandable cardViews
    CardView categoryCV, propertyAddressCV, propertyInfoCV, priceDateCV;
    LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4;
-   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV;
+   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV,beforeAdd;
 
    //selecting category
-   ImageView forRental, forSale;
+   ImageView forRental, forSale,approveAddedImage;
    Boolean forRentalFlag = false;
    Boolean forSaleFlag = false;
 
@@ -120,6 +121,8 @@ public class fragment_Add_Meeting extends Fragment {
         submitMeeting = rootView.findViewById(R.id.submitMeeting);
         addImage=rootView.findViewById(R.id.addImage);
         goBackBtn=rootView.findViewById(R.id.goBackBtn);
+        approveAddedImage = rootView.findViewById(R.id.approve_added_image);
+        beforeAdd = rootView.findViewById(R.id.before_add);
 
         autoCompleteParkingTextView = rootView.findViewById(R.id.auto_complete_parking_number);
         parkingAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,parkingItems);
@@ -374,6 +377,17 @@ public class fragment_Add_Meeting extends Fragment {
                 intent.setType("image/*");
 
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        beforeAdd.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if(listImageUri.size()!=0)
+                    approveAddedImage.setVisibility(View.VISIBLE);
+                else
+                    approveAddedImage.setVisibility(View.GONE);
+                return false;
             }
         });
 
