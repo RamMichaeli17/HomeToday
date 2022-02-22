@@ -1,9 +1,7 @@
 package com.example.android2project.activities;
 
 import static com.basgeekball.awesomevalidation.ValidationStyle.TEXT_INPUT_LAYOUT;
-import static com.basgeekball.awesomevalidation.ValidationStyle.UNDERLABEL;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,12 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.android2project.R;
-import com.example.android2project.User;
+import com.example.android2project.models.User;
 import com.example.android2project.databinding.ActivitySingUpBinding;
-import com.example.android2project.loggedInActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +30,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,7 +40,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -214,7 +208,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     uploadPicture();
-                    Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }

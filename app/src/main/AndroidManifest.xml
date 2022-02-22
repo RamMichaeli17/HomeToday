@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2Project">
         <activity
-            android:name=".ViewingApartmentActivity"
+            android:name=".activities.ViewingApartmentActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -34,7 +34,7 @@
 
 
         <activity
-            android:name=".loggedInActivity"
+            android:name=".activities.LoggedInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" >
@@ -43,7 +43,7 @@
         <activity android:name=".activities.SignInActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".SplashActivity"
+        <activity android:name=".activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
             <intent-filter>

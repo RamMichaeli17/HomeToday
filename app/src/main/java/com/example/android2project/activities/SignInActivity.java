@@ -17,7 +17,6 @@ import com.example.android2project.R;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.android2project.databinding.ActivitySignInBinding;
-import com.example.android2project.loggedInActivity;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,7 +40,7 @@ public class SignInActivity extends AppCompatActivity {
         preferenceManager = new PreferenceManager(getApplicationContext());
         mAuth=FirebaseAuth.getInstance();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
-            Intent intent = new Intent(getApplicationContext(), loggedInActivity.class);
+            Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
             startActivity(intent);
             finish();
         }
@@ -83,7 +82,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
         binding.guestModeTV.setOnClickListener(v-> {
-            startActivity(new Intent(getApplicationContext(),loggedInActivity.class));
+            startActivity(new Intent(getApplicationContext(), LoggedInActivity.class));
         });
     }
 
@@ -149,7 +148,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
-                    Intent intent = new Intent(getApplicationContext(),loggedInActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoggedInActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
