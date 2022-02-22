@@ -70,7 +70,7 @@ public class fragment_Add_Meeting extends Fragment {
     //Expandable cardViews
    CardView categoryCV, propertyAddressCV, propertyInfoCV, priceDateCV;
    LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4;
-   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV,beforeAdd;
+   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV;
 
    //selecting category
    ImageView forRental, forSale,approveAddedImage;
@@ -122,7 +122,6 @@ public class fragment_Add_Meeting extends Fragment {
         addImage=rootView.findViewById(R.id.addImage);
         goBackBtn=rootView.findViewById(R.id.goBackBtn);
         approveAddedImage = rootView.findViewById(R.id.approve_added_image);
-        beforeAdd = rootView.findViewById(R.id.before_add);
 
         autoCompleteParkingTextView = rootView.findViewById(R.id.auto_complete_parking_number);
         parkingAdapterItems = new ArrayAdapter<String>(rootView.getContext(),R.layout.room_number_list,parkingItems);
@@ -380,16 +379,6 @@ public class fragment_Add_Meeting extends Fragment {
             }
         });
 
-        beforeAdd.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if(listImageUri.size()!=0)
-                    approveAddedImage.setVisibility(View.VISIBLE);
-                else
-                    approveAddedImage.setVisibility(View.GONE);
-                return false;
-            }
-        });
 
         submitMeeting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -535,6 +524,7 @@ public class fragment_Add_Meeting extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == -1) {
+            approveAddedImage.setVisibility(View.VISIBLE);
             ClipData clipData = data.getClipData();
             if (clipData!= null)
             {
@@ -547,7 +537,8 @@ public class fragment_Add_Meeting extends Fragment {
                 listImageUri.add(data.getData());
             }
         }
-
+        else
+            approveAddedImage.setVisibility(View.GONE);
     }
 
     private void uploadPicture() {

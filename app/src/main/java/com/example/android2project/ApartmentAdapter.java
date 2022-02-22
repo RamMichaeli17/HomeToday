@@ -198,6 +198,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
             holder.removeOffer.setVisibility(View.VISIBLE);
         }
 
+        if (apartment.getUndo()==1) {
+            holder.fav_clicked.setVisibility(View.VISIBLE);
+            holder.favTv.setText(R.string.undo); }
+
 
         StorageReference pictureRef = storageReference.child("Profile pictures/" + apartment.getSellerEmail());
         pictureRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
