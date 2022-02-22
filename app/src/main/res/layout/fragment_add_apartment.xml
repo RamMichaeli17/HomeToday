@@ -64,8 +64,9 @@
                         android:id="@+id/for_rental"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/for_rent_blackwhite" />
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/for_rent_blackwhite"
+                        android:layout_marginBottom="10dp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -98,7 +99,8 @@
                         android:id="@+id/for_sale"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitCenter"
+                        android:layout_marginBottom="10dp"
                         android:src="@drawable/for_sale_blackwhite" />
 
                     <LinearLayout
