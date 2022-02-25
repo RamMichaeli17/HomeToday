@@ -86,14 +86,14 @@
     <string name="to_favourites">למועדפים</string>
     <string name="removed_from_fav">הוסר ממועדפים</string>
     <string name="undo">בטל</string>
-    <string name="this_is_our_offer">זוהי ההצעה שלנו!</string>
+    <string name="this_is_our_offer">זוהי ההצעה שלך!</string>
     <string name="something_wrong">משהו השתבש</string>
     <string name="removed">הוסר</string>
     <string name="from_fav">ממועדפים</string>
-    <string name="are_you_sure_delete">האם אתה בטוח שברצונך למחוק</string>
+    <string name="are_you_sure_delete">האם אתה בטוח שברצונך למחוק את</string>
     <string name="yes">כן</string>
     <string name="no">לא</string>
-    <string name="are_you_sure_exit">האם אתה בטוח שברצונך לצאת</string>
+    <string name="are_you_sure_exit">האם אתה בטוח שברצונך לצאת?</string>
     <string name="image_uploaded">התמונה הועלתה.</string>
     <string name="failed_to_upload">נכשל בהעלאה</string>
     <string name="unable_to_sign_in">לא ניתן להתחבר</string>
@@ -103,7 +103,7 @@
     <string name="budget">תקציב (מחיר מקסימאלי)</string>
     <string name="cancel">ביטול</string>
     <string name="search">חיפוש</string>
-    <string name="please_fill_all_values">אנא מלא את כל הערכים</string>
+    <string name="please_fill_all_values">אנא מלא/י את כל הפרטים על ההצעה שלך</string>
     <string name="for1">עבור</string>
     <string name="has_been_created">נוצרה!</string>
     <string name="my_profile">הפרופיל שלי</string>
@@ -119,4 +119,6 @@
     <string name="sub_menu">תפריט משנה</string>
     <string name="menu">תפריט</string>
     <string name="single_offer">הצעה</string>
+    <string name="sign_out">מתנתק...</string>
+    <string name="update_token_failed">לא ניתן לעדכן את האות</string>
 </resources>
