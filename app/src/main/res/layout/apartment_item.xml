@@ -184,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginStart="@dimen/_7sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/aharoni"
                         android:shadowColor="#A39436"
                         android:shadowRadius="15"

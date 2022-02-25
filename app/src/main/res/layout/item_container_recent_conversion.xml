@@ -48,7 +48,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/aharoni"
         android:maxLines="1"
-        android:textColor="@color/primary"
+        android:textColor="@color/fav_and_chat"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter"
         app:layout_constraintEnd_toEndOf="parent"

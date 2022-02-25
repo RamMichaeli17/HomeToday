@@ -62,8 +62,8 @@
 
                     <ImageView
                         android:id="@+id/for_rental"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_115sdp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/for_rent_blackwhite"
                         android:layout_marginBottom="10dp"/>
@@ -97,8 +97,8 @@
 
                     <ImageView
                         android:id="@+id/for_sale"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="@dimen/_170sdp"
+                        android:layout_height="@dimen/_120sdp"
                         android:scaleType="fitCenter"
                         android:layout_marginBottom="10dp"
                         android:src="@drawable/for_sale_blackwhite" />
@@ -504,19 +504,21 @@
             android:layout_marginBottom="@dimen/_10sdp">
 
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addImage"
+                android:layout_width="@dimen/_135sdp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@drawable/edit_profile_log_out_buttons"
+                android:fontFamily="@font/aharoni"
+                android:padding="15dp"
+                android:textAllCaps="false"
+                android:text="@string/add_pictures"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/addImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="@string/add_pictures"
-            android:textSize="@dimen/_15sdp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:fontFamily="@font/aharoni_boldt"
-            android:background="@drawable/add_pictures_button"
-            android:layout_centerHorizontal="true"/>
 
             <ImageView
                 android:id="@+id/approve_added_image"
@@ -530,14 +532,14 @@
 
         </RelativeLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitMeeting"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_170sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
             android:padding="15dp"
             android:text="@string/post_apartment"
+            android:textAllCaps="false"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textStyle="bold"

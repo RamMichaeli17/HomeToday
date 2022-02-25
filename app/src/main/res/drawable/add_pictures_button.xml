@@ -10,6 +10,7 @@
 
     <solid
         android:angle="45"
-        android:color="@color/primary_text"/>
+        android:color="@color/primary"/>
 
 </shape>
+
