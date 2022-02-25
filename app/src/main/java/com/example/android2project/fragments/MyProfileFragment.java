@@ -79,14 +79,14 @@ public class MyProfileFragment extends Fragment {
         ageTV=rootView.findViewById(R.id.profileAgeTV);
         backBtn=rootView.findViewById(R.id.profileBackBtn);
         howManyOffers =rootView.findViewById(R.id.howManyFav);
-        locationTV=rootView.findViewById(R.id.locationTV);
+//        locationTV=rootView.findViewById(R.id.locationTV);
 
         viewModel=new ViewModelProvider(requireActivity()).get(ItemViewModel.class);
 
 
-        viewModel.getSelectedItem().observe(getViewLifecycleOwner(),item->{
-            locationTV.setText(item.get(0)+" "+item.get(1)+" "+item.get(3));
-        });
+//        viewModel.getSelectedItem().observe(getViewLifecycleOwner(),item->{
+//            locationTV.setText(item.get(0)+" "+item.get(1)+" "+item.get(3));
+//        });
 
 
 

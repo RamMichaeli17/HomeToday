@@ -137,12 +137,15 @@ public class LoggedInActivity extends AppCompatActivity implements BudgetDialog.
         }
 
 
-        if (Build.VERSION.SDK_INT >= 23) {
+
+        // Profile Location
+
+/*        if (Build.VERSION.SDK_INT >= 23) {
             int hasLocationPermission = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION);
             if (hasLocationPermission != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSON_REQUEST);
             }
-        }
+        }*/
 
         viewModel = new ViewModelProvider(this).get(ItemViewModel.class);
 
