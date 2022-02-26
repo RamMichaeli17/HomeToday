@@ -533,7 +533,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addImage"
@@ -561,10 +561,10 @@
                     android:id="@+id/approve_added_image"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="65dp"
+                    android:layout_marginStart="310dp"
                     android:layout_marginTop="@dimen/_29sdp"
                     android:src="@drawable/ic_outline_done_24"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
@@ -576,6 +576,7 @@
             android:layout_gravity="center_horizontal"
             android:padding="15dp"
             android:text="@string/post_apartment"
+            android:layout_marginTop="@dimen/_30sdp"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textStyle="bold"
