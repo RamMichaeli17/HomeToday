@@ -533,7 +533,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addImage"
@@ -549,28 +549,25 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
-
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/approve_added_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="@dimen/_29sdp"
+                    android:src="@drawable/ic_outline_done_24"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
         </androidx.cardview.widget.CardView>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="@dimen/_10sdp">
-
-
-            <ImageView
-                android:id="@+id/approve_added_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_outline_done_24"
-                android:layout_marginStart="5dp"
-                android:visibility="gone">
-            </ImageView>
-
-        </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitMeeting"
