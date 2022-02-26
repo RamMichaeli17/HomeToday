@@ -533,7 +533,7 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addImage"
@@ -574,6 +574,7 @@
             android:layout_width="@dimen/_170sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_30sdp"
             android:padding="15dp"
             android:text="@string/post_apartment"
             android:textSize="@dimen/_15sdp"
