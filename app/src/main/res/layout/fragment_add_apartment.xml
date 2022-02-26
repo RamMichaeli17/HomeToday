@@ -62,8 +62,8 @@
 
                     <ImageView
                         android:id="@+id/for_rental"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_115sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_113sdp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/for_rent_blackwhite"
                         android:layout_marginBottom="10dp"/>
@@ -97,8 +97,8 @@
 
                     <ImageView
                         android:id="@+id/for_sale"
-                        android:layout_width="@dimen/_170sdp"
-                        android:layout_height="@dimen/_120sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_119sdp"
                         android:scaleType="fitCenter"
                         android:layout_marginBottom="10dp"
                         android:src="@drawable/for_sale_blackwhite" />
@@ -466,6 +466,8 @@
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:fontFamily="@font/aharoni"
                         android:inputType="number"
+                        android:drawablePadding="@dimen/_1sdp"
+                        android:drawableEnd="@drawable/little_shekel_sign"
                         android:hint="@string/price"
                         android:textAlignment="center"
                         android:id="@+id/askingPriceET"/>
@@ -497,6 +499,61 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/photos_fifth_CV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="5dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_5sdp">
+
+            <LinearLayout
+                android:id="@+id/photos_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pictures"
+                    android:textStyle="bold"
+                    android:textColor="#E8B34A"
+                    android:fontFamily="@font/aharoni_boldt"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="23sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/photos_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addImage"
+                    android:layout_width="@dimen/_135sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/add_pictures_button"
+                    android:fontFamily="@font/aharoni"
+                    android:padding="15dp"
+                    android:text="@string/add_pictures"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -504,28 +561,11 @@
             android:layout_marginBottom="@dimen/_10sdp">
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/addImage"
-                android:layout_width="@dimen/_135sdp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:background="@drawable/edit_profile_log_out_buttons"
-                android:fontFamily="@font/aharoni"
-                android:padding="15dp"
-                android:textAllCaps="false"
-                android:text="@string/add_pictures"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold" />
-
-
             <ImageView
                 android:id="@+id/approve_added_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_outline_done_24"
-                android:layout_toEndOf="@id/addImage"
                 android:layout_marginStart="5dp"
                 android:visibility="gone">
             </ImageView>
@@ -539,7 +579,6 @@
             android:layout_gravity="center_horizontal"
             android:padding="15dp"
             android:text="@string/post_apartment"
-            android:textAllCaps="false"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textStyle="bold"

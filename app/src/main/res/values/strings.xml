@@ -22,12 +22,12 @@
     <string name="longer_than_6_chars">Enter a password longer than 6 characters</string>
     <string name="main">Main</string>
     <string name="chat">Chat</string>
-    <string name="favourite">Favourite</string>
+    <string name="favourite">Favorite</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="log_out">Log Out</string>
     <string name="location">Location</string>
     <string name="confirm_changes">Confirm Changes</string>
-    <string name="your_favourites">Your Favourites</string>
+    <string name="your_favourites">Your Favorites</string>
     <string name="rooms">Rooms</string>
     <string name="floor">Floor</string>
     <string name="square_meter">Square Meter</string>
@@ -56,12 +56,12 @@
     <string name="property_facilities">Property Facilities:</string>
     <string name="price_and_date">4) Price and Date</string>
     <string name="post_apartment">Post Apartment</string>
-    <string name="favourites">Favourites</string>
+    <string name="favourites">Favorites</string>
     <string name="chats">Chats</string>
     <string name="asking_price">Asking Price:</string>
     <string name="price">Price</string>
     <string name="date">Date</string>
-    <string name="unfavourite">Unfavourite</string>
+    <string name="unfavourite">Unfavorite</string>
     <string name="entering_date2">Entering Date:</string>
     <string name="full_name">Full Name</string>
     <string name="insert_city_name">Insert City Name</string>
@@ -84,13 +84,13 @@
     <string name="failed_to_upload">Failed to upload</string>
     <string name="is_already_in_fav">is already in favourites</string>
     <string name="added">has been added</string>
-    <string name="to_favourites">to favourites</string>
+    <string name="to_favourites">to favorites</string>
     <string name="removed_from_fav">Removed From Favourites</string>
     <string name="undo">Undo</string>
     <string name="this_is_our_offer">This is your offer!</string>
     <string name="something_wrong">Something Went Wrong</string>
     <string name="removed">Removed</string>
-    <string name="from_fav">From Favourites</string>
+    <string name="from_fav">From Favorites</string>
     <string name="are_you_sure_delete">Are you sure you want to delete</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -120,6 +120,7 @@
     <string name="single_offer">Offer</string>
     <string name="sign_out">Signing out...</string>
     <string name="update_token_failed">Unable to update token</string>
+    <string name="pictures">5) Pictures</string>
 
 
 </resources>

@@ -71,9 +71,9 @@ public class AddApartmentFragment extends Fragment {
     String[] parkingItems = {"0","1","2","3"};
 
     //Expandable cardViews
-   CardView categoryCV, propertyAddressCV, propertyInfoCV, priceDateCV;
-   LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4;
-   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV;
+   CardView categoryCV, propertyAddressCV, propertyInfoCV, priceDateCV, photosCV;
+   LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4, linearLayout5;
+   LinearLayout categoryTV, propertyAddressTV, propertyInfoTV, priceDateTV, photosTV;
 
    //selecting category
    ImageView forRental, forSale,approveAddedImage;
@@ -162,14 +162,17 @@ public class AddApartmentFragment extends Fragment {
         linearLayout2 = rootView.findViewById(R.id.property_address_info);
         linearLayout3 = rootView.findViewById(R.id.property_info_info);
         linearLayout4 = rootView.findViewById(R.id.priceDate_info);
+        linearLayout5 = rootView.findViewById(R.id.photos_info);
         categoryCV = rootView.findViewById(R.id.adding_apartment_first_CV);
         propertyAddressCV = rootView.findViewById(R.id.adding_apartment_second_CV);
         propertyInfoCV = rootView.findViewById(R.id.adding_apartment_third_CV);
         priceDateCV = rootView.findViewById(R.id.adding_apartment_fourth_CV);
+        photosCV = rootView.findViewById(R.id.photos_fifth_CV);
         categoryTV = rootView.findViewById(R.id.category_title);
         propertyAddressTV = rootView.findViewById(R.id.address_title);
         propertyInfoTV = rootView.findViewById(R.id.property_info_title);
         priceDateTV = rootView.findViewById(R.id.priceDate_title);
+        photosTV = rootView.findViewById(R.id.photos_title);
 
         //clickable category
         forRental = rootView.findViewById(R.id.for_rental);
@@ -360,6 +363,20 @@ public class AddApartmentFragment extends Fragment {
                 }
             }
         });
+
+        photosTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(linearLayout5.getVisibility() == View.GONE){
+                    TransitionManager.beginDelayedTransition(photosCV, new AutoTransition());
+                    linearLayout5.setVisibility(View.VISIBLE);
+                }else{
+                    TransitionManager.beginDelayedTransition(photosCV, new AutoTransition());
+                    linearLayout5.setVisibility(View.GONE);
+                }
+            }
+        });
+
 
 
         goBackBtn.setOnClickListener(new View.OnClickListener() {
