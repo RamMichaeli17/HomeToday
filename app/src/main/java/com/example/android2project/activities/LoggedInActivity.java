@@ -43,6 +43,8 @@ import com.example.android2project.fragments.FavoritesFragment;
 import com.example.android2project.models.ItemViewModel;
 import com.example.android2project.utilities.Constants;
 import com.example.android2project.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,14 +96,23 @@ public class LoggedInActivity extends AppCompatActivity implements BudgetDialog.
                 .setCancelable(false)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        DocumentReference documentReferenceOut;
+                        PreferenceManager preferenceManagerOut = new PreferenceManager(getApplicationContext());
+                        FirebaseFirestore databaseOut = FirebaseFirestore.getInstance();
+                        documentReferenceOut = databaseOut.collection(Constants.KEY_COLLECTION_USERS)
+                                .document(preferenceManagerOut.getString(Constants.KEY_USER_ID));
+                        documentReferenceOut.update(Constants.KEY_AVAILABILITY,0).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
 
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-
-                        int pid = android.os.Process.myPid();
-                        android.os.Process.killProcess(pid);
+                                int pid = android.os.Process.myPid();
+                                android.os.Process.killProcess(pid);
+                            }
+                        });
                     }
                 })
                 .setNegativeButton(R.string.no, null)
@@ -328,7 +339,7 @@ public class LoggedInActivity extends AppCompatActivity implements BudgetDialog.
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, LoggedInActivity.this);
+//                manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, LoggedInActivity.this);
             }
         }
     }
