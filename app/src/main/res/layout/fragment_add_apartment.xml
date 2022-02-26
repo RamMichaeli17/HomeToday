@@ -561,7 +561,7 @@
                     android:id="@+id/approve_added_image"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="65dp"
+                    android:layout_marginStart="310dp"
                     android:layout_marginTop="@dimen/_29sdp"
                     android:src="@drawable/ic_outline_done_24"
                     android:visibility="gone"/>
