@@ -1,6 +1,6 @@
 # HomeToday - Android app
 
-<img src="/readme/wallabag logo.png" align="left"
+<img src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/256/house-icon.png" align="left"
 width="200" hspace="10" vspace="10">
 
 HomeToday is a ...
