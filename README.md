@@ -11,7 +11,7 @@ HomeToday is a ...
         src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
     </a>
         </p>
-<br> </br>
+
 ## About
 
 ...
