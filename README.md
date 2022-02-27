@@ -25,7 +25,7 @@ Target audience - apartment owners and people interested in buying / renting an 
  3. Post his own ad
  4. Access his personal profile, where he can also change his photo
 
-# Pictures from the app
+# Pictures from the app:
 
 <a href="https://lh3.googleusercontent.com/pw/AM-JKLVqD7sA3403mSjI9MzPHQAOKyQ3MkZoEywVOyN6Ga5QTq9WkIobFWrWpigLiWxKB48RDN__E8a9O6Den_jt1We7BO1Tq-lUZFwnx8lUhZ6TGvrpK25Q0G8twt0MDmxnwgAs5-MpBkEWTESx0lhV6p9I=w583-h1293-no"><img src="https://lh3.googleusercontent.com/pw/AM-JKLVqD7sA3403mSjI9MzPHQAOKyQ3MkZoEywVOyN6Ga5QTq9WkIobFWrWpigLiWxKB48RDN__E8a9O6Den_jt1We7BO1Tq-lUZFwnx8lUhZ6TGvrpK25Q0G8twt0MDmxnwgAs5-MpBkEWTESx0lhV6p9I=w583-h1293-no" alt="chat-inside" border="0" width="200" align="right"></a>
 <a href="https://lh3.googleusercontent.com/pw/AM-JKLWzu3ijhxPJmGt0I27b9le-zsIcc2V3zH2Q8SfS2Dm8HIhtTGAjeLNQ1-ge3Ozt3QxeqySF0D1KG8NResQeSf9vqvQ3KEdL_jExkg2OOlvNJbebuxTRt3s4ggMPmyyPdRh9Zg6xHpCvgSniy82qcGV1=w583-h1293-no"><img src="https://lh3.googleusercontent.com/pw/AM-JKLWzu3ijhxPJmGt0I27b9le-zsIcc2V3zH2Q8SfS2Dm8HIhtTGAjeLNQ1-ge3Ozt3QxeqySF0D1KG8NResQeSf9vqvQ3KEdL_jExkg2OOlvNJbebuxTRt3s4ggMPmyyPdRh9Zg6xHpCvgSniy82qcGV1=w583-h1293-no" alt="favo" border="0" width="200" align="right"></a>
@@ -35,5 +35,9 @@ Target audience - apartment owners and people interested in buying / renting an 
 <a href="https://lh3.googleusercontent.com/pw/AM-JKLUCt5z9Qx0gVq4FWZxmAgCr_BTBSyodbDpGi1S_HPAx9JeOYKbl05ntZix9h4MHKNftYlqbwoIbfErA9RCd8tOKGNox2RwIX3J1W8ghnKZWMPJQ4YzGV94KY1X0gQPVq_aWVybhGoHaOEWpb8OJlt_1=w583-h1293-no"><img src="https://lh3.googleusercontent.com/pw/AM-JKLUCt5z9Qx0gVq4FWZxmAgCr_BTBSyodbDpGi1S_HPAx9JeOYKbl05ntZix9h4MHKNftYlqbwoIbfErA9RCd8tOKGNox2RwIX3J1W8ghnKZWMPJQ4YzGV94KY1X0gQPVq_aWVybhGoHaOEWpb8OJlt_1=w583-h1293-no" alt="profile" border="0" width="200" align="right"></a>
 <a href="https://lh3.googleusercontent.com/pw/AM-JKLUOT5mBh0kFwFAQkoabwkynRlEOKJ3yVv-wbiYDhktfytHBSvcCJv1rBmq6A2w7werNMX5LrqUZm0qpe1NEuWZD5fXlLX5ClBCJLbe6xZ01DYwaL1li_R6smx2skz8fOf8-AfxfgDPP5ZubIspCfyeD=w583-h1293-no"><img src="https://lh3.googleusercontent.com/pw/AM-JKLUOT5mBh0kFwFAQkoabwkynRlEOKJ3yVv-wbiYDhktfytHBSvcCJv1rBmq6A2w7werNMX5LrqUZm0qpe1NEuWZD5fXlLX5ClBCJLbe6xZ01DYwaL1li_R6smx2skz8fOf8-AfxfgDPP5ZubIspCfyeD=w583-h1293-no" alt="register" border="0" width="200" align="right"></a>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+# Video of the app:
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zIH86a33BTI/0.jpg)](https://www.youtube.com/watch?v=zIH86a33BTI)
 
 
