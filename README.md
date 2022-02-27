@@ -38,6 +38,10 @@ Target audience - apartment owners and people interested in buying / renting an 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 # Video of the app:
+### Youtube:
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zIH86a33BTI/0.jpg)](https://www.youtube.com/watch?v=zIH86a33BTI)
+### Local:
+https://user-images.githubusercontent.com/62435713/155898006-55efd030-fcfb-47ec-b882-328f7e68c950.mp4
 
-
+# Download the app:
+<a href="https://github.com/RamMichaeli17/HomeToday/raw/master/app/release/Home%20Today.apk"><img src="https://user-images.githubusercontent.com/62435713/155898224-b77b0a5b-c66a-4b7d-862f-ebdc3aab2e74.png" alt="main" border="0" width="200" align="left"></a>
