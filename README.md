@@ -1,34 +1,31 @@
 # HomeToday - Android app
 
-<img src="https://i.ibb.co/bLGvV2D/68747470733a2f2f692e696d6775722e636f6d2f796c67446b66512e706e67.png" align="left"
+<img src="https://i.ibb.co/bLGvV2D/68747470733a2f2f692e696d6775722e636f6d2f796c67446b66512e706e67.png" align="right"
 width="200" hspace="10" vspace="10">
-האפליקציה HomeToday היא רשת חברתית לקנייה/מכירה של דירות. אפליקציה זו תסייע למשתמש ליצור קשר
-בקלות עם קהל היעד שלו ובכך תגרום לתהליך מכירת/רכישת/השכרת דירה להיות יעיל ונעים יותר.
-<br><br><br>
+The HomeToday app is a social network for buying / selling apartments. This app will help the user to connect with his target audience and make the process of selling / buying / renting an apartment more efficient and pleasant.
+<br><br><br><br><br><br>
 
 
-# מטרת האפליקציה:
-הנגשת התהליך לכלל משתמשי האפליקציה, הן לבעלי הדירות והן ללקוחות
-המעוניינים בקניית/השכרת דירה. המשתמשים יוכלו לפרסם מודעה, לגלול בין שלל המודעות
-הקיימות, להוסיף את המודעות הרלוונטיות שלהם למועדפים (לצפייה מאוחרת) ולקיים שיחות
-עם מספר מוכרים/שוכרים במקביל ובכך להנגיש את חוויית המשתמש באופן מלא.
+# The purpose of the application:
+Making the process accessible to all users of the app, both apartment owners and customers
+who are interested in buying / renting an apartment. Users will be able to place an ad, scroll through all the existing ads, add ads to favorites (for later viewing) and have conversations with several sellers / tenants at the same time thus making the user experience fully accessible.
 
-קהל יעד - בעלי דירות ואנשים המעוניינים ברכישת/השכרת דירה
+Target audience - apartment owners and people interested in buying / renting an apartment
  
  
- # אופן השימוש:
-### מצב אורח:
-  בעת פתיחה ראשונית של האפליקציה יועבר המשתמש למסך הראשי, בוא יופיעו שלל מודעות מכירה/השכרה של בתים שפורסמו בידי משתמשים שונים. המשתמש יוכל לצפות במודעות ובמידה ויהיה מעוניין ליצור קשר / להוסיף למועדפים אחת מן המודעות, יהיה עליו ליצור משתמש. 
+# Using the app:
+### Guest mode:
+  When the app is first opened, the user will be taken to the main screen, and a variety of sale / rental ads of houses published by different users will appear. The user will be able to view the ads and if he wants to contact / add to the favorites one of the ads, he will have to register.
+
  
- 
- ### משתמש מחובר:
- לאחר שנרשם לאפליקציה, יוכל המשתמש:
- 1. ליצור קשר עם מפרסם מודעה
- 2. להוסיף מודעה לרשימת המועדפים שלו
- 3. לפרסם מודעה משל עצמו
- 4. לגשת לפרופיל האישי שלו, שם יוכל גם להחליף תמונה
- 
-# תמונות
+ ### Logged in:
+ Once registered, the user will be able to:
+ 1. Contact an advertiser (chat)
+ 2. Add an ad to his favorites list
+ 3. Post his own ad
+ 4. Access his personal profile, where he can also change his photo
+
+# Pictures from the app
 
 <a href="https://ibb.co/YNhLn3L"><img src="https://i.ibb.co/tHDJj4J/chat-inside.jpg" alt="chat-inside" border="0" width="200" align="right"></a>
 <a href="https://ibb.co/Brb3F5y"><img src="https://i.ibb.co/QCLQt3P/favo.jpg" alt="favo" border="0" width="200" align="right"></a>
