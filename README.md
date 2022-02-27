@@ -1,6 +1,6 @@
 # HomeToday - Android app
 
-<img src="https://i.imgur.com/ylgDkfQ.png" align="left"
+<img src="https://i.ibb.co/bLGvV2D/68747470733a2f2f692e696d6775722e636f6d2f796c67446b66512e706e67.png" align="left"
 width="200" hspace="10" vspace="10">
 האפליקציה HomeToday היא רשת חברתית לקנייה/מכירה של דירות. אפליקציה זו תסייע למשתמש ליצור קשר
 בקלות עם קהל היעד שלו ובכך תגרום לתהליך מכירת/רכישת/השכרת דירה להיות יעיל ונעים יותר.
