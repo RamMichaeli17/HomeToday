@@ -1,7 +1,7 @@
 # HomeToday - Android app
 
-<img src="https://i.ibb.co/bLGvV2D/68747470733a2f2f692e696d6775722e636f6d2f796c67446b66512e706e67.png" align="right"
-width="200" hspace="10" vspace="10">
+<img src="https://github.com/user-attachments/assets/49c8d150-c2f2-47ae-bc69-3d66a4269425" align="right"
+width="200" hspace="10" vspace="10"><br/>
 The HomeToday app is a social network for buying / selling apartments. This app will help the user to connect with his target audience and make the process of selling / buying / renting an apartment more efficient and pleasant.
 <br><br><br><br><br><br>
 
